@@ -1,0 +1,86 @@
+version: '3.5'
+services:
+
+  # The Application
+  app:
+    container_name: app
+    image: app
+    build:
+      context: ./
+      dockerfile: docker/application/Dockerfile
+    working_dir: /var/www
+    networks:
+      - app-network
+    ports:
+      - 9001:9000
+    volumes:
+      - ./:/var/www
+    depends_on:
+      - database
+      - redis
+      - mailhog
+    environment:
+      - "DB_DATABASE=homestead"
+      - "DB_USERNAME=homestead"
+      - "DB_HOST=database"
+      - "REDIS_HOST=app-redis"
+      - "DB_PASSWORD=secret"
+      - "CACHE_DRIVER=redis"
+      - "SESSION_DRIVER=redis"
+
+  # The Web Server
+  web:
+    container_name: web
+    image: web
+    build:
+      context: ./
+      dockerfile: docker/web/Dockerfile
+    working_dir: /var/www
+    networks:
+      - app-network
+    depends_on:
+      - app
+    volumes:
+      - ./public:/var/www/public
+    ports:
+      - 8086:80
+
+  # The Database
+  database:
+    container_name: database
+    image: mysql:5.7
+    networks:
+      - app-network
+    volumes:
+      - unify-template-db:/var/lib/mysql
+    environment:
+      - "MYSQL_ROOT_PASSWORD=secret"
+      - "MYSQL_USER=homestead"
+      - "MYSQL_PASSWORD=secret"
+      - "MYSQL_DATABASE=homestead"
+    ports:
+      - 33070:3306
+
+  # Cache
+  redis:
+    container_name: app-redis
+    image: redis:latest
+    networks:
+      - app-network
+    ports:
+      - 6379:6379
+
+  # SMTP server
+  mailhog:
+    image: mailhog/mailhog
+    container_name: 'mailhog'
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+
+volumes:
+  unify-template-db:
+
+networks:
+  app-network:
+    name: app-network
