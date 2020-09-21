@@ -13,10 +13,19 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 
         <link rel="stylesheet" href="{{ mix("styles.css") }}">
+        
 
+        <div>
+            <div class="center-width">
+            <img src="images/gamelogo.png">
+            </div>
+        </div>
     </head> 
     <body class="background-home">  
         <main class="main" id="main">
+            <!-- <div class="center-div">
+                <img src="images/gamelogo.png">
+            </div> -->
             <homepage-buttons></homepage-buttons>
         </main>
     <script src="{{ mix('js/app.js') }}"></script>
