@@ -37603,7 +37603,7 @@ var staticRenderFns = [
           {
             staticClass: "btn btn-outline",
             staticStyle: { width: "300px" },
-            attrs: { href: "#" }
+            attrs: { href: "/login" }
           },
           [_vm._v("Login")]
         )
@@ -37615,7 +37615,7 @@ var staticRenderFns = [
           {
             staticClass: "btn btn-outline1",
             staticStyle: { width: "300px" },
-            attrs: { href: "#" }
+            attrs: { href: "/register" }
           },
           [_vm._v("Register")]
         )
