@@ -20,3 +20,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/game', 'GameController@index')->name('game');
+
+Route::group(['middleware' => 'auth'], function () {
+    // Route::get('/game', 'GameController@index')->name('game');
+});
+
