@@ -13,5 +13,4 @@ class GameService {
         $this->repository = $repository;
     }
 
-
 }
