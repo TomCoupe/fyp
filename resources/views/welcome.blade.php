@@ -13,6 +13,8 @@
 
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 
+        <script type="module" src="{{ URL::asset('resources/js/game/main.js') }}"></script>
+
         <link rel="stylesheet" href="{{ mix("styles.css") }}">
         
     </head> 

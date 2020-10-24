@@ -7,6 +7,11 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+.canvas-size {
+    width: 80%;
+    height: 60%;
+}
 /* .home-buttons {
     width: 100px;
     height: 50px;

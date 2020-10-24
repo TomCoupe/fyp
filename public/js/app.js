@@ -1954,7 +1954,9 @@ __webpack_require__.r(__webpack_exports__);
     console.log("Component mounted.");
   },
   data: function data() {
-    return {};
+    return {
+      player: this.user
+    };
   }
 });
 
@@ -37624,7 +37626,12 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [_c("canvas", { attrs: { width: "80%", height: "60%" } })])
+    return _c("div", [
+      _c("canvas", {
+        staticClass: "center-div",
+        attrs: { id: "game", width: "640", height: "640" }
+      })
+    ])
   }
 ]
 render._withStripped = true

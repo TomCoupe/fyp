@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <canvas width="80%" height="60%"></canvas>
+    <div >
+        <canvas class="center-div" id="game" width="640" height="640"></canvas>
     </div>
 </template>
 
