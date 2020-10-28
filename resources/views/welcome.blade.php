@@ -15,6 +15,8 @@
 
         <script type="module" src="{{ URL::asset('resources/js/game/main.js') }}"></script>
 
+        <script src="https://kit.fontawesome.com/e3676cd6c2.js" crossorigin="anonymous"></script>
+
         <link rel="stylesheet" href="{{ mix("styles.css") }}">
         
     </head> 
