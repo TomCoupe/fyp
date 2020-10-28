@@ -1,15 +1,24 @@
 <template>
     <div>
-        <template v-for="post in forumPosts">
-            <div class="card">
-                <h5 class="card-header">Featured</h5>
+            <div class="card" width="80%">
+                <h5 class="card-header">Discussion Forum</h5>
                     <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <div class="card">
+                            dsaasdasdas
+                        </div>
+                        <div class="card">
+                            dsaasdasdas
+                        </div>
+                        <div class="card">
+                            dsaasdasdas
+                        </div>
+                        <div class="card">
+                            dsaasdasdas
+                        </div>
+                        
                     </div>
             </div>
-        </template>
+        <!-- </template> -->
     </div>
 </template>
 

@@ -23,14 +23,16 @@
     </a>
     </button>
     &nbsp;
+
     <a class="navbar-item text-white" href="/profile">
       <button class="btn btn-primary-dark">
         <i class="fas fa-comments"></i>
         &nbsp;
-        Forum
+        Forum   
     </a>
     </button>
-
+    
+    @if(Auth::check())
     <a class="navbar-item text-white" href="/profile">
       <button class="btn btn-primary-dark">
         <i class="fas fa-user-alt"></i>
@@ -38,6 +40,7 @@
         My Profile
     </a>
     </button>
+    @endif
 
   </div>
 

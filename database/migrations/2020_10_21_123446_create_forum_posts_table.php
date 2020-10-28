@@ -20,6 +20,7 @@ class CreateForumPostsTable extends Migration
             $table->string('text');
             $table->integer('likes');
             $table->integer('dislikes');
+            $table->string('title');
         });
     }
 

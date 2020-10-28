@@ -4,7 +4,7 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('homepage-buttons', require('./components/Homepage.vue').default);
 Vue.component('game-window', require('./components/GameCanvas.vue').default);
-Vue.component('forum-homepage', require('./components/ForumHome.vue').default);
+Vue.component('forum-homepage', require('./components/ForumHomepage.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
