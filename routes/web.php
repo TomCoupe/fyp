@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    if(Auth::check()) {
+        Auth::logout();
+    }
     return view('home.homepage');
 });
 
@@ -24,6 +27,7 @@ Route::get('/game', 'GameController@index')->name('game');
 Route::get('/forum', 'ForumController@index')->name('forum');
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::get('/profile', 'UserController@profile');
     // Route::get('/game', 'GameController@index')->name('game');
     // Route::get('/forum', 'ForumController@index')->name('forum');
 });

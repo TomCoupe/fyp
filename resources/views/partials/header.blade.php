@@ -22,16 +22,31 @@
         Home
     </a>
     </button>
-    &nbsp;
 
-    <a class="navbar-item text-white" href="/profile">
+    <a class="navbar-item text-white" href="/game">
+      <button class="btn btn-primary-dark">
+        <i class="fas fa-gamepad"></i>
+        &nbsp;
+        Play
+    </a>
+    </button>
+
+    <a class="navbar-item text-white" href="/forum">
       <button class="btn btn-primary-dark">
         <i class="fas fa-comments"></i>
         &nbsp;
         Forum   
     </a>
     </button>
-    
+
+    <a class="navbar-item text-white" href="/leaderboards">
+      <button class="btn btn-primary-dark">
+        <i class="fas fa-chart-line"></i>
+        &nbsp;
+        Leaderboards  
+    </a>
+    </button>
+
     @if(Auth::check())
     <a class="navbar-item text-white" href="/profile">
       <button class="btn btn-primary-dark">
