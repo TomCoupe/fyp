@@ -2,11 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\ForumPostService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ForumController extends Controller
 {
+    protected $service;
+
+    public function __construct(ForumPostService $service) {
+        $this->service = $service;
+    }
+
     public function index() {
-        return view('forum.forumHome');
+        $posts = $this->service->getForumPosts(1);
+        $user = Auth::user();
+        // dd($posts);
+        return view('forum.forumHome')->with(['posts' => $posts, 'user' => $user]);
     }
 }

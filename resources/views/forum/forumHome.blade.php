@@ -2,8 +2,10 @@
 @include('partials.header')
 
 @section('content')
+&nbsp;
+
 <div>
-    <forum-homepage></forum-homepage>
+    <forum-homepage :posts="{{$posts}}" :user="{{$user}}"></forum-homepage>
 </div>
 @endsection
 
