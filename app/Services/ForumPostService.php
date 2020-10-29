@@ -14,7 +14,14 @@ class ForumPostService {
     }
 
     public function getForumPosts($amount) {
-        return $this->repository->getForumPosts($amount);
+        $posts = $this->repository->getForumPosts($amount);
+
+        foreach ($posts as $post) {
+            $post->created_at->toFormattedDateString();
+            $post->updated_at->toFormattedDateString();
+        }
+
+        return $posts;
     }
 
 }

@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class ForumPostSeeder extends Seeder
 {
@@ -17,7 +18,9 @@ class ForumPostSeeder extends Seeder
             'text' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
             'likes' => 10,
             'dislikes' => 3,
-            'title' => 'Lorem ipsum dolor sit amet'
+            'title' => 'Lorem ipsum dolor sit amet',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
         ]);
     }
 }

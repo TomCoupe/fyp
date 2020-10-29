@@ -37683,7 +37683,11 @@ var render = function() {
                     _vm._v(_vm._s(post.text))
                   ]),
                   _vm._v(" "),
-                  _vm._m(0, true)
+                  _c("p", { staticClass: "card-text" }, [
+                    _c("small", { staticClass: "text-muted" }, [
+                      _vm._v("Posted at: " + _vm._s(post.created_at))
+                    ])
+                  ])
                 ])
               ])
             ]
@@ -37694,18 +37698,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", { staticClass: "card-text" }, [
-      _c("small", { staticClass: "text-muted" }, [
-        _vm._v("Last updated 3 mins ago")
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
