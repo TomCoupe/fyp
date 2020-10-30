@@ -1960,14 +1960,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'ForumHomepage.vue',
   props: ['user', 'posts'],
   mounted: function mounted() {
     console.log("Component mounted.");
   },
+  methods: {
+    ddd: function ddd() {
+      console.log('hellow');
+    }
+  },
   data: function data() {
     return {
+      val: 0,
       player: this.user,
       forumPosts: this.posts
     };
@@ -37687,6 +37700,46 @@ var render = function() {
                     _c("small", { staticClass: "text-muted" }, [
                       _vm._v("Posted at: " + _vm._s(post.created_at))
                     ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "bottom-right" }, [
+                    _vm._v(
+                      "\n                             \n                            "
+                    ),
+                    _c(
+                      "span",
+                      {
+                        on: {
+                          click: function($event) {
+                            return _vm.ddd()
+                          }
+                        }
+                      },
+                      [
+                        _c("i", { staticClass: "far fa-thumbs-up fa-2x" }),
+                        _vm._v(_vm._s(post.likes))
+                      ]
+                    ),
+                    _vm._v(
+                      "\n                             \n                            "
+                    ),
+                    _c(
+                      "span",
+                      {
+                        on: {
+                          click: function($event) {
+                            return _vm.ddd()
+                          }
+                        }
+                      },
+                      [
+                        _c("i", { staticClass: "far fa-thumbs-down fa-2x" }),
+                        _vm._v(_vm._s(post.dislikes))
+                      ]
+                    ),
+                    _vm._v(
+                      "\n                             \n                        "
+                    )
                   ])
                 ])
               ])

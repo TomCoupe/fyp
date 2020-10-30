@@ -2,6 +2,7 @@
 namespace App\Services;
 
 use App\Repositories\ForumPostRepository;
+use Carbon\Carbon;
 
 
 class ForumPostService {
@@ -16,9 +17,9 @@ class ForumPostService {
     public function getForumPosts($amount) {
         $posts = $this->repository->getForumPosts($amount);
 
-        foreach ($posts as $post) {
-            $post->created_at->toFormattedDateString();
-            $post->updated_at->toFormattedDateString();
+        foreach ($posts as $post) { 
+            $post->created_at = $post->created_at->format('Y-m-d H:i:s');
+            // $post->updated_at = Carbon::parse($post->updated_at);
         }
 
         return $posts;

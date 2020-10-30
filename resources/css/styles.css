@@ -17,6 +17,12 @@
     background-color: #45526e;
 }
 
+.bottom-right {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
 /* .home-buttons {
     width: 100px;
     height: 50px;
