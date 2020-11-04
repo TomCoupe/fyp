@@ -8,6 +8,13 @@
     transform: translate(-50%, -50%);
 }
 
+.center-game {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .canvas-size {
     width: 80%;
     height: 60%;

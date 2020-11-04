@@ -37716,7 +37716,10 @@ var render = function() {
                         }
                       },
                       [
-                        _c("i", { staticClass: "far fa-thumbs-up fa-2x" }),
+                        _c("i", {
+                          staticClass: "far fa-thumbs-up fa-2x",
+                          staticStyle: { color: "green" }
+                        }),
                         _vm._v(_vm._s(post.likes))
                       ]
                     ),
@@ -37733,7 +37736,10 @@ var render = function() {
                         }
                       },
                       [
-                        _c("i", { staticClass: "far fa-thumbs-down fa-2x" }),
+                        _c("i", {
+                          staticClass: "far fa-thumbs-down fa-2x",
+                          staticStyle: { color: "red" }
+                        }),
                         _vm._v(_vm._s(post.dislikes))
                       ]
                     ),

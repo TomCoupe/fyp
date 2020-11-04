@@ -11,9 +11,9 @@
                             <p class="card-text"><small class="text-muted">Posted at: {{post.created_at}}</small></p>
                             <div class="bottom-right">
                                 &nbsp;
-                                <span v-on:click="ddd()"><i class="far fa-thumbs-up fa-2x"> </i>{{post.likes}}</span>
+                                <span v-on:click="ddd()"><i class="far fa-thumbs-up fa-2x" style="color: green;"> </i>{{post.likes}}</span>
                                 &nbsp;
-                                <span v-on:click="ddd()"><i class="far fa-thumbs-down fa-2x"> </i>{{post.dislikes}}</span>
+                                <span v-on:click="ddd()"><i class="far fa-thumbs-down fa-2x" style="color: red;"> </i>{{post.dislikes}}</span>
                                 &nbsp;
                             </div>
                         </div>
