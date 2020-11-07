@@ -8,6 +8,13 @@ export function loadImage(url) {
     });
 }
 
+export function loadBackgroundTextures(tiles) {
+    return loadImage('/images/game/tiles.png').then(image => {
+        define('ground', 0, 0, 16, 16, image, tiles);
+        define('sky', 3, 23, 16, 16, image, tiles);
+    });
+}
+
 export function define(name, x, y, width, height, image, tiles) {
     const buffer = document.createElement('canvas');
     buffer.width = width;
