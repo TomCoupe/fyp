@@ -29,10 +29,6 @@ export default {
     name: 'ForumHomepage.vue',
     props: ['user', 'posts'],
 
-    mounted() {
-        console.log("Component mounted.");
-    },
-
     methods: {
         ddd(){
             console.log('hellow');
