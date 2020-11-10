@@ -15,8 +15,14 @@ export function loadImage(url) {
 //function to return all textures that are defined to be used for the background.
 export function loadBackgroundTextures(tiles) {
     return loadImage('/images/game/tiles.png').then(image => {
-        define('ground', 0, 0, 16, 16, image, tiles);
-        define('sky', 3, 23, 16, 16, image, tiles);
+        defineTile('ground', 0, 0, 16, 16, image, tiles);
+        defineTile('sky', 3, 23, 16, 16, image, tiles);
+    });
+}
+
+export function loadCharacterTexture(tiles) {
+    return loadImage('/images/game/characters.gif').then(image => {
+        define('idle', 276, 44, 16, 16, image, tiles);
     });
 }
 
@@ -27,8 +33,8 @@ export function define(name, x, y, width, height, image, tiles) {
     buffer.height = height;
     buffer.getContext('2d').drawImage(
         image,
-        x * width,
-        y * height,
+        x,
+        y,
         width,
         height,
         0,
@@ -37,6 +43,10 @@ export function define(name, x, y, width, height, image, tiles) {
         height
     );
     tiles.set(name, buffer);
+}
+
+export function defineTile(name, x, y, width, height, image, tiles) {
+    define(name, x * width, y * width, width, height, image, tiles);
 }
 
 //draws a specified tile 'name' onto the canvas.
