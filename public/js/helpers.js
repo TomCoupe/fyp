@@ -1,3 +1,7 @@
+//JS file full of useful functions for the project.
+
+
+// Function to take an image path 'url' and resolve image.
 export function loadImage(url) {
     return new Promise(resolve => {
         const image = new Image();
@@ -8,6 +12,7 @@ export function loadImage(url) {
     });
 }
 
+//function to return all textures that are defined to be used for the background.
 export function loadBackgroundTextures(tiles) {
     return loadImage('/images/game/tiles.png').then(image => {
         define('ground', 0, 0, 16, 16, image, tiles);
@@ -15,6 +20,7 @@ export function loadBackgroundTextures(tiles) {
     });
 }
 
+//funciton used to define and draw a specified tile from
 export function define(name, x, y, width, height, image, tiles) {
     const buffer = document.createElement('canvas');
     buffer.width = width;
@@ -33,11 +39,13 @@ export function define(name, x, y, width, height, image, tiles) {
     tiles.set(name, buffer);
 }
 
+//draws a specified tile 'name' onto the canvas.
 export function draw(name, context, x, y, tiles) {
     const buffer = tiles.get(name);
     context.drawImage(buffer, x, y);
 }
 
+//takes values from levels json files to draw a background depending on the values within the json.
 export function drawBackground(background, context, tiles, width, height) {
     background.ranges.forEach(([x1, x2, y1, y2]) => {
         for(let x = x1; x < x2; x++) {
@@ -48,10 +56,12 @@ export function drawBackground(background, context, tiles, width, height) {
     })
 }
 
+
 export function drawTile(name, context, x, y, width, height, tiles) {
     draw(name, context, x * width, y * height, tiles)
 }
 
+//reads from json file to load specified level.
 export function loadLevel(name) {
     return fetch('/levels/' + name +'.json')
     .then(r => r.json());
