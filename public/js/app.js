@@ -2020,6 +2020,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'ForumPostCreate.vue',
   props: ['user'],
@@ -37855,11 +37863,22 @@ var staticRenderFns = [
       _c("div", { staticClass: "card" }, [
         _c("div", { staticClass: "card-header" }, [
           _c("div", { staticClass: "float-left" }, [
-            _vm._v("\n                Create a post.\n            ")
+            _c("h5", [_vm._v("Create a post.")])
           ])
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "card-body" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "formGroupExampleInput" } }, [
+              _vm._v("Forum post title:")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: { type: "text", placeholder: "Enter your title here." }
+            })
+          ]),
+          _vm._v(" "),
           _c("div", { staticClass: "form-group" }, [
             _c("label", { attrs: { for: "exampleFormControlTextarea1" } }, [
               _vm._v("Forum Post Content:")
@@ -37867,8 +37886,14 @@ var staticRenderFns = [
             _vm._v(" "),
             _c("textarea", {
               staticClass: "form-control",
-              attrs: { id: "exampleFormControlTextarea1", rows: "3" }
+              attrs: { rows: "5", placeholder: "Enter your text here." }
             })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("button", { staticClass: "btn btn-dark" }, [_vm._v("Post")]),
+            _vm._v(" "),
+            _c("button", { staticClass: "btn btn-danger" }, [_vm._v("Cancel")])
           ])
         ])
       ])

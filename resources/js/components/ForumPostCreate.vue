@@ -8,8 +8,16 @@
         </div>
         <div class="card-body">
             <div class="form-group">
+                <label for="formGroupExampleInput">Forum post title:</label>
+                <input type="text" class="form-control" placeholder="Enter your title here.">
+            </div>    
+            <div class="form-group">
                 <label for="exampleFormControlTextarea1">Forum Post Content:</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea class="form-control" rows="5" placeholder="Enter your text here."></textarea>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-dark">Post</button>
+                <button class="btn btn-danger">Cancel</button>
             </div>
         </div>
     </div>
