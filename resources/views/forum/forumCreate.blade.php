@@ -4,6 +4,6 @@
 @section('content')
 &nbsp;
 <div>
-    <forum-post-create :user="casfas"></forum-post-create>
+    <forum-post-create :user="{{$user}}"></forum-post-create>
 </div>
 @endsection

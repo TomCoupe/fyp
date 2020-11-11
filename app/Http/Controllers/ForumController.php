@@ -21,6 +21,7 @@ class ForumController extends Controller
     }
 
     public function create() {
-        return view('forum.forumCreate');
+        $user = Auth::user();
+        return view('forum.forumCreate')->with(['user' => $user]);
     }   
 }
