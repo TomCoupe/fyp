@@ -17,7 +17,10 @@ class ForumController extends Controller
     public function index() {
         $posts = $this->service->getForumPosts(1);
         $user = Auth::user();
-        // dd($posts);
         return view('forum.forumHome')->with(['posts' => $posts, 'user' => $user]);
     }
+
+    public function create() {
+        return view('forum.forumCreate');
+    }   
 }

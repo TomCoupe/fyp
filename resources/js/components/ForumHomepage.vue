@@ -1,13 +1,20 @@
 <template>
     <div class="col-md-12">
         <div class="card">
-            <h5 class="card-header">Discussion Forum</h5>
+            <div class="card-header">
+                <div class="float-left">
+                    <h5>Discussion Forum</h5>
+                </div>
+                <div class="float-right">
+                    <a class="btn btn-outline-dark" href="/" type="button">Create a new post</a>
+                </div>
+            </div>
                 <div class="card-body">
                     <template v-for="post in forumPosts">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">{{ post.title }}</h5>
-                            <p class="card-text">{{ post.text }}</p>
+                            <p class="card-text">{{ post.text }}</p>    
                             <p class="card-text"><small class="text-muted">Posted at: {{post.created_at}}</small></p>
                             <div class="bottom-right">
                                 &nbsp;
