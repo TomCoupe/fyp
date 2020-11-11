@@ -1,6 +1,5 @@
 //JS file full of useful functions for the project.
 
-
 // Function to take an image path 'url' and resolve image.
 export function loadImage(url) {
     return new Promise(resolve => {

@@ -1,3 +1,5 @@
+
+//this class is used to apply the sprite layers of the game.
 export default class Game {
 
     constructor() {
