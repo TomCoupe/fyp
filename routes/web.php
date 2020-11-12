@@ -29,7 +29,6 @@ Route::get('/forum', 'ForumController@index')->name('forum');
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/profile', 'UserController@profile');
     Route::get('/forum/create', 'ForumController@create');
-    // Route::get('/game', 'GameController@index')->name('game');
-    // Route::get('/forum', 'ForumController@index')->name('forum');
+    Route::post('/forum/createPost', 'ForumController@createPost');
 });
 

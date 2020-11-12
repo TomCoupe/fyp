@@ -1,6 +1,8 @@
 require('./bootstrap');
 window.Vue = require('vue');
 
+const axios = require('axios');
+
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('homepage-buttons', require('./components/Homepage.vue').default);
 Vue.component('game-window', require('./components/GameCanvas.vue').default);

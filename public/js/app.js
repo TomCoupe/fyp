@@ -2028,13 +2028,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'ForumPostCreate.vue',
   props: ['user'],
   data: function data() {
     return {
-      user: this.user
+      user: this.user,
+      forumPost: {
+        title: '',
+        postText: ''
+      }
     };
+  },
+  methods: {
+    saveForumPost: function saveForumPost() {
+      if (this.forumPost.title !== '' && this.forumPost.postText !== '') {
+        axios.post('/forum/createPost', this.forumPost, {
+          headers: {
+            'content-type': 'text/json'
+          }
+        }).then(function (response) {
+          console.log('sent');
+        })["catch"](function (error) {
+          console.log('not sent');
+        });
+      }
+    }
   }
 });
 
@@ -37852,50 +37873,88 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "col-md-12" }, [
+    _c("div", { staticClass: "card" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-body" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "formGroupExampleInput" } }, [
+            _vm._v("Forum post title:")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.forumPost.title,
+                expression: "forumPost.title"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text", placeholder: "Enter your title here." },
+            domProps: { value: _vm.forumPost.title },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.forumPost, "title", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "exampleFormControlTextarea1" } }, [
+            _vm._v("Forum Post Content:")
+          ]),
+          _vm._v(" "),
+          _c("textarea", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.forumPost.postText,
+                expression: "forumPost.postText"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { rows: "5", placeholder: "Enter your text here." },
+            domProps: { value: _vm.forumPost.postText },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.forumPost, "postText", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c(
+            "button",
+            { staticClass: "btn btn-dark", on: { click: _vm.saveForumPost } },
+            [_vm._v("Post")]
+          ),
+          _vm._v(" "),
+          _c("button", { staticClass: "btn btn-danger" }, [_vm._v("Cancel")])
+        ])
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-12" }, [
-      _c("div", { staticClass: "card" }, [
-        _c("div", { staticClass: "card-header" }, [
-          _c("div", { staticClass: "float-left" }, [
-            _c("h5", [_vm._v("Create a post.")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-body" }, [
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "formGroupExampleInput" } }, [
-              _vm._v("Forum post title:")
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control",
-              attrs: { type: "text", placeholder: "Enter your title here." }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "exampleFormControlTextarea1" } }, [
-              _vm._v("Forum Post Content:")
-            ]),
-            _vm._v(" "),
-            _c("textarea", {
-              staticClass: "form-control",
-              attrs: { rows: "5", placeholder: "Enter your text here." }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("button", { staticClass: "btn btn-dark" }, [_vm._v("Post")]),
-            _vm._v(" "),
-            _c("button", { staticClass: "btn btn-danger" }, [_vm._v("Cancel")])
-          ])
-        ])
+    return _c("div", { staticClass: "card-header" }, [
+      _c("div", { staticClass: "float-left" }, [
+        _c("h5", [_vm._v("Create a post.")])
       ])
     ])
   }
@@ -50181,6 +50240,9 @@ module.exports = function(module) {
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+
+var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
 Vue.component('homepage-buttons', __webpack_require__(/*! ./components/Homepage.vue */ "./resources/js/components/Homepage.vue")["default"]);
 Vue.component('game-window', __webpack_require__(/*! ./components/GameCanvas.vue */ "./resources/js/components/GameCanvas.vue")["default"]);

@@ -15,4 +15,8 @@ class ForumPostRepository {
     public function getForumPosts($amount) {
         return $this->model->orderBy('created_at', 'DESC')->take($amount)->get();
     }
+
+    public function storePost($post, $user) {
+
+    }
 }
