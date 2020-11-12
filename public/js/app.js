@@ -2050,9 +2050,9 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
             'content-type': 'text/json'
           }
         }).then(function (response) {
-          console.log('sent');
+          console.log(response);
         })["catch"](function (error) {
-          console.log('not sent');
+          console.log(error);
         });
       }
     }

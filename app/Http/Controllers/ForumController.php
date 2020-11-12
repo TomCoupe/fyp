@@ -16,7 +16,7 @@ class ForumController extends Controller
     }
 
     public function index() {
-        $posts = $this->service->getForumPosts(1);
+        $posts = $this->service->getForumPosts(2);
         $user = Auth::user();
         return view('forum.forumHome')->with(['posts' => $posts, 'user' => $user]);
     }
@@ -29,7 +29,12 @@ class ForumController extends Controller
     public function createPost(Request $request) {
         if($this->service->validatePayload($request)) {
             $user = Auth::user();
-            $this->service->saveForumPost($request, $user);
+            $stored = $this->service->saveForumPost($request, $user);
+            Log::info($stored);
+            if($stored == true) {
+                // return response('success', 200);
+            }
         }
+        // return response('error', 500)
     }   
 }

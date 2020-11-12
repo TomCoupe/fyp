@@ -35,6 +35,6 @@ class ForumPostService
 
     public function saveForumPost($post, $user)
     {
-        $this->repository->storePost($post, $user);
+        return $this->repository->storePost($post, $user);
     }
 }

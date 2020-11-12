@@ -17,6 +17,12 @@ class ForumPostRepository {
     }
 
     public function storePost($post, $user) {
-
+        return $this->model->create([
+            'user_id' => $user->id,
+            'text' => $post['postText'],
+            'title' => $post['title'],
+            'likes' => 0,
+            'dislikes' => 0
+        ]);
     }
 }

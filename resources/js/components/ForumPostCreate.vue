@@ -47,10 +47,10 @@ export default {
                     headers: {
                         'content-type': 'text/json',
                     }
-                }).then(function(response) { 
-                    console.log('sent')
+                }).then(function(response) {
+                    window.location.href = '/forum'; 
                 }).catch(function(error) {
-                    console.log('not sent')
+                    console.log(error)
                 })
             }
         },
