@@ -2050,8 +2050,9 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
             'content-type': 'text/json'
           }
         }).then(function (response) {
-          console.log(response);
+          window.location.href = '/forum';
         })["catch"](function (error) {
+          console.log('fail');
           console.log(error);
         });
       }
@@ -37844,7 +37845,7 @@ var staticRenderFns = [
           "a",
           {
             staticClass: "btn btn-outline-dark",
-            attrs: { href: "/", type: "button" }
+            attrs: { href: "/forum/create", type: "button" }
           },
           [_vm._v("Create a new post")]
         )

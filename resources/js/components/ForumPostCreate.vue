@@ -50,7 +50,8 @@ export default {
                 }).then(function(response) {
                     window.location.href = '/forum'; 
                 }).catch(function(error) {
-                    console.log(error)
+                    console.log('fail');
+                    console.log(error);
                 })
             }
         },

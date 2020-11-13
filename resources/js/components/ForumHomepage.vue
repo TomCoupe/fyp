@@ -6,7 +6,7 @@
                     <h5>Discussion Forum</h5>
                 </div>
                 <div class="float-right">
-                    <a class="btn btn-outline-dark" href="/" type="button">Create a new post</a>
+                    <a class="btn btn-outline-dark" href="/forum/create" type="button">Create a new post</a>
                 </div>
             </div>
                 <div class="card-body">
@@ -39,6 +39,10 @@ export default {
     methods: {
         ddd(){
             console.log('hellow');
+        },
+
+        likePost(postId){
+            
         }
     },
 
