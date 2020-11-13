@@ -1974,13 +1974,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'ForumHomepage.vue',
   props: ['user', 'posts'],
   methods: {
     ddd: function ddd() {
       console.log('hellow');
-    }
+    },
+    likePost: function likePost(postId) {}
   },
   data: function data() {
     return {
@@ -37751,7 +37755,12 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "col-md-12" }, [
     _c("div", { staticClass: "card" }, [
-      _vm._m(0),
+      _c(
+        "div",
+        { staticClass: "card-header" },
+        [_vm._m(0), _vm._v(" "), _vm.user !== null ? [_vm._m(1)] : _vm._e()],
+        2
+      ),
       _vm._v(" "),
       _c(
         "div",
@@ -37759,6 +37768,7 @@ var render = function() {
         [
           _vm._l(_vm.forumPosts, function(post) {
             return [
+              _vm._v("\n                 \n                "),
               _c("div", { staticClass: "card" }, [
                 _c("div", { staticClass: "card-body" }, [
                   _c("h5", { staticClass: "card-title" }, [
@@ -37835,21 +37845,23 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-header" }, [
-      _c("div", { staticClass: "float-left" }, [
-        _c("h5", [_vm._v("Discussion Forum")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "float-right" }, [
-        _c(
-          "a",
-          {
-            staticClass: "btn btn-outline-dark",
-            attrs: { href: "/forum/create", type: "button" }
-          },
-          [_vm._v("Create a new post")]
-        )
-      ])
+    return _c("div", { staticClass: "float-left" }, [
+      _c("h5", [_vm._v("Discussion Forum")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "float-right" }, [
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-outline-dark",
+          attrs: { href: "/forum/create", type: "button" }
+        },
+        [_vm._v("Create a new post")]
+      )
     ])
   }
 ]

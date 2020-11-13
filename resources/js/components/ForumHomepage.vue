@@ -5,12 +5,15 @@
                 <div class="float-left">
                     <h5>Discussion Forum</h5>
                 </div>
-                <div class="float-right">
-                    <a class="btn btn-outline-dark" href="/forum/create" type="button">Create a new post</a>
-                </div>
+                <template v-if="user !== null">
+                    <div class="float-right">
+                        <a class="btn btn-outline-dark" href="/forum/create" type="button">Create a new post</a>
+                    </div>
+                </template>
             </div>
                 <div class="card-body">
                     <template v-for="post in forumPosts">
+                    &nbsp;
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">{{ post.title }}</h5>
@@ -42,7 +45,7 @@ export default {
         },
 
         likePost(postId){
-            
+
         }
     },
 

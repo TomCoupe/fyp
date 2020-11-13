@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 
+use Exception;
+
 class ForumController extends Controller
 {
     protected $service;
@@ -23,7 +25,10 @@ class ForumController extends Controller
 
     public function create() {
         $user = Auth::user();
-        return view('forum.forumCreate')->with(['user' => $user]);
+        if($user !== null) {
+            return view('forum.forumCreate')->with(['user' => $user]);
+        }
+        return redirect()->route('forum');
     } 
     
     public function createPost(Request $request) {
