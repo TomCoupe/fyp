@@ -7,8 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 
-use Exception;
-
 class ForumController extends Controller
 {
     protected $service;
