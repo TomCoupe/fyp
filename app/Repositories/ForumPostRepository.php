@@ -25,4 +25,8 @@ class ForumPostRepository {
             'dislikes' => 0
         ]);
     }
+
+    public function findPost($id) {
+        return $this->model->where('id', $id)->first();
+    }
 }

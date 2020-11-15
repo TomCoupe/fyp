@@ -25,6 +25,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/game', 'GameController@index')->name('game');
 Route::get('/forum', 'ForumController@index')->name('forum');
+Route::get('/forum/post/{id}', 'ForumController@loadPost');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/profile', 'UserController@profile');

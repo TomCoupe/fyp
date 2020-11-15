@@ -37,4 +37,9 @@ class ForumPostService
     {
         return $this->repository->storePost($post, $user);
     }
+
+    public function findByPostId($id) {
+        return $this->repository->findPost($id);
+    }
+      
 }

@@ -39,5 +39,14 @@ class ForumController extends Controller
             }
         }
         // return response('error', 500)
-    }   
+    }
+    
+    public function loadPost($id) {
+        $post = $this->service->findByPostId($id);
+        if($post !== null) {
+            return view('forum.forumPost')->with('post', $post);
+        }
+
+        return; //404
+    }
 }
