@@ -31,5 +31,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/profile', 'UserController@profile');
     Route::get('/forum/create', 'ForumController@create');
     Route::post('/forum/createPost', 'ForumController@createPost');
+    Route::get('/forum/post/{id}/createComment', 'ForumController@createComment');
 });
 

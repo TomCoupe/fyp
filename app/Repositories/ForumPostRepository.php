@@ -2,14 +2,17 @@
 namespace App\Repositories;
 
 use App\ForumPost;
+use App\ForumComment;
 
 
 class ForumPostRepository {
 
     protected $model;
+    protected $commentModel;
 
-    public function __construct(ForumPost $model) {
+    public function __construct(ForumPost $model, ForumComment $commentModel) {
         $this->model = $model;
+        $this->commentModel = $commentModel;
     }
 
     public function getForumPosts($amount) {
@@ -28,5 +31,9 @@ class ForumPostRepository {
 
     public function findPost($id) {
         return $this->model->where('id', $id)->first();
+    }
+
+    public function getForumPostComments($postId) {
+        return $this->commentModel->where('forum_post_id', $postId)->get();
     }
 }

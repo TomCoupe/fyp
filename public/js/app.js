@@ -2080,9 +2080,79 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'ForumPostView.vue',
-  props: ['post'],
+  name: "ForumPostView.vue",
+  props: ["post", "comments"],
   data: function data() {
     return {
       post: this.post
@@ -38020,9 +38090,167 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c("div", [
+    _c("div", { staticClass: "col-md-12" }, [
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card-header" }, [
+          _c("h5", [_vm._v(_vm._s(_vm.post.title))])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("p", { staticClass: "card-text" }, [
+              _vm._v(_vm._s(_vm.post.text))
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "float-left" }, [
+            _c("p", { staticClass: "card-text" }, [
+              _c("small", { staticClass: "text-muted" }, [
+                _vm._v("Posted at: " + _vm._s(_vm.post.created_at))
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "float-right" }, [
+            _vm._v("\n           \n          "),
+            _c("span", [
+              _c("i", {
+                staticClass: "far fa-thumbs-up fa-2x",
+                staticStyle: { color: "green" }
+              }),
+              _vm._v("\n            " + _vm._s(_vm.post.likes) + "\n          ")
+            ]),
+            _vm._v("\n           \n          "),
+            _c("span", [
+              _c("i", {
+                staticClass: "far fa-thumbs-down fa-2x",
+                staticStyle: { color: "red" }
+              }),
+              _vm._v(
+                "\n            " + _vm._s(_vm.post.dislikes) + "\n          "
+              )
+            ])
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" \n  "),
+    _c("div", { staticClass: "col-md-12" }, [
+      _c("div", { staticClass: "card" }, [
+        _c(
+          "div",
+          { staticClass: "card-header" },
+          [_vm._m(0), _vm._v(" "), _vm.user !== null ? [_vm._m(1)] : _vm._e()],
+          2
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "card-body" },
+          [
+            _vm._l(_vm.comments, function(comment) {
+              return [
+                _vm._v("\n           \n          "),
+                _c("div", { staticClass: "card" }, [
+                  _c("div", { staticClass: "card-body" }, [
+                    _c("h5", { staticClass: "card-title" }, [
+                      _vm._v("username")
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "card-text" }, [
+                      _vm._v(_vm._s(comment.text))
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "card-text" }, [
+                      _c("small", { staticClass: "text-muted" }, [
+                        _vm._v("Posted at: " + _vm._s(comment.created_at))
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "bottom-right" }, [
+                      _vm._v("\n                 \n                "),
+                      _c(
+                        "span",
+                        {
+                          on: {
+                            click: function($event) {
+                              return _vm.ddd()
+                            }
+                          }
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "far fa-thumbs-up fa-2x",
+                            staticStyle: { color: "green" }
+                          }),
+                          _vm._v(
+                            "\n                  " +
+                              _vm._s(comment.likes) +
+                              "\n                "
+                          )
+                        ]
+                      ),
+                      _vm._v("\n                 \n                "),
+                      _c(
+                        "span",
+                        {
+                          on: {
+                            click: function($event) {
+                              return _vm.ddd()
+                            }
+                          }
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "far fa-thumbs-down fa-2x",
+                            staticStyle: { color: "red" }
+                          }),
+                          _vm._v(
+                            "\n                  " +
+                              _vm._s(comment.dislikes) +
+                              "\n                "
+                          )
+                        ]
+                      ),
+                      _vm._v("\n                 \n              ")
+                    ])
+                  ])
+                ])
+              ]
+            })
+          ],
+          2
+        )
+      ])
+    ])
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "float-left" }, [
+      _c("h5", [_vm._v("Comment section")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "float-right" }, [
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-outline-dark",
+          attrs: { href: "/forum/create", type: "button" }
+        },
+        [_vm._v("Add a comment")]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 

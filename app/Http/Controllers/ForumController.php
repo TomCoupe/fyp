@@ -16,7 +16,7 @@ class ForumController extends Controller
     }
 
     public function index() {
-        $posts = $this->service->getForumPosts(2);
+        $posts = $this->service->getForumPosts(200);
         $user = Auth::user();
         return view('forum.forumHome')->with(['posts' => $posts, 'user' => $user]);
     }
@@ -44,7 +44,8 @@ class ForumController extends Controller
     public function loadPost($id) {
         $post = $this->service->findByPostId($id);
         if($post !== null) {
-            return view('forum.forumPost')->with('post', $post);
+            $comments = $this->service->getPostCommentsByPostId($id);
+            return view('forum.forumPost')->with(['post' => $post, 'comments' => $comments]);
         }
 
         return; //404

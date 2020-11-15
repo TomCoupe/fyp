@@ -41,5 +41,9 @@ class ForumPostService
     public function findByPostId($id) {
         return $this->repository->findPost($id);
     }
+
+    public function getPostCommentsByPostId($postId){
+        return $this->repository->getForumPostComments($postId);
+    }   
       
 }
