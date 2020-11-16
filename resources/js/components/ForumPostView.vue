@@ -46,7 +46,7 @@
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">{{obj.user.name}}</h5>
-                <p class="card-text">{{ obj.comment.text }}</p> 
+                <p class="card-text">{{ obj.comment.text }}</p>
                 <p class="card-text">
                   <small class="text-muted">Posted at: {{obj.comment.created_at}}</small>
                 </p>
@@ -84,9 +84,9 @@ export default {
   },
 
   methods: {
-      addComment() {
-          window.location.href = '/forum/post/' + this.post.id +'/createComment';
-      }
+    addComment() {
+      window.location.href = "/forum/post/" + this.post.id + "/createComment";
+    }
   }
 };
 </script>

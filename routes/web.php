@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    if(Auth::check()) {
+    if (Auth::check()) {
         Auth::logout();
     }
     return view('home.homepage');
@@ -33,4 +33,3 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/forum/createPost', 'ForumController@createPost');
     Route::get('/forum/post/{id}/createComment', 'ForumController@createComment');
 });
-
