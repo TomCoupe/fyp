@@ -45,5 +45,9 @@ class ForumPostService
     public function getPostCommentsByPostId($postId){
         return $this->repository->getForumPostComments($postId);
     }   
+
+    public function getUserFromComment($userId) {
+        return $this->repository->getUserFromComment($userId);
+    }
       
 }

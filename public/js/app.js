@@ -38149,70 +38149,50 @@ var render = function() {
           "div",
           { staticClass: "card-body" },
           [
-            _vm._l(_vm.comments, function(comment) {
+            _vm._l(_vm.comments, function(obj) {
               return [
                 _vm._v("\n           \n          "),
                 _c("div", { staticClass: "card" }, [
                   _c("div", { staticClass: "card-body" }, [
                     _c("h5", { staticClass: "card-title" }, [
-                      _vm._v("username")
+                      _vm._v(_vm._s(obj.user.name))
                     ]),
                     _vm._v(" "),
                     _c("p", { staticClass: "card-text" }, [
-                      _vm._v(_vm._s(comment.text))
+                      _vm._v(_vm._s(obj.comment.text))
                     ]),
                     _vm._v(" "),
                     _c("p", { staticClass: "card-text" }, [
                       _c("small", { staticClass: "text-muted" }, [
-                        _vm._v("Posted at: " + _vm._s(comment.created_at))
+                        _vm._v("Posted at: " + _vm._s(obj.comment.created_at))
                       ])
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "bottom-right" }, [
                       _vm._v("\n                 \n                "),
-                      _c(
-                        "span",
-                        {
-                          on: {
-                            click: function($event) {
-                              return _vm.ddd()
-                            }
-                          }
-                        },
-                        [
-                          _c("i", {
-                            staticClass: "far fa-thumbs-up fa-2x",
-                            staticStyle: { color: "green" }
-                          }),
-                          _vm._v(
-                            "\n                  " +
-                              _vm._s(comment.likes) +
-                              "\n                "
-                          )
-                        ]
-                      ),
+                      _c("span", [
+                        _c("i", {
+                          staticClass: "far fa-thumbs-up fa-2x",
+                          staticStyle: { color: "green" }
+                        }),
+                        _vm._v(
+                          "\n                  " +
+                            _vm._s(obj.comment.likes) +
+                            "\n                "
+                        )
+                      ]),
                       _vm._v("\n                 \n                "),
-                      _c(
-                        "span",
-                        {
-                          on: {
-                            click: function($event) {
-                              return _vm.ddd()
-                            }
-                          }
-                        },
-                        [
-                          _c("i", {
-                            staticClass: "far fa-thumbs-down fa-2x",
-                            staticStyle: { color: "red" }
-                          }),
-                          _vm._v(
-                            "\n                  " +
-                              _vm._s(comment.dislikes) +
-                              "\n                "
-                          )
-                        ]
-                      ),
+                      _c("span", [
+                        _c("i", {
+                          staticClass: "far fa-thumbs-down fa-2x",
+                          staticStyle: { color: "red" }
+                        }),
+                        _vm._v(
+                          "\n                  " +
+                            _vm._s(obj.comment.dislikes) +
+                            "\n                "
+                        )
+                      ]),
                       _vm._v("\n                 \n              ")
                     ])
                   ])

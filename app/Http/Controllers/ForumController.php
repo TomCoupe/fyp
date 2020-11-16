@@ -45,7 +45,13 @@ class ForumController extends Controller
         $post = $this->service->findByPostId($id);
         if($post !== null) {
             $comments = $this->service->getPostCommentsByPostId($id);
-            return view('forum.forumPost')->with(['post' => $post, 'comments' => $comments]);
+            $commentsArray = [];
+            foreach($comments as $comment) {
+                $user = $this->service->getUserFromComment($comment->user_id);
+                $commentsArray[] = ['comment' => $comment, 'user' => $user];
+            }
+            
+            return view('forum.forumPost')->with(['post' => $post, 'comments' => json_encode($commentsArray)]);
         }
 
         return; //404

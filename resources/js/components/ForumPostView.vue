@@ -42,25 +42,25 @@
           </template>
         </div>
         <div class="card-body">
-          <template v-for="comment in comments">
+          <template v-for="obj in comments">
             &nbsp;
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">username</h5>
-                <p class="card-text">{{ comment.text }}</p>
+                <h5 class="card-title">{{obj.user.name}}</h5>
+                <p class="card-text">{{ obj.comment.text }}</p> 
                 <p class="card-text">
-                  <small class="text-muted">Posted at: {{comment.created_at}}</small>
+                  <small class="text-muted">Posted at: {{obj.comment.created_at}}</small>
                 </p>
                 <div class="bottom-right">
                   &nbsp;
                   <span>
                     <i class="far fa-thumbs-up fa-2x" style="color: green;"></i>
-                    {{comment.likes}}
+                    {{obj.comment.likes}}
                   </span>
                   &nbsp;
                   <span>
                     <i class="far fa-thumbs-down fa-2x" style="color: red;"></i>
-                    {{comment.dislikes}}
+                    {{obj.comment.dislikes}}
                   </span>
                   &nbsp;
                 </div>

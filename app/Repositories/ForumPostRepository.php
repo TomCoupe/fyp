@@ -3,16 +3,19 @@ namespace App\Repositories;
 
 use App\ForumPost;
 use App\ForumComment;
+use App\User;
 
 
 class ForumPostRepository {
 
     protected $model;
     protected $commentModel;
+    protected $userModel;
 
-    public function __construct(ForumPost $model, ForumComment $commentModel) {
+    public function __construct(ForumPost $model, ForumComment $commentModel, User $userModel) {
         $this->model = $model;
         $this->commentModel = $commentModel;
+        $this->userModel = $userModel;
     }
 
     public function getForumPosts($amount) {
@@ -27,6 +30,10 @@ class ForumPostRepository {
             'likes' => 0,
             'dislikes' => 0
         ]);
+    }
+
+    public function getUserFromComment($id) {
+        return $this->userModel->where('id', $id)->first();
     }
 
     public function findPost($id) {
