@@ -43,7 +43,6 @@
         </div>
         <div class="card-body">
           <template v-for="obj in comments">
-            &nbsp;
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">{{obj.user.name}}</h5>

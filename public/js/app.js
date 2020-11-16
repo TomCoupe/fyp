@@ -2149,7 +2149,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ForumPostView.vue",
   props: ["post", "comments"],
@@ -38151,7 +38150,6 @@ var render = function() {
           [
             _vm._l(_vm.comments, function(obj) {
               return [
-                _vm._v("\n           \n          "),
                 _c("div", { staticClass: "card" }, [
                   _c("div", { staticClass: "card-body" }, [
                     _c("h5", { staticClass: "card-title" }, [

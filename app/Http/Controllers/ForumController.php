@@ -11,46 +11,54 @@ class ForumController extends Controller
 {
     protected $service;
 
-    public function __construct(ForumPostService $service) {
+    public function __construct(ForumPostService $service)
+    {
         $this->service = $service;
     }
 
-    public function index() {
+    //function to load the forum homepage. (view of all forum posts)
+    public function index()
+    {
         $posts = $this->service->getForumPosts(200);
         $user = Auth::user();
         return view('forum.forumHome')->with(['posts' => $posts, 'user' => $user]);
     }
 
-    public function create() {
+    //function to load the forum post creation page with the authenticated user.
+    public function create()
+    {
         $user = Auth::user();
-        if($user !== null) {
+        if ($user !== null) {
             return view('forum.forumCreate')->with(['user' => $user]);
         }
         return redirect()->route('forum');
-    } 
-    
-    public function createPost(Request $request) {
-        if($this->service->validatePayload($request)) {
+    }
+
+    //function to validate a forum post. if validation passes, post is created.
+    public function createPost(Request $request)
+    {
+        if ($this->service->validatePayload($request)) {
             $user = Auth::user();
             $stored = $this->service->saveForumPost($request, $user);
-            Log::info($stored);
-            if($stored == true) {
-                // return response('success', 200);
+            if ($stored == true) {
+                return response('success', 200);
             }
         }
-        // return response('error', 500)
+        return response('error', 500);
     }
-    
-    public function loadPost($id) {
+
+    //loads a forum post via post ID. looks up associated user comments to the post and returns to frontend.
+    public function loadPost($id)
+    {
         $post = $this->service->findByPostId($id);
-        if($post !== null) {
+        if ($post !== null) {
             $comments = $this->service->getPostCommentsByPostId($id);
             $commentsArray = [];
-            foreach($comments as $comment) {
+            foreach ($comments as $comment) {
                 $user = $this->service->getUserFromComment($comment->user_id);
                 $commentsArray[] = ['comment' => $comment, 'user' => $user];
             }
-            
+
             return view('forum.forumPost')->with(['post' => $post, 'comments' => json_encode($commentsArray)]);
         }
 
