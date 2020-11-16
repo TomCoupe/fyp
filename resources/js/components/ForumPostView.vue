@@ -37,7 +37,7 @@
           </div>
           <template v-if="user !== null">
             <div class="float-right">
-              <a class="btn btn-outline-dark" href="/forum/create" type="button">Add a comment</a>
+              <button class="btn btn-outline-dark" @click="addComment">Add a comment</button>
             </div>
           </template>
         </div>
@@ -83,6 +83,10 @@ export default {
     };
   },
 
-  methods: {}
+  methods: {
+      addComment() {
+          window.location.href = '/forum/post/' + this.post.id +'/createComment';
+      }
+  }
 };
 </script>

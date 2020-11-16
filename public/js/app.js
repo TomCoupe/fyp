@@ -2157,7 +2157,11 @@ __webpack_require__.r(__webpack_exports__);
       post: this.post
     };
   },
-  methods: {}
+  methods: {
+    addComment: function addComment() {
+      window.location.href = '/forum/post/' + this.post.id + '/createComment';
+    }
+  }
 });
 
 /***/ }),
@@ -38140,7 +38144,24 @@ var render = function() {
         _c(
           "div",
           { staticClass: "card-header" },
-          [_vm._m(0), _vm._v(" "), _vm.user !== null ? [_vm._m(1)] : _vm._e()],
+          [
+            _vm._m(0),
+            _vm._v(" "),
+            _vm.user !== null
+              ? [
+                  _c("div", { staticClass: "float-right" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-outline-dark",
+                        on: { click: _vm.addComment }
+                      },
+                      [_vm._v("Add a comment")]
+                    )
+                  ])
+                ]
+              : _vm._e()
+          ],
           2
         ),
         _vm._v(" "),
@@ -38211,21 +38232,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "float-left" }, [
       _c("h5", [_vm._v("Comment section")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "float-right" }, [
-      _c(
-        "a",
-        {
-          staticClass: "btn btn-outline-dark",
-          attrs: { href: "/forum/create", type: "button" }
-        },
-        [_vm._v("Add a comment")]
-      )
     ])
   }
 ]
