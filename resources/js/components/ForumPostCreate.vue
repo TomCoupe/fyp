@@ -14,7 +14,7 @@
             class="form-control"
             placeholder="Enter your title here."
             v-model="forumPost.title"
-          />
+          >
         </div>
         <div class="form-group">
           <label for="exampleFormControlTextarea1">Forum Post Content:</label>
@@ -27,7 +27,7 @@
         </div>
         <div class="form-group">
           <button class="btn btn-dark" @click="saveForumPost">Post</button>
-          <button class="btn btn-danger">Cancel</button>
+          <button class="btn btn-danger" @click="cancelPost">Cancel</button>
         </div>
       </div>
     </div>
@@ -66,6 +66,9 @@ export default {
             console.log(error);
           });
       }
+    },
+    cancelPost() {
+        window.location.href = '/forum';
     }
   }
 };
