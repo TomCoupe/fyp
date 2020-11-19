@@ -16,7 +16,7 @@
           &nbsp;
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">{{ post.title }}</h5>
+              <a class="card-title" :href="'/forum/post/' + post.id"><h5>{{ post.title }}</h5></a>
               <p class="card-text">{{ post.text }}</p>
               <p class="card-text">
                 <small class="text-muted">Posted at: {{post.created_at}}</small>

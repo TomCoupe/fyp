@@ -2170,6 +2170,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ForumPostView.vue",
   props: ["post", "comments"],
@@ -2181,6 +2189,9 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     addComment: function addComment() {
       window.location.href = "/forum/post/" + this.post.id + "/createComment";
+    },
+    goBack: function goBack() {
+      window.location.href = '/forum';
     }
   }
 });
@@ -37916,9 +37927,14 @@ var render = function() {
               _vm._v("\n         \n        "),
               _c("div", { staticClass: "card" }, [
                 _c("div", { staticClass: "card-body" }, [
-                  _c("h5", { staticClass: "card-title" }, [
-                    _vm._v(_vm._s(post.title))
-                  ]),
+                  _c(
+                    "a",
+                    {
+                      staticClass: "card-title",
+                      attrs: { href: "/forum/post/" + post.id }
+                    },
+                    [_c("h5", [_vm._v(_vm._s(post.title))])]
+                  ),
                   _vm._v(" "),
                   _c("p", { staticClass: "card-text" }, [
                     _vm._v(_vm._s(post.text))
@@ -38148,7 +38164,23 @@ var render = function() {
     _c("div", { staticClass: "col-md-12" }, [
       _c("div", { staticClass: "card" }, [
         _c("div", { staticClass: "card-header" }, [
-          _c("h5", [_vm._v(_vm._s(_vm.post.title))])
+          _c("div", { staticClass: "float-left" }, [
+            _c("h5", [_vm._v(_vm._s(_vm.post.title))])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "float-right" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-outline-dark",
+                on: { click: _vm.goBack }
+              },
+              [
+                _c("i", { staticClass: "fas fa-arrow-left" }),
+                _vm._v("\n            Back to posts\n          ")
+              ]
+            )
+          ])
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "card-body" }, [

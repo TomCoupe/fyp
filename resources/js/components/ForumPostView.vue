@@ -3,7 +3,15 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
-          <h5>{{post.title}}</h5>
+          <div class="float-left">
+            <h5>{{post.title}}</h5>
+          </div>
+          <div class="float-right">
+            <button class="btn btn-outline-dark" @click="goBack">
+              <i class="fas fa-arrow-left"></i>
+              Back to posts
+            </button>
+          </div>
         </div>
         <div class="card-body">
           <div class="form-group">
@@ -86,6 +94,9 @@ export default {
   methods: {
     addComment() {
       window.location.href = "/forum/post/" + this.post.id + "/createComment";
+    },
+    goBack() {
+      window.location.href = '/forum';
     }
   }
 };
