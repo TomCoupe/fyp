@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Repositories;
 
 use App\ForumPost;
@@ -6,25 +7,29 @@ use App\ForumComment;
 use App\User;
 
 
-class ForumPostRepository {
+class ForumPostRepository
+{
 
     protected $model;
     protected $commentModel;
     protected $userModel;
 
-    public function __construct(ForumPost $model, ForumComment $commentModel, User $userModel) {
+    public function __construct(ForumPost $model, ForumComment $commentModel, User $userModel)
+    {
         $this->model = $model;
         $this->commentModel = $commentModel;
         $this->userModel = $userModel;
     }
 
     //gets forum posts and return in order of newest to oldest.
-    public function getForumPosts($amount) {
+    public function getForumPosts($amount)
+    {
         return $this->model->orderBy('created_at', 'DESC')->take($amount)->get();
     }
 
     //stores user forum post
-    public function storePost($post, $user) {
+    public function storePost($post, $user)
+    {
         return $this->model->create([
             'user_id' => $user->id,
             'text' => $post['postText'],
@@ -35,21 +40,25 @@ class ForumPostRepository {
     }
 
     //fetches user by user id
-    public function getUserFromComment($id) {
+    public function getUserFromComment($id)
+    {
         return $this->userModel->where('id', $id)->first();
     }
 
     //find lookup for a post
-    public function findPost($id) {
+    public function findPost($id)
+    {
         return $this->model->where('id', $id)->first();
     }
 
     //gets all comments linked to a forum post.
-    public function getForumPostComments($postId) {
+    public function getForumPostComments($postId)
+    {
         return $this->commentModel->where('forum_post_id', $postId)->get();
     }
 
-    public function storeComment($user, $comment) {
+    public function storeComment($user, $comment)
+    {
         return $this->commentModel->create([
             'user_id' => $user->id,
             'text' => $comment->commentText,

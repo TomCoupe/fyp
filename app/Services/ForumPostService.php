@@ -42,22 +42,25 @@ class ForumPostService
     }
 
     //takes a post Id and return the relevant post.
-    public function findByPostId($id) {
+    public function findByPostId($id)
+    {
         return $this->repository->findPost($id);
     }
 
     //gets all comments to a relevant post.
-    public function getPostCommentsByPostId($postId){
+    public function getPostCommentsByPostId($postId)
+    {
         return $this->repository->getForumPostComments($postId);
-    }   
+    }
 
     //gets the user who posted a comment by userid.
-    public function getUserFromComment($userId) {
+    public function getUserFromComment($userId)
+    {
         return $this->repository->getUserFromComment($userId);
     }
 
-    public function saveForumComment($user, $comment) {
+    public function saveForumComment($user, $comment)
+    {
         return $this->repository->storeComment($user, $comment);
     }
-      
 }

@@ -7,7 +7,6 @@ Vue.component('game-window', require('./components/GameCanvas.vue').default);
 Vue.component('forum-homepage', require('./components/ForumHomepage.vue').default);
 Vue.component('forum-post-create', require('./components/ForumPostCreate.vue').default);
 Vue.component('forum-post-view', require('./components/ForumPostView.vue').default);
-// Vue.component('navbar', require('./components/Navbar.vue').default);
 Vue.component('forum-comment-create', require('./components/ForumCommentCreate').default);
 
 

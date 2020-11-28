@@ -62,15 +62,14 @@ class ForumController extends Controller
             return view('forum.forumPost')->with(['post' => $post, 'comments' => json_encode($commentsArray)]);
         }
 
-        return; //404
+        return response('error', 404);
     }
 
     public function createComment($id)
     {
         return view('forum.forumCommentCreate')->with(['postId' => $id]);
-    
     }
-    
+
     public function postComment(Request $request)
     {
         if ($this->service->validatePayload($request)) {
