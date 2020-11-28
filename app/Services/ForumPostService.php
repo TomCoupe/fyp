@@ -55,5 +55,9 @@ class ForumPostService
     public function getUserFromComment($userId) {
         return $this->repository->getUserFromComment($userId);
     }
+
+    public function saveForumComment($user, $comment) {
+        return $this->repository->storeComment($user, $comment);
+    }
       
 }

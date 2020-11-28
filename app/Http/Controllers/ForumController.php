@@ -64,4 +64,22 @@ class ForumController extends Controller
 
         return; //404
     }
+
+    public function createComment($id)
+    {
+        return view('forum.forumCommentCreate')->with(['postId' => $id]);
+    
+    }
+    
+    public function postComment(Request $request)
+    {
+        if ($this->service->validatePayload($request)) {
+            $user = Auth::user();
+            $stored = $this->service->saveForumComment($user, $request);
+            if ($stored == true) {
+                return response('success', 200);
+            }
+        }
+        return response('error', 404);
+    }
 }

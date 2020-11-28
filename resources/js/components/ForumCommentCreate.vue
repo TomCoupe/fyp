@@ -1,0 +1,63 @@
+<template>
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <div class="float-left">
+          <h5>Create a comment.</h5>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Forum Comment:</label>
+          <textarea
+            class="form-control"
+            rows="5"
+            placeholder="Enter your text here."
+            v-model="forumComment.commentText"
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-dark">Create</button>
+          <button class="btn btn-danger">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+const axios = require("axios");
+
+export default {
+  name: "ForumCommentCreate",
+  props: ["postId"],
+
+  data() {
+    return {
+      forumComment: {
+        commentText: "",
+        postid: this.postId
+      }
+    };
+  },
+  methods: {
+    create() {
+      axios
+        .post("/forum/createPost", this.forumPost, {
+          headers: {
+            "content-type": "text/json"
+          }
+        })
+        .then(function(response) {
+          window.location.href = "/forum/post/" + this.postId;
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    },
+
+    goBack() {
+      window.location.href = "/forum";
+    }
+  }
+};
+</script>

@@ -48,4 +48,14 @@ class ForumPostRepository {
     public function getForumPostComments($postId) {
         return $this->commentModel->where('forum_post_id', $postId)->get();
     }
+
+    public function storeComment($user, $comment) {
+        return $this->commentModel->create([
+            'user_id' => $user->id,
+            'text' => $comment->commentText,
+            'forum_post_id' => $comment->postid,
+            'likes' => 0,
+            'dislikes' => 0,
+        ]);
+    }
 }
