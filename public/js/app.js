@@ -2252,7 +2252,9 @@ __webpack_require__.r(__webpack_exports__);
   props: ["post", "comments", "likes", "dislikes"],
   data: function data() {
     return {
-      post: this.post
+      post: this.post,
+      dislikes: this.dislikes,
+      likes: this.likes
     };
   },
   methods: {

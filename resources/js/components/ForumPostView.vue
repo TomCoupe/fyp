@@ -87,7 +87,9 @@ export default {
 
   data() {
     return {
-      post: this.post
+      post: this.post,
+      dislikes: this.dislikes,
+      likes: this.likes
     };
   },
 

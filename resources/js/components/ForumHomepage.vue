@@ -23,12 +23,12 @@
               </p>
               <div class="bottom-right">
                 &nbsp;
-                <span v-on:click="ddd()">
+                <span>
                   <i class="far fa-thumbs-up fa-2x" style="color: green;"></i>
                   {{post.likes}}
                 </span>
                 &nbsp;
-                <span v-on:click="ddd()">
+                <span>
                   <i class="far fa-thumbs-down fa-2x" style="color: red;"></i>
                   {{post.dislikes}}
                 </span>
@@ -48,9 +48,6 @@ export default {
   props: ["user", "posts"],
 
   methods: {
-    ddd() {
-      console.log("hellow");
-    },
 
     likePost(postId) {}
   },
