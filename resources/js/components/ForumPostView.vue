@@ -83,7 +83,7 @@
 <script>
 export default {
   name: "ForumPostView.vue",
-  props: ["post", "comments"],
+  props: ["post", "comments", "likes", "dislikes"],
 
   data() {
     return {

@@ -63,4 +63,12 @@ class ForumPostService
     {
         return $this->repository->storeComment($user, $comment);
     }
+
+    public function getUserLikesForPost($postId, $userId) {
+        return $this->repository->getUserLikesForPost($postId, $userId);
+    }
+
+    public function getUserDislikesForPost($postId, $userId) {
+        return $this->repository->getUserDislikesForPost($postId, $userId);
+    }
 }

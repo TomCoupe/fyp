@@ -4,6 +4,11 @@
 @section('content')
 &nbsp;
 <div>
-    <forum-post-view :post="{{ json_encode($post) }}" :comments="{{$comments}}"></forum-post-view>
+    <forum-post-view 
+    :post="{{ json_encode($post) }}" 
+    :comments="{{$comments}}" 
+    :likes="{{$likes}}" 
+    :dislikes="{{$dislikes}}">
+    </forum-post-view>
 </div>
 @endsection

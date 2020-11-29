@@ -5,6 +5,8 @@ namespace App\Repositories;
 use App\ForumPost;
 use App\ForumComment;
 use App\User;
+use App\ForumPostLikes;
+use App\ForumPostDislikes;
 
 
 class ForumPostRepository
@@ -13,12 +15,21 @@ class ForumPostRepository
     protected $model;
     protected $commentModel;
     protected $userModel;
+    protected $dislikesModel;
+    protected $likesModel;
 
-    public function __construct(ForumPost $model, ForumComment $commentModel, User $userModel)
+    public function __construct(
+        ForumPost $model, 
+        ForumComment $commentModel, 
+        User $userModel, 
+        ForumPostDislikes $dislikesModel,
+        ForumPostLikes $likesModel)
     {
         $this->model = $model;
         $this->commentModel = $commentModel;
         $this->userModel = $userModel;
+        $this->dislikesModel = $dislikesModel;
+        $this->likesModel = $likesModel;
     }
 
     //gets forum posts and return in order of newest to oldest.
@@ -66,5 +77,13 @@ class ForumPostRepository
             'likes' => 0,
             'dislikes' => 0,
         ]);
+    }
+
+    public function getUserLikesForPost($postId, $userId) {
+        return $this->likesModel->where('forum_post_id', $postId)->where('user_id', $userId)->first();
+    }
+
+    public function getUserDislikesForPost($postId, $userId) {
+        return $this->dislikesModel->where('forum_post_id', $postId)->where('user_id', $userId)->first();
     }
 }

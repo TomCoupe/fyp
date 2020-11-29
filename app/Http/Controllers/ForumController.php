@@ -50,6 +50,15 @@ class ForumController extends Controller
     //loads a forum post via post ID. looks up associated user comments to the post and returns to frontend.
     public function loadPost($id)
     {
+        $authUser = Auth::user();
+        $dislikes = false;
+        $likes = false;
+
+        if($authUser !== null) {
+            $likes = $this->service->getUserLikesForPost($id, $authUser->id);
+            $dislikes = $this->service->getUserDislikesForPost($id, $authUser->id);
+        }
+
         $post = $this->service->findByPostId($id);
         if ($post !== null) {
             $comments = $this->service->getPostCommentsByPostId($id);
@@ -59,7 +68,13 @@ class ForumController extends Controller
                 $commentsArray[] = ['comment' => $comment, 'user' => $user];
             }
 
-            return view('forum.forumPost')->with(['post' => $post, 'comments' => json_encode($commentsArray)]);
+            return view('forum.forumPost')->with(
+                [
+                'post' => $post, 
+                'comments' => json_encode($commentsArray), 
+                'likes' => json_encode($likes), 
+                'dislikes' => json_encode($dislikes)
+                ]);
         }
 
         return response('error', 404);
