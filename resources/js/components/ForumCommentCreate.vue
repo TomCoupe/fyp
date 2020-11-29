@@ -17,8 +17,8 @@
           ></textarea>
         </div>
         <div class="form-group">
-          <button class="btn btn-dark">Create</button>
-          <button class="btn btn-danger">Cancel</button>
+          <button class="btn btn-dark" @click="create">Create</button>
+          <button class="btn btn-danger" @click="goBack">Cancel</button>
         </div>
       </div>
     </div>
@@ -29,26 +29,26 @@ const axios = require("axios");
 
 export default {
   name: "ForumCommentCreate",
-  props: ["postId"],
+  props: ["postid"],
 
   data() {
     return {
       forumComment: {
         commentText: "",
-        postid: this.postId
+        postid: this.postid
       }
     };
   },
   methods: {
     create() {
-      axios
-        .post("/forum/createPost", this.forumPost, {
+        let app = this;
+      axios.post("/forum/post/" + app.postid + "/postComment", this.forumComment, {
           headers: {
             "content-type": "text/json"
           }
         })
         .then(function(response) {
-          window.location.href = "/forum/post/" + this.postId;
+          window.location.href = "/forum/post/" + app.postid;
         })
         .catch(function(error) {
           console.log(error);

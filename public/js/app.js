@@ -1971,23 +1971,24 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ForumCommentCreate",
-  props: ["postId"],
+  props: ["postid"],
   data: function data() {
     return {
       forumComment: {
         commentText: "",
-        postid: this.postId
+        postid: this.postid
       }
     };
   },
   methods: {
     create: function create() {
-      axios.post("/forum/createPost", this.forumPost, {
+      var app = this;
+      axios.post("/forum/post/" + app.postid + "/postComment", this.forumComment, {
         headers: {
           "content-type": "text/json"
         }
       }).then(function (response) {
-        window.location.href = "/forum/post/" + this.postId;
+        window.location.href = "/forum/post/" + app.postid;
       })["catch"](function (error) {
         console.log(error);
       });
@@ -37986,7 +37987,19 @@ var render = function() {
           })
         ]),
         _vm._v(" "),
-        _vm._m(1)
+        _c("div", { staticClass: "form-group" }, [
+          _c(
+            "button",
+            { staticClass: "btn btn-dark", on: { click: _vm.create } },
+            [_vm._v("Create")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            { staticClass: "btn btn-danger", on: { click: _vm.goBack } },
+            [_vm._v("Cancel")]
+          )
+        ])
       ])
     ])
   ])
@@ -38000,16 +38013,6 @@ var staticRenderFns = [
       _c("div", { staticClass: "float-left" }, [
         _c("h5", [_vm._v("Create a comment.")])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("button", { staticClass: "btn btn-dark" }, [_vm._v("Create")]),
-      _vm._v(" "),
-      _c("button", { staticClass: "btn btn-danger" }, [_vm._v("Cancel")])
     ])
   }
 ]
@@ -50729,8 +50732,7 @@ Vue.component('homepage-buttons', __webpack_require__(/*! ./components/Homepage.
 Vue.component('game-window', __webpack_require__(/*! ./components/GameCanvas.vue */ "./resources/js/components/GameCanvas.vue")["default"]);
 Vue.component('forum-homepage', __webpack_require__(/*! ./components/ForumHomepage.vue */ "./resources/js/components/ForumHomepage.vue")["default"]);
 Vue.component('forum-post-create', __webpack_require__(/*! ./components/ForumPostCreate.vue */ "./resources/js/components/ForumPostCreate.vue")["default"]);
-Vue.component('forum-post-view', __webpack_require__(/*! ./components/ForumPostView.vue */ "./resources/js/components/ForumPostView.vue")["default"]); // Vue.component('navbar', require('./components/Navbar.vue').default);
-
+Vue.component('forum-post-view', __webpack_require__(/*! ./components/ForumPostView.vue */ "./resources/js/components/ForumPostView.vue")["default"]);
 Vue.component('forum-comment-create', __webpack_require__(/*! ./components/ForumCommentCreate */ "./resources/js/components/ForumCommentCreate.vue")["default"]);
 var app = new Vue({
   el: '.main'
