@@ -13,8 +13,9 @@ export function loadImage(url) {
 
 //function to return all textures that are defined to be used for the background.
 export function loadBackgroundTextures(tiles) {
-    return loadImage('/images/game/tiles.png').then(image => {
+    return loadImage('/images/game/tiles1.png').then(image => {
         defineTile('ground', 0, 0, 16, 16, image, tiles);
+        defineTile('soil', 0, 1, 16, 16, image, tiles);
         defineTile('sky', 3, 23, 16, 16, image, tiles);
     });
 }
