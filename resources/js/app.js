@@ -8,7 +8,8 @@ Vue.component('forum-homepage', require('./components/ForumHomepage.vue').defaul
 Vue.component('forum-post-create', require('./components/ForumPostCreate.vue').default);
 Vue.component('forum-post-view', require('./components/ForumPostView.vue').default);
 Vue.component('forum-comment-create', require('./components/ForumCommentCreate').default);
-Vue.component('leaderboards', require('./components/LeaderBoards.vue').default)
+Vue.component('leaderboards', require('./components/LeaderBoards.vue').default);
+Vue.component('profile-page', require('./components/ProfilePage.vue').default);
 
 
 const app = new Vue({
