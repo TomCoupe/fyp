@@ -71,4 +71,12 @@ class ForumPostService
     public function getUserDislikesForPost($postId, $userId) {
         return $this->repository->getUserDislikesForPost($postId, $userId);
     }
+
+    public function getAllUserLikes($userId) {
+        return $this->repository->getAllUserLikes($userId);
+    }
+
+    public function getAllUserDislikes($userId) {
+        return $this->repository->getAllUserDislikes($userId);
+    }
 }

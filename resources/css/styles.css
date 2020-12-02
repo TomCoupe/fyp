@@ -113,6 +113,22 @@
     left: 50%;
     transform: translate(-50%, 20%);
 }
+
+.like-button {
+    color: #7dff7f;
+}
+
+.dislike-button {
+    color: #ff817d;
+}
+
+.user-liked-button {
+    color: green;
+}
+
+.user-disliked-button {
+    
+}
   
   
 

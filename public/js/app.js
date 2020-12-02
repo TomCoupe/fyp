@@ -2056,7 +2056,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ForumHomepage.vue",
-  props: ["user", "posts"],
+  props: ["user", "posts", "likes", "dislikes"],
   methods: {
     likePost: function likePost(postId) {}
   },
@@ -38153,8 +38153,7 @@ var render = function() {
                     _vm._v("\n               \n              "),
                     _c("span", [
                       _c("i", {
-                        staticClass: "far fa-thumbs-up fa-2x",
-                        staticStyle: { color: "green" }
+                        staticClass: "far fa-thumbs-up fa-2x like-button"
                       }),
                       _vm._v(
                         "\n                " +
@@ -38165,8 +38164,7 @@ var render = function() {
                     _vm._v("\n               \n              "),
                     _c("span", [
                       _c("i", {
-                        staticClass: "far fa-thumbs-down fa-2x",
-                        staticStyle: { color: "red" }
+                        staticClass: "far fa-thumbs-down fa-2x dislike-button"
                       }),
                       _vm._v(
                         "\n                " +

@@ -86,4 +86,12 @@ class ForumPostRepository
     public function getUserDislikesForPost($postId, $userId) {
         return $this->dislikesModel->where('forum_post_id', $postId)->where('user_id', $userId)->first();
     }
+
+    public function getAllUserLikes($userId) {
+        return $this->likesModel->where('user_id', $userId)->get();
+    }
+
+    public function getAllUserDislikes($userId) {
+        return $this->dislikesModel->where('user_id', $userId)->get();
+    }
 }

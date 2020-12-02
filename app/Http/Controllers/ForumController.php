@@ -19,9 +19,18 @@ class ForumController extends Controller
     //function to load the forum homepage. (view of all forum posts)
     public function index()
     {
+
         $posts = $this->service->getForumPosts(200);
         $user = Auth::user();
-        return view('forum.forumHome')->with(['posts' => $posts, 'user' => $user]);
+        $dislikes = false;
+        $likes = false;
+
+        if($user !== null) {
+            $likes = $this->service->getAllUserLikes($user->id);
+            $dislikes = $this->service->getAllUserDislikes($user->id);
+        }
+
+        return view('forum.forumHome')->with(['posts' => $posts, 'user' => $user, 'likes' => $likes, 'dislikes' => $dislikes]);
     }
 
     //function to load the forum post creation page with the authenticated user.

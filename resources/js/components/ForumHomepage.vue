@@ -24,12 +24,12 @@
               <div class="bottom-right">
                 &nbsp;
                 <span>
-                  <i class="far fa-thumbs-up fa-2x" style="color: green;"></i>
+                  <i class="far fa-thumbs-up fa-2x like-button"></i>
                   {{post.likes}}
                 </span>
                 &nbsp;
                 <span>
-                  <i class="far fa-thumbs-down fa-2x" style="color: red;"></i>
+                  <i class="far fa-thumbs-down fa-2x dislike-button"></i>
                   {{post.dislikes}}
                 </span>
                 &nbsp;
@@ -45,7 +45,7 @@
 <script>
 export default {
   name: "ForumHomepage.vue",
-  props: ["user", "posts"],
+  props: ["user", "posts", "likes", "dislikes"],
 
   methods: {
 

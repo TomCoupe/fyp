@@ -5,7 +5,7 @@
 &nbsp;
 
 <div>
-    <forum-homepage :posts="{{$posts}}" :user="{{$user}}"></forum-homepage>
+    <forum-homepage :posts="{{$posts}}" :user="{{$user}}" :likes="{{$likes}}" :dislikes="{{$dislikes}}"></forum-homepage>
 </div>
 @endsection
 
