@@ -16,7 +16,9 @@
           &nbsp;
           <div class="card">
             <div class="card-body">
-              <a class="card-title" :href="'/forum/post/' + post.id"><h5>{{ post.title }}</h5></a>
+              <a class="card-title" :href="'/forum/post/' + post.id">
+                <h5>{{ post.title }}</h5>
+              </a>
               <p class="card-text">{{ post.text }}</p>
               <p class="card-text">
                 <small class="text-muted">Posted at: {{post.created_at}}</small>
@@ -24,12 +26,22 @@
               <div class="bottom-right">
                 &nbsp;
                 <span>
-                  <i class="far fa-thumbs-up fa-2x like-button"></i>
+                  <template v-if="checkLikedPosts(post.id)">
+                    <i class="fa fa-thumbs-up fa-2x user-liked-button"></i>
+                  </template>
+                  <template v-else>
+                    <i class="far fa-thumbs-up fa-2x like-button"></i>
+                  </template>
                   {{post.likes}}
                 </span>
                 &nbsp;
                 <span>
+                  <template v-if="checkDislikedPosts(post.id)">
+                    <i class="fa fa-thumbs-down fa-2x user-disliked-button"></i>
+                  </template>
+                  <template v-else>
                   <i class="far fa-thumbs-down fa-2x dislike-button"></i>
+                  </template>
                   {{post.dislikes}}
                 </span>
                 &nbsp;
@@ -48,8 +60,25 @@ export default {
   props: ["user", "posts", "likes", "dislikes"],
 
   methods: {
+    likePost(postId) {},
 
-    likePost(postId) {}
+    checkLikedPosts(id) {
+      for (let index = 0; index < this.likes.length; index++) {
+        if (this.likes[index].id == id) {
+          return true;
+        }
+      }
+      return false;
+    },
+
+    checkDislikedPosts(id) {
+      for (let index = 0; index < this.dislikes.length; index++) {
+        if (this.dislikes[index].id == id) {
+          return true;
+        }
+      }
+      return false;
+    }
   },
 
   data() {

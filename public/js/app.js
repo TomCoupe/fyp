@@ -2054,11 +2054,41 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ForumHomepage.vue",
   props: ["user", "posts", "likes", "dislikes"],
   methods: {
-    likePost: function likePost(postId) {}
+    likePost: function likePost(postId) {},
+    checkLikedPosts: function checkLikedPosts(id) {
+      for (var index = 0; index < this.likes.length; index++) {
+        if (this.likes[index].id == id) {
+          return true;
+        }
+      }
+
+      return false;
+    },
+    checkDislikedPosts: function checkDislikedPosts(id) {
+      for (var index = 0; index < this.dislikes.length; index++) {
+        if (this.dislikes[index].id == id) {
+          return true;
+        }
+      }
+
+      return false;
+    }
   },
   data: function data() {
     return {
@@ -38151,27 +38181,55 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "bottom-right" }, [
                     _vm._v("\n               \n              "),
-                    _c("span", [
-                      _c("i", {
-                        staticClass: "far fa-thumbs-up fa-2x like-button"
-                      }),
-                      _vm._v(
-                        "\n                " +
-                          _vm._s(post.likes) +
-                          "\n              "
-                      )
-                    ]),
+                    _c(
+                      "span",
+                      [
+                        _vm.checkLikedPosts(post.id)
+                          ? [
+                              _c("i", {
+                                staticClass:
+                                  "fa fa-thumbs-up fa-2x user-liked-button"
+                              })
+                            ]
+                          : [
+                              _c("i", {
+                                staticClass:
+                                  "far fa-thumbs-up fa-2x like-button"
+                              })
+                            ],
+                        _vm._v(
+                          "\n                " +
+                            _vm._s(post.likes) +
+                            "\n              "
+                        )
+                      ],
+                      2
+                    ),
                     _vm._v("\n               \n              "),
-                    _c("span", [
-                      _c("i", {
-                        staticClass: "far fa-thumbs-down fa-2x dislike-button"
-                      }),
-                      _vm._v(
-                        "\n                " +
-                          _vm._s(post.dislikes) +
-                          "\n              "
-                      )
-                    ]),
+                    _c(
+                      "span",
+                      [
+                        _vm.checkDislikedPosts(post.id)
+                          ? [
+                              _c("i", {
+                                staticClass:
+                                  "fa fa-thumbs-down fa-2x user-disliked-button"
+                              })
+                            ]
+                          : [
+                              _c("i", {
+                                staticClass:
+                                  "far fa-thumbs-down fa-2x dislike-button"
+                              })
+                            ],
+                        _vm._v(
+                          "\n                " +
+                            _vm._s(post.dislikes) +
+                            "\n              "
+                        )
+                      ],
+                      2
+                    ),
                     _vm._v("\n               \n            ")
                   ])
                 ])
