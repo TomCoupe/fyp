@@ -6,7 +6,7 @@
   </div>
 
   <div class="navbar-end">
-    <a class="navbar-item text-white" href="/profile" type="button">
+    <a class="navbar-item text-white" href="/home" type="button">
       <button class="btn btn-primary-dark">
         <i class="fas fa-home"></i>
         &nbsp;

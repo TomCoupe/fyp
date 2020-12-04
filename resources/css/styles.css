@@ -129,6 +129,54 @@
 .user-disliked-button {
     color: red;
 }
+.game-click-div {
+    padding-top: 20%;
+    background-color: #cc4a4a;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    text-align: center;
+    color: #ffffff;
+    overflow: hidden;
+    transition: height 0.5s;
+    transition: width 0.5s;
+}
+.game-click-div:hover {
+    width: 300px;
+    height: 300px;
+}
+
+.forum-click-div {
+    padding-top: 20%;
+    background-color: #57e28d;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    text-align: center;
+    color: #ffffff;
+    overflow: hidden;
+    transition: height 0.5s;
+    transition: width 0.5s;
+}
+.forum-click-div:hover {
+    width: 300px;
+    height: 300px;
+}
+.center-div-2 {
+    position: absolute;
+    align-items: right;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.a-button {
+    text-decoration: none;
+    background-color: none;
+}
+/* .forum-click-div:hover div:not(:hover) {
+    width: 250px;
+    height: 250px;
+} */
   
   
 
