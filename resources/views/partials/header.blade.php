@@ -6,7 +6,7 @@
   </div>
 
   <div class="navbar-end">
-    <a class="navbar-item text-white" href="/home" type="button">
+    <a class="navbar-item text-white" href="/home" type="button" style="text-decoration: none;">
       <button class="btn btn-primary-dark">
         <i class="fas fa-home"></i>
         &nbsp;
@@ -14,7 +14,7 @@
     </a>
     </button>
 
-    <a class="navbar-item text-white" href="/game">
+    <a class="navbar-item text-white" href="/game" style="text-decoration: none;">
       <button class="btn btn-primary-dark">
         <i class="fas fa-gamepad"></i>
         &nbsp;
@@ -22,7 +22,7 @@
     </a>
     </button>
 
-    <a class="navbar-item text-white" href="/forum">
+    <a class="navbar-item text-white" href="/forum" style="text-decoration: none;">
       <button class="btn btn-primary-dark">
         <i class="fas fa-comments"></i>
         &nbsp;
@@ -30,7 +30,7 @@
     </a>
     </button>
 
-    <a class="navbar-item text-white" href="/leaderboards">
+    <a class="navbar-item text-white" href="/leaderboards" style="text-decoration: none;">
       <button class="btn btn-primary-dark">
         <i class="fas fa-chart-line"></i>
         &nbsp;
@@ -39,7 +39,7 @@
     </button>
 
     @if(Auth::check())
-    <a class="navbar-item text-white" href="/profile">
+    <a class="navbar-item text-white" href="/profile" style="text-decoration: none;">
       <button class="btn btn-primary-dark">
         <i class="fas fa-user-alt"></i>
         &nbsp;

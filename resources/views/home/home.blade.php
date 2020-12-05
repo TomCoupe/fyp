@@ -4,17 +4,17 @@
 
 <div class="center-div-2">
     <div class="col-md-6">
-        <a  class="a-button" href="/game">
+        <a href="/game" style="text-decoration: none;">
             <div class="game-click-div">
                 <i class="fas fa-gamepad fa-7x"></i>
-                <h3>Play BounceBoss</h3>
+                <h3>Play The Game</h3>
             </div>
         </a>
     </div>
     &nbsp;
 
     <div class="col-md-6">
-        <a class="a-button" href="/forum">
+        <a href="/forum" style="text-decoration: none;">
             <div class="forum-click-div">
                 <i class="fas fa-comments fa-7x"></i>
                 <h3>Go to The Forum</h3>
