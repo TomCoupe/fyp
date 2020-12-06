@@ -115,10 +115,10 @@ class ForumController extends Controller
     }
 
     public function removeDislike(Request $request) {
-
+        dd($request);
     }
 
     public function addDislike(Request $request) {
-
+        dd($request);
     }
 }

@@ -2081,15 +2081,11 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
     likePost: function likePost(postId) {},
     checkLikedPosts: function checkLikedPosts(id) {
       for (var index = 0; index < this.likes.length; index++) {
-        // console.log(this.likes[index], id);
         if (this.likes[index].forum_post_id == id) {
-          console.log(true);
           return true;
-        } // console.log('hello');
-
+        }
       }
 
-      console.log(false);
       return false;
     },
     checkDislikedPosts: function checkDislikedPosts(id) {
@@ -2104,7 +2100,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
     addOrRemoveLike: function addOrRemoveLike(id) {
       var _this = this;
 
-      var app = this; // console.log('1');
+      var app = this;
 
       if (this.checkLikedPosts(id) == true) {
         var _loop = function _loop(index) {
@@ -2124,7 +2120,6 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
           }
         };
 
-        // console.log("hello world");
         for (var index = 0; index < this.likes.length; index++) {
           var _ret = _loop(index);
 
@@ -2138,16 +2133,57 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         }
       }).then(function (response) {
         var obj = {
-          'forum_post_id': id,
-          'user_id': app.user.id
+          forum_post_id: id,
+          user_id: app.user.id
         };
         app.likes.push(obj);
       })["catch"](function (error) {
         console.log("Could not add like");
       });
     },
-    addOrRemoveDislike: function addOrRemoveDislike() {
-      console.log("disliked");
+    addOrRemoveDislike: function addOrRemoveDislike(id) {
+      var _this2 = this;
+
+      var app = this;
+
+      if (this.checkDislikedPosts(id) == true) {
+        var _loop2 = function _loop2(index) {
+          if (_this2.dislikes[index].id == id) {
+            axios.post("/removeDislike", app.dislikes[index], {
+              headers: {
+                "content-type": "text/json"
+              }
+            }).then(function (response) {
+              app.dislikes.splice(index, 1);
+            })["catch"](function (error) {
+              console.log("Could not remove dislike");
+            });
+            return {
+              v: void 0
+            };
+          }
+        };
+
+        for (var index = 0; index < this.dislikes.length; index++) {
+          var _ret2 = _loop2(index);
+
+          if (_typeof(_ret2) === "object") return _ret2.v;
+        }
+      }
+
+      axios.post("/addDislike", app.id, {
+        headers: {
+          "content-type": "text/json"
+        }
+      }).then(function (response) {
+        var obj = {
+          forum_post_id: id,
+          user_id: app.user.id
+        };
+        app.dislikes.push(obj);
+      })["catch"](function (error) {
+        console.log("Could not add dislike");
+      });
     }
   },
   data: function data() {
@@ -38258,7 +38294,11 @@ var render = function() {
                         "button",
                         {
                           staticClass: "button-invis",
-                          on: { click: _vm.addOrRemoveLike }
+                          on: {
+                            click: function($event) {
+                              return _vm.addOrRemoveLike(post.id)
+                            }
+                          }
                         },
                         [
                           _vm.checkLikedPosts(post.id)
@@ -38289,7 +38329,11 @@ var render = function() {
                         "button",
                         {
                           staticClass: "button-invis",
-                          on: { click: _vm.addOrRemoveDislike }
+                          on: {
+                            click: function($event) {
+                              return _vm.addOrRemoveDislike(post.id)
+                            }
+                          }
                         },
                         [
                           _vm.checkDislikedPosts(post.id)

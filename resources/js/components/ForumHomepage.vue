@@ -26,7 +26,7 @@
               <div class="bottom-right">
                 &nbsp;
                 <span>
-                  <button class="button-invis" @click="addOrRemoveLike">
+                  <button class="button-invis" @click="addOrRemoveLike(post.id)">
                     <template v-if="checkLikedPosts(post.id)">
                       <i class="fa fa-thumbs-up fa-2x user-liked-button"></i>
                     </template>
@@ -38,7 +38,7 @@
                 </span>
                 &nbsp;
                 <span>
-                  <button class="button-invis" @click="addOrRemoveDislike">
+                  <button class="button-invis" @click="addOrRemoveDislike(post.id)">
                     <template v-if="checkDislikedPosts(post.id)">
                       <i class="fa fa-thumbs-down fa-2x user-disliked-button"></i>
                     </template>
@@ -69,15 +69,10 @@ export default {
 
     checkLikedPosts(id) {
       for (let index = 0; index < this.likes.length; index++) {
-
-        // console.log(this.likes[index], id);
         if (this.likes[index].forum_post_id == id) {
-          console.log(true);
           return true;
         }
-        // console.log('hello');
       }
-      console.log(false);
       return false;
     },
 
@@ -92,9 +87,7 @@ export default {
 
     addOrRemoveLike(id) {
       let app = this;
-      // console.log('1');
       if (this.checkLikedPosts(id) == true) {
-        // console.log("hello world");
         for (let index = 0; index < this.likes.length; index++) {
           if (this.likes[index].id == id) {
             axios
@@ -113,22 +106,61 @@ export default {
           }
         }
       }
-      axios.post("/addLike", app.id, {
-        headers: {
-          "content-type": "text/json"
-        }
-      }).then(function(response) {
-        let obj = {
-          'forum_post_id': id,
-          'user_id': app.user.id
-        }
-        app.likes.push(obj);  
-      }).catch(function(error) {
-        console.log("Could not add like")
-      })
+      axios
+        .post("/addLike", app.id, {
+          headers: {
+            "content-type": "text/json"
+          }
+        })
+        .then(function(response) {
+          let obj = {
+            forum_post_id: id,
+            user_id: app.user.id
+          };
+          app.likes.push(obj);
+        })
+        .catch(function(error) {
+          console.log("Could not add like");
+        });
     },
-    addOrRemoveDislike() {
-      console.log("disliked");
+
+    addOrRemoveDislike(id) {
+      let app = this;
+      if (this.checkDislikedPosts(id) == true) {
+        for (let index = 0; index < this.dislikes.length; index++) {
+          if (this.dislikes[index].id == id) {
+            axios
+              .post("/removeDislike", app.dislikes[index], {
+                headers: {
+                  "content-type": "text/json"
+                }
+              })
+              .then(function(response) {
+                app.dislikes.splice(index, 1);
+              })
+              .catch(function(error) {
+                console.log("Could not remove dislike");
+              });
+            return;
+          }
+        }
+      }
+      axios
+        .post("/addDislike", app.id, {
+          headers: {
+            "content-type": "text/json"
+          }
+        })
+        .then(function(response) {
+          let obj = {
+            forum_post_id: id,
+            user_id: app.user.id
+          };
+          app.dislikes.push(obj);
+        })
+        .catch(function(error) {
+          console.log("Could not add dislike");
+        });
     }
   },
 

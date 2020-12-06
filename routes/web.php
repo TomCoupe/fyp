@@ -37,8 +37,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/profile', 'ProfileController@index');
     //removing likes
     Route::post('/removeLike','ForumController@removeLike');
-    //adding likes
     Route::post('/addLike', 'ForumController@addLike');
-    //adding dislikes
-    //removing dislikes
+    Route::post('/addDislike', 'ForumController@addDislike');
+    Route::post('/removeDislike', 'ForumController@removeDislike');
 });
