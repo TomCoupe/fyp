@@ -2081,11 +2081,15 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
     likePost: function likePost(postId) {},
     checkLikedPosts: function checkLikedPosts(id) {
       for (var index = 0; index < this.likes.length; index++) {
-        if (this.likes[index].id == id) {
+        // console.log(this.likes[index], id);
+        if (this.likes[index].forum_post_id == id) {
+          console.log(true);
           return true;
-        }
+        } // console.log('hello');
+
       }
 
+      console.log(false);
       return false;
     },
     checkDislikedPosts: function checkDislikedPosts(id) {
@@ -2100,9 +2104,9 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
     addOrRemoveLike: function addOrRemoveLike(id) {
       var _this = this;
 
-      var app = this;
+      var app = this; // console.log('1');
 
-      if (this.checkLikedPosts(id) === true) {
+      if (this.checkLikedPosts(id) == true) {
         var _loop = function _loop(index) {
           if (_this.likes[index].id == id) {
             axios.post("/removeLike", app.likes[index], {
@@ -2120,6 +2124,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
           }
         };
 
+        // console.log("hello world");
         for (var index = 0; index < this.likes.length; index++) {
           var _ret = _loop(index);
 

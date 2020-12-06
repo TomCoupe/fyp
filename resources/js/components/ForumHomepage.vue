@@ -69,10 +69,15 @@ export default {
 
     checkLikedPosts(id) {
       for (let index = 0; index < this.likes.length; index++) {
-        if (this.likes[index].id == id) {
+
+        // console.log(this.likes[index], id);
+        if (this.likes[index].forum_post_id == id) {
+          console.log(true);
           return true;
         }
+        // console.log('hello');
       }
+      console.log(false);
       return false;
     },
 
@@ -87,7 +92,9 @@ export default {
 
     addOrRemoveLike(id) {
       let app = this;
-      if (this.checkLikedPosts(id) === true) {
+      // console.log('1');
+      if (this.checkLikedPosts(id) == true) {
+        // console.log("hello world");
         for (let index = 0; index < this.likes.length; index++) {
           if (this.likes[index].id == id) {
             axios
