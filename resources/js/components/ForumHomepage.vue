@@ -26,23 +26,27 @@
               <div class="bottom-right">
                 &nbsp;
                 <span>
-                  <template v-if="checkLikedPosts(post.id)">
-                    <i class="fa fa-thumbs-up fa-2x user-liked-button"></i>
-                  </template>
-                  <template v-else>
-                    <i class="far fa-thumbs-up fa-2x like-button"></i>
-                  </template>
-                  {{post.likes}}
+                  <button class="button-invis" @click="addOrRemoveLike">
+                    <template v-if="checkLikedPosts(post.id)">
+                      <i class="fa fa-thumbs-up fa-2x user-liked-button"></i>
+                    </template>
+                    <template v-else>
+                      <i class="far fa-thumbs-up fa-2x like-button"></i>
+                    </template>
+                    {{post.likes}}
+                  </button>
                 </span>
                 &nbsp;
                 <span>
-                  <template v-if="checkDislikedPosts(post.id)">
-                    <i class="fa fa-thumbs-down fa-2x user-disliked-button"></i>
-                  </template>
-                  <template v-else>
-                  <i class="far fa-thumbs-down fa-2x dislike-button"></i>
-                  </template>
-                  {{post.dislikes}}
+                  <button class="button-invis" @click="addOrRemoveDislike">
+                    <template v-if="checkDislikedPosts(post.id)">
+                      <i class="fa fa-thumbs-down fa-2x user-disliked-button"></i>
+                    </template>
+                    <template v-else>
+                      <i class="far fa-thumbs-down fa-2x dislike-button"></i>
+                    </template>
+                    {{post.dislikes}}
+                  </button>
                 </span>
                 &nbsp;
               </div>
@@ -55,6 +59,7 @@
 </template>
 
 <script>
+const axios = require("axios");
 export default {
   name: "ForumHomepage.vue",
   props: ["user", "posts", "likes", "dislikes"],
@@ -78,6 +83,45 @@ export default {
         }
       }
       return false;
+    },
+
+    addOrRemoveLike(id) {
+      let app = this;
+      if (this.checkLikedPosts(id) === true) {
+        for (let index = 0; index < this.likes.length; index++) {
+          if (this.likes[index].id == id) {
+            axios
+              .post("/removeLike", app.likes[index], {
+                headers: {
+                  "content-type": "text/json"
+                }
+              })
+              .then(function(response) {
+                app.likes.splice(index, 1);
+              })
+              .catch(function(error) {
+                console.log("Could not remove like");
+              });
+            return;
+          }
+        }
+      }
+      axios.post("/addLike", app.id, {
+        headers: {
+          "content-type": "text/json"
+        }
+      }).then(function(response) {
+        let obj = {
+          'forum_post_id': id,
+          'user_id': app.user.id
+        }
+        app.likes.push(obj);  
+      }).catch(function(error) {
+        console.log("Could not add like")
+      })
+    },
+    addOrRemoveDislike() {
+      console.log("disliked");
     }
   },
 

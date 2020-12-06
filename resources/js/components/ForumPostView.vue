@@ -85,6 +85,7 @@
 </template>
 
 <script>
+const axios = require("axios");
 export default {
   name: "ForumPostView.vue",
   props: ["post", "comments", "likes", "dislikes"],

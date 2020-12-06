@@ -105,4 +105,20 @@ class ForumController extends Controller
         }
         return response('error', 404);
     }
+
+    public function removeLike(Request $request) {
+        dd($request);
+    }
+
+    public function addLike(Request $request) {
+        dd($request);
+    }
+
+    public function removeDislike(Request $request) {
+
+    }
+
+    public function addDislike(Request $request) {
+
+    }
 }

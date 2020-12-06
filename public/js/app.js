@@ -2010,6 +2010,8 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 //
 //
 //
@@ -2066,6 +2068,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ForumHomepage.vue",
   props: ["user", "posts", "likes", "dislikes"],
@@ -2088,6 +2096,53 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       return false;
+    },
+    addOrRemoveLike: function addOrRemoveLike(id) {
+      var _this = this;
+
+      var app = this;
+
+      if (this.checkLikedPosts(id) === true) {
+        var _loop = function _loop(index) {
+          if (_this.likes[index].id == id) {
+            axios.post("/removeLike", app.likes[index], {
+              headers: {
+                "content-type": "text/json"
+              }
+            }).then(function (response) {
+              app.likes.splice(index, 1);
+            })["catch"](function (error) {
+              console.log("Could not remove like");
+            });
+            return {
+              v: void 0
+            };
+          }
+        };
+
+        for (var index = 0; index < this.likes.length; index++) {
+          var _ret = _loop(index);
+
+          if (_typeof(_ret) === "object") return _ret.v;
+        }
+      }
+
+      axios.post("/addLike", app.id, {
+        headers: {
+          "content-type": "text/json"
+        }
+      }).then(function (response) {
+        var obj = {
+          'forum_post_id': id,
+          'user_id': app.user.id
+        };
+        app.likes.push(obj);
+      })["catch"](function (error) {
+        console.log("Could not add like");
+      });
+    },
+    addOrRemoveDislike: function addOrRemoveDislike() {
+      console.log("disliked");
     }
   },
   data: function data() {
@@ -2278,6 +2333,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ForumPostView.vue",
   props: ["post", "comments", "likes", "dislikes"],
@@ -38191,55 +38248,67 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "bottom-right" }, [
                     _vm._v("\n               \n              "),
-                    _c(
-                      "span",
-                      [
-                        _vm.checkLikedPosts(post.id)
-                          ? [
-                              _c("i", {
-                                staticClass:
-                                  "fa fa-thumbs-up fa-2x user-liked-button"
-                              })
-                            ]
-                          : [
-                              _c("i", {
-                                staticClass:
-                                  "far fa-thumbs-up fa-2x like-button"
-                              })
-                            ],
-                        _vm._v(
-                          "\n                " +
-                            _vm._s(post.likes) +
-                            "\n              "
-                        )
-                      ],
-                      2
-                    ),
+                    _c("span", [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "button-invis",
+                          on: { click: _vm.addOrRemoveLike }
+                        },
+                        [
+                          _vm.checkLikedPosts(post.id)
+                            ? [
+                                _c("i", {
+                                  staticClass:
+                                    "fa fa-thumbs-up fa-2x user-liked-button"
+                                })
+                              ]
+                            : [
+                                _c("i", {
+                                  staticClass:
+                                    "far fa-thumbs-up fa-2x like-button"
+                                })
+                              ],
+                          _vm._v(
+                            "\n                  " +
+                              _vm._s(post.likes) +
+                              "\n                "
+                          )
+                        ],
+                        2
+                      )
+                    ]),
                     _vm._v("\n               \n              "),
-                    _c(
-                      "span",
-                      [
-                        _vm.checkDislikedPosts(post.id)
-                          ? [
-                              _c("i", {
-                                staticClass:
-                                  "fa fa-thumbs-down fa-2x user-disliked-button"
-                              })
-                            ]
-                          : [
-                              _c("i", {
-                                staticClass:
-                                  "far fa-thumbs-down fa-2x dislike-button"
-                              })
-                            ],
-                        _vm._v(
-                          "\n                " +
-                            _vm._s(post.dislikes) +
-                            "\n              "
-                        )
-                      ],
-                      2
-                    ),
+                    _c("span", [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "button-invis",
+                          on: { click: _vm.addOrRemoveDislike }
+                        },
+                        [
+                          _vm.checkDislikedPosts(post.id)
+                            ? [
+                                _c("i", {
+                                  staticClass:
+                                    "fa fa-thumbs-down fa-2x user-disliked-button"
+                                })
+                              ]
+                            : [
+                                _c("i", {
+                                  staticClass:
+                                    "far fa-thumbs-down fa-2x dislike-button"
+                                })
+                              ],
+                          _vm._v(
+                            "\n                  " +
+                              _vm._s(post.dislikes) +
+                              "\n                "
+                          )
+                        ],
+                        2
+                      )
+                    ]),
                     _vm._v("\n               \n            ")
                   ])
                 ])
