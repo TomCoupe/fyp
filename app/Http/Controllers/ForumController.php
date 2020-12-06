@@ -107,15 +107,23 @@ class ForumController extends Controller
     }
 
     public function removeLike(Request $request) {
-        dd($request);
+        if($request !== null) {
+            $this->service->removeLike($request['forum_post_id'], $request['user_id']);
+            return response('success', 200);
+        }
+        return response('error', 404);
     }
 
     public function addLike(Request $request) {
-        dd($request);
+        Log::info($request);
     }
 
     public function removeDislike(Request $request) {
-        dd($request);
+        if($request !== null) {
+            $this->service->removeDislike($request['forum_post_id'], $request['user_id']);
+            return response('success', 200);
+        }
+        return response('error', 404);
     }
 
     public function addDislike(Request $request) {

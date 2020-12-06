@@ -12,7 +12,6 @@
         </a>
     </div>
     &nbsp;
-
     <div class="col-md-6">
         <a href="/forum" style="text-decoration: none;">
             <div class="forum-click-div">
@@ -21,7 +20,6 @@
             </div>
         </a>
     </div>
-
 </div>
 
 @endsection

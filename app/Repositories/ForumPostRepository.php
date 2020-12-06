@@ -94,4 +94,12 @@ class ForumPostRepository
     public function getAllUserDislikes($userId) {
         return $this->dislikesModel->where('user_id', $userId)->get();
     }
+
+    public function removeLike($postId, $userId) {
+        return $this->likesModel->where('forum_post_id', $postId)->where('user_id', $userId)->delete();
+    }
+
+    public function removeDislike($postId, $userId) {   
+        return $this->dislikesModel->where('forum_post_id', $postId)->where('user_id', $userId)->delete();
+    }
 }

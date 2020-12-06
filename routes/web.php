@@ -35,7 +35,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/forum/post/{id}/createComment', 'ForumController@createComment');
     Route::post('/forum/post/{id}/postComment', 'ForumController@postComment');
     Route::get('/profile', 'ProfileController@index');
-    //removing likes
     Route::post('/removeLike','ForumController@removeLike');
     Route::post('/addLike', 'ForumController@addLike');
     Route::post('/addDislike', 'ForumController@addDislike');
