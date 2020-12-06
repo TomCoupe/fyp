@@ -145,6 +145,10 @@
     width: 300px;
     height: 300px;
 }
+.button-invis {
+    background: transparent;
+    border: none !important;
+}​
 
 .forum-click-div {
     padding-top: 20%;
@@ -169,10 +173,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
-.a-button {
-    text-decoration: none;
-    background-color: none;
-}
+
 /* .forum-click-div:hover div:not(:hover) {
     width: 250px;
     height: 250px;

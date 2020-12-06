@@ -2274,6 +2274,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ForumPostView.vue",
   props: ["post", "comments", "likes", "dislikes"],
@@ -2290,6 +2294,12 @@ __webpack_require__.r(__webpack_exports__);
     },
     goBack: function goBack() {
       window.location.href = '/forum';
+    },
+    addOrRemoveLike: function addOrRemoveLike() {
+      console.log('liked');
+    },
+    addOrRemoveDislike: function addOrRemoveDislike() {
+      console.log('disliked');
     }
   }
 });
@@ -38440,18 +38450,38 @@ var render = function() {
           _c("div", { staticClass: "float-right" }, [
             _vm._v("\n           \n          "),
             _c("span", [
-              _c("i", {
-                staticClass: "far fa-thumbs-up fa-2x",
-                staticStyle: { color: "green" }
-              }),
+              _c(
+                "button",
+                {
+                  staticClass: "button-invis",
+                  on: { click: _vm.addOrRemoveLike }
+                },
+                [
+                  _c("i", {
+                    staticClass: "far fa-thumbs-up fa-2x",
+                    staticStyle: { color: "green" },
+                    attrs: { type: "button" }
+                  })
+                ]
+              ),
               _vm._v("\n            " + _vm._s(_vm.post.likes) + "\n          ")
             ]),
             _vm._v("\n           \n          "),
             _c("span", [
-              _c("i", {
-                staticClass: "far fa-thumbs-down fa-2x",
-                staticStyle: { color: "red" }
-              }),
+              _c(
+                "button",
+                {
+                  staticClass: "button-invis",
+                  on: { click: _vm.addOrRemoveDislike }
+                },
+                [
+                  _c("i", {
+                    staticClass: "far fa-thumbs-down fa-2x",
+                    staticStyle: { color: "red" },
+                    attrs: { type: "button" }
+                  })
+                ]
+              ),
               _vm._v(
                 "\n            " + _vm._s(_vm.post.dislikes) + "\n          "
               )

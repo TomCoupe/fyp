@@ -25,12 +25,16 @@
           <div class="float-right">
             &nbsp;
             <span>
-              <i class="far fa-thumbs-up fa-2x" style="color: green;"></i>
+              <button class="button-invis" @click="addOrRemoveLike">
+                <i type="button" class="far fa-thumbs-up fa-2x" style="color: green;"></i>
+              </button>
               {{post.likes}}
             </span>
             &nbsp;
             <span>
-              <i class="far fa-thumbs-down fa-2x" style="color: red;"></i>
+              <button class="button-invis" @click="addOrRemoveDislike">
+                <i type="button" class="far fa-thumbs-down fa-2x" style="color: red;"></i>
+              </button>
               {{post.dislikes}}
             </span>
           </div>
@@ -99,6 +103,12 @@ export default {
     },
     goBack() {
       window.location.href = '/forum';
+    },
+    addOrRemoveLike() {
+      console.log('liked');
+    },
+    addOrRemoveDislike() {
+      console.log('disliked');
     }
   }
 };
