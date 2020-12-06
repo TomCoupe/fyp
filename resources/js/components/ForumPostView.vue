@@ -92,7 +92,7 @@ export default {
 
   data() {
     return {
-      post: this.post,
+      post: this.post
       // dislikes: this.dislikes,
       // likes: this.likes
     };
@@ -103,13 +103,13 @@ export default {
       window.location.href = "/forum/post/" + this.post.id + "/createComment";
     },
     goBack() {
-      window.location.href = '/forum';
+      window.location.href = "/forum";
     },
     addOrRemoveLike() {
-      console.log('liked');
+      console.log("liked");
     },
     addOrRemoveDislike() {
-      console.log('disliked');
+      console.log("disliked");
     }
   }
 };

@@ -64,27 +64,33 @@ class ForumPostService
         return $this->repository->storeComment($user, $comment);
     }
 
-    public function getUserLikesForPost($postId, $userId) {
+    public function getUserLikesForPost($postId, $userId)
+    {
         return $this->repository->getUserLikesForPost($postId, $userId);
     }
 
-    public function getUserDislikesForPost($postId, $userId) {
+    public function getUserDislikesForPost($postId, $userId)
+    {
         return $this->repository->getUserDislikesForPost($postId, $userId);
     }
 
-    public function getAllUserLikes($userId) {
+    public function getAllUserLikes($userId)
+    {
         return $this->repository->getAllUserLikes($userId);
     }
 
-    public function getAllUserDislikes($userId) {
+    public function getAllUserDislikes($userId)
+    {
         return $this->repository->getAllUserDislikes($userId);
     }
 
-    public function removeLike($postID, $userId) {
+    public function removeLike($postID, $userId)
+    {
         return $this->repository->removeLike($postID, $userId);
     }
-    
-    public function removeDislike($postID, $userId) {
+
+    public function removeDislike($postID, $userId)
+    {
         return $this->repository->removeDislike($postID, $userId);
     }
 }

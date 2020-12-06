@@ -19,12 +19,12 @@ class ForumPostRepository
     protected $likesModel;
 
     public function __construct(
-        ForumPost $model, 
-        ForumComment $commentModel, 
-        User $userModel, 
+        ForumPost $model,
+        ForumComment $commentModel,
+        User $userModel,
         ForumPostDislikes $dislikesModel,
-        ForumPostLikes $likesModel)
-    {
+        ForumPostLikes $likesModel
+    ) {
         $this->model = $model;
         $this->commentModel = $commentModel;
         $this->userModel = $userModel;
@@ -79,27 +79,33 @@ class ForumPostRepository
         ]);
     }
 
-    public function getUserLikesForPost($postId, $userId) {
+    public function getUserLikesForPost($postId, $userId)
+    {
         return $this->likesModel->where('forum_post_id', $postId)->where('user_id', $userId)->first();
     }
 
-    public function getUserDislikesForPost($postId, $userId) {
+    public function getUserDislikesForPost($postId, $userId)
+    {
         return $this->dislikesModel->where('forum_post_id', $postId)->where('user_id', $userId)->first();
     }
 
-    public function getAllUserLikes($userId) {
+    public function getAllUserLikes($userId)
+    {
         return $this->likesModel->where('user_id', $userId)->get();
     }
 
-    public function getAllUserDislikes($userId) {
+    public function getAllUserDislikes($userId)
+    {
         return $this->dislikesModel->where('user_id', $userId)->get();
     }
 
-    public function removeLike($postId, $userId) {
+    public function removeLike($postId, $userId)
+    {
         return $this->likesModel->where('forum_post_id', $postId)->where('user_id', $userId)->delete();
     }
 
-    public function removeDislike($postId, $userId) {   
+    public function removeDislike($postId, $userId)
+    {
         return $this->dislikesModel->where('forum_post_id', $postId)->where('user_id', $userId)->delete();
     }
 }

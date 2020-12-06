@@ -25,7 +25,7 @@ class ForumController extends Controller
         $dislikes = false;
         $likes = false;
 
-        if($user !== null) {
+        if ($user !== null) {
             $likes = $this->service->getAllUserLikes($user->id);
             $dislikes = $this->service->getAllUserDislikes($user->id);
         }
@@ -63,7 +63,7 @@ class ForumController extends Controller
         $dislikes = false;
         $likes = false;
 
-        if($authUser !== null) {
+        if ($authUser !== null) {
             $likes = $this->service->getUserLikesForPost($id, $authUser->id);
             $dislikes = $this->service->getUserDislikesForPost($id, $authUser->id);
         }
@@ -79,11 +79,12 @@ class ForumController extends Controller
 
             return view('forum.forumPost')->with(
                 [
-                'post' => $post, 
-                'comments' => json_encode($commentsArray), 
-                'likes' => json_encode($likes), 
-                'dislikes' => json_encode($dislikes)
-                ]);
+                    'post' => $post,
+                    'comments' => json_encode($commentsArray),
+                    'likes' => json_encode($likes),
+                    'dislikes' => json_encode($dislikes)
+                ]
+            );
         }
 
         return response('error', 404);
@@ -106,27 +107,31 @@ class ForumController extends Controller
         return response('error', 404);
     }
 
-    public function removeLike(Request $request) {
-        if($request !== null) {
+    public function removeLike(Request $request)
+    {
+        if ($request !== null) {
             $this->service->removeLike($request['forum_post_id'], $request['user_id']);
             return response('success', 200);
         }
         return response('error', 404);
     }
 
-    public function addLike(Request $request) {
+    public function addLike(Request $request)
+    {
         Log::info($request);
     }
 
-    public function removeDislike(Request $request) {
-        if($request !== null) {
+    public function removeDislike(Request $request)
+    {
+        if ($request !== null) {
             $this->service->removeDislike($request['forum_post_id'], $request['user_id']);
             return response('success', 200);
         }
         return response('error', 404);
     }
 
-    public function addDislike(Request $request) {
+    public function addDislike(Request $request)
+    {
         dd($request);
     }
 }
