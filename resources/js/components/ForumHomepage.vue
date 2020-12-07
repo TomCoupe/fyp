@@ -27,24 +27,14 @@
                 &nbsp;
                 <span>
                   <button class="button-invis" @click="addOrRemoveLike(post.id)">
-                    <template v-if="checkLikedPosts(post.id)">
-                      <i class="fa fa-thumbs-up fa-2x user-liked-button"></i>
-                    </template>
-                    <template v-else>
-                      <i class="far fa-thumbs-up fa-2x like-button"></i>
-                    </template>
+                    <i :class="{'fa fa-thumbs-up fa-2x user-liked-button' : checkLikedPosts(post.id), 'far fa-thumbs-up fa-2x like-button': !checkLikedPosts(post.id)}"></i>
                     {{post.likes}}
                   </button>
                 </span>
                 &nbsp;
                 <span>
                   <button class="button-invis" @click="addOrRemoveDislike(post.id)">
-                    <template v-if="checkDislikedPosts(post.id)">
-                      <i class="fa fa-thumbs-down fa-2x user-disliked-button"></i>
-                    </template>
-                    <template v-else>
-                      <i class="far fa-thumbs-down fa-2x dislike-button"></i>
-                    </template>
+                      <i :class="{ 'fa fa-thumbs-down fa-2x user-disliked-button': checkDislikedPosts(post.id), 'far fa-thumbs-down fa-2x dislike-button': !checkDislikedPosts(post.id) }"></i>
                     {{post.dislikes}}
                   </button>
                 </span>
@@ -63,7 +53,6 @@ const axios = require("axios");
 export default {
   name: "ForumHomepage.vue",
   props: ["user", "posts", "likes", "dislikes"],
-
   methods: {
     likePost(postId) {},
 
@@ -78,7 +67,7 @@ export default {
 
     checkDislikedPosts(id) {
       for (let index = 0; index < this.dislikes.length; index++) {
-        if (this.dislikes[index].id == id) {
+        if (this.dislikes[index].forum_post_id == id) {
           return true;
         }
       }
@@ -107,9 +96,9 @@ export default {
         }
       }
       let obj = {
-            forum_post_id: id,
-            user_id: app.user.id
-          };
+        forum_post_id: id,
+        user_id: app.user.id
+      };
       axios
         .post("/addLike", obj, {
           headers: {
@@ -145,17 +134,17 @@ export default {
           }
         }
       }
+      let obj = {
+        forum_post_id: id,
+        user_id: app.user.id
+      };
       axios
-        .post("/addDislike", app.id, {
+        .post("/addDislike", obj, {
           headers: {
             "content-type": "text/json"
           }
         })
         .then(function(response) {
-          let obj = {
-            forum_post_id: id,
-            user_id: app.user.id
-          };
           app.dislikes.push(obj);
         })
         .catch(function(error) {

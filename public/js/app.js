@@ -2062,16 +2062,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2090,7 +2080,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
     },
     checkDislikedPosts: function checkDislikedPosts(id) {
       for (var index = 0; index < this.dislikes.length; index++) {
-        if (this.dislikes[index].id == id) {
+        if (this.dislikes[index].forum_post_id == id) {
           return true;
         }
       }
@@ -2171,15 +2161,15 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         }
       }
 
-      axios.post("/addDislike", app.id, {
+      var obj = {
+        forum_post_id: id,
+        user_id: app.user.id
+      };
+      axios.post("/addDislike", obj, {
         headers: {
           "content-type": "text/json"
         }
       }).then(function (response) {
-        var obj = {
-          forum_post_id: id,
-          user_id: app.user.id
-        };
         app.dislikes.push(obj);
       })["catch"](function (error) {
         console.log("Could not add dislike");
@@ -38301,26 +38291,22 @@ var render = function() {
                           }
                         },
                         [
-                          _vm.checkLikedPosts(post.id)
-                            ? [
-                                _c("i", {
-                                  staticClass:
-                                    "fa fa-thumbs-up fa-2x user-liked-button"
-                                })
-                              ]
-                            : [
-                                _c("i", {
-                                  staticClass:
-                                    "far fa-thumbs-up fa-2x like-button"
-                                })
-                              ],
+                          _c("i", {
+                            class: {
+                              "fa fa-thumbs-up fa-2x user-liked-button": _vm.checkLikedPosts(
+                                post.id
+                              ),
+                              "far fa-thumbs-up fa-2x like-button": !_vm.checkLikedPosts(
+                                post.id
+                              )
+                            }
+                          }),
                           _vm._v(
                             "\n                  " +
                               _vm._s(post.likes) +
                               "\n                "
                           )
-                        ],
-                        2
+                        ]
                       )
                     ]),
                     _vm._v("\n               \n              "),
@@ -38336,26 +38322,22 @@ var render = function() {
                           }
                         },
                         [
-                          _vm.checkDislikedPosts(post.id)
-                            ? [
-                                _c("i", {
-                                  staticClass:
-                                    "fa fa-thumbs-down fa-2x user-disliked-button"
-                                })
-                              ]
-                            : [
-                                _c("i", {
-                                  staticClass:
-                                    "far fa-thumbs-down fa-2x dislike-button"
-                                })
-                              ],
+                          _c("i", {
+                            class: {
+                              "fa fa-thumbs-down fa-2x user-disliked-button": _vm.checkDislikedPosts(
+                                post.id
+                              ),
+                              "far fa-thumbs-down fa-2x dislike-button": !_vm.checkDislikedPosts(
+                                post.id
+                              )
+                            }
+                          }),
                           _vm._v(
                             "\n                  " +
                               _vm._s(post.dislikes) +
                               "\n                "
                           )
-                        ],
-                        2
+                        ]
                       )
                     ]),
                     _vm._v("\n               \n            ")

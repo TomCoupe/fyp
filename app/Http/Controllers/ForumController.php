@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 
+use App\ForumPost;
+
 class ForumController extends Controller
 {
     protected $service;
@@ -118,6 +120,7 @@ class ForumController extends Controller
 
     public function addLike(Request $request)
     {
+        Log::info($request);
         if ($this->service->validateLikeOrDislikePayload($request)) {
             $this->service->addLike($request['forum_post_id'], $request['user_id']);
             return response('success', 200);
@@ -136,6 +139,8 @@ class ForumController extends Controller
 
     public function addDislike(Request $request)
     {
+        Log::info($request);
+
         if ($this->service->validateLikeOrDislikePayload($request)) {
             $this->service->addDislike($request['forum_post_id'], $request['user_id']);
             return response('success', 200);
