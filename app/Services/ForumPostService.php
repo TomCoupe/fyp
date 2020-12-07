@@ -93,4 +93,23 @@ class ForumPostService
     {
         return $this->repository->removeDislike($postID, $userId);
     }
+
+    public function addLike($postID, $userId) {
+        return $this->repository->addLike($postID, $userId);
+    }
+
+    public function addDislike($postID, $userId) {
+        return $this->repository->addDislike($postID, $userId);
+    }
+
+    public function validateLikeOrDislikePayload($request) { 
+        if($request['forum_post_id'] == null) {
+            return false;
+        }
+        if($request['user_id'] == null) {
+            return false;
+        }
+        return true;
+    }
+
 }

@@ -108,4 +108,14 @@ class ForumPostRepository
     {
         return $this->dislikesModel->where('forum_post_id', $postId)->where('user_id', $userId)->delete();
     }
+
+    public function addLike($postId, $userId) 
+    {
+        return $this->likesModel->updateOrCreate(['forum_post_id' => $postId, 'user_id' => $userId], ['forum_post_id' => $postId, 'user_id' => $userId]);
+    }
+
+    public function addDislike($postId, $userId) 
+    {
+        return $this->dislikesModel->updateOrCreate(['forum_post_id' => $postId, 'user_id' => $userId], ['forum_post_id' => $postId, 'user_id' => $userId]);
+    }
 }

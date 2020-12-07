@@ -2127,15 +2127,15 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         }
       }
 
-      axios.post("/addLike", app.id, {
+      var obj = {
+        forum_post_id: id,
+        user_id: app.user.id
+      };
+      axios.post("/addLike", obj, {
         headers: {
           "content-type": "text/json"
         }
       }).then(function (response) {
-        var obj = {
-          forum_post_id: id,
-          user_id: app.user.id
-        };
         app.likes.push(obj);
       })["catch"](function (error) {
         console.log("Could not add like");
@@ -2391,13 +2391,13 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       window.location.href = "/forum/post/" + this.post.id + "/createComment";
     },
     goBack: function goBack() {
-      window.location.href = '/forum';
+      window.location.href = "/forum";
     },
     addOrRemoveLike: function addOrRemoveLike() {
-      console.log('liked');
+      console.log("liked");
     },
     addOrRemoveDislike: function addOrRemoveDislike() {
-      console.log('disliked');
+      console.log("disliked");
     }
   }
 });

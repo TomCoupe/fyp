@@ -106,17 +106,17 @@ export default {
           }
         }
       }
+      let obj = {
+            forum_post_id: id,
+            user_id: app.user.id
+          };
       axios
-        .post("/addLike", app.id, {
+        .post("/addLike", obj, {
           headers: {
             "content-type": "text/json"
           }
         })
         .then(function(response) {
-          let obj = {
-            forum_post_id: id,
-            user_id: app.user.id
-          };
           app.likes.push(obj);
         })
         .catch(function(error) {

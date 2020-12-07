@@ -109,7 +109,7 @@ class ForumController extends Controller
 
     public function removeLike(Request $request)
     {
-        if ($request !== null) {
+        if ($this->service->validateLikeOrDislikePayload($request)) {
             $this->service->removeLike($request['forum_post_id'], $request['user_id']);
             return response('success', 200);
         }
@@ -118,12 +118,16 @@ class ForumController extends Controller
 
     public function addLike(Request $request)
     {
-        Log::info($request);
+        if ($this->service->validateLikeOrDislikePayload($request)) {
+            $this->service->addLike($request['forum_post_id'], $request['user_id']);
+            return response('success', 200);
+        }
+        return response('error', 404);
     }
 
     public function removeDislike(Request $request)
     {
-        if ($request !== null) {
+        if ($this->service->validateLikeOrDislikePayload($request)) {
             $this->service->removeDislike($request['forum_post_id'], $request['user_id']);
             return response('success', 200);
         }
@@ -132,6 +136,10 @@ class ForumController extends Controller
 
     public function addDislike(Request $request)
     {
-        dd($request);
+        if ($this->service->validateLikeOrDislikePayload($request)) {
+            $this->service->addDislike($request['forum_post_id'], $request['user_id']);
+            return response('success', 200);
+        }
+        return response('error', 404);
     }
 }
