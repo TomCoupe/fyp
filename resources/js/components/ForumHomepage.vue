@@ -27,14 +27,18 @@
                 &nbsp;
                 <span>
                   <button class="button-invis" @click="addOrRemoveLike(post.id)">
-                    <i :class="{'fa fa-thumbs-up fa-2x user-liked-button' : checkLikedPosts(post.id), 'far fa-thumbs-up fa-2x like-button': !checkLikedPosts(post.id)}"></i>
+                    <i
+                      :class="{'fa fa-thumbs-up fa-2x user-liked-button' : checkLikedPosts(post.id), 'far fa-thumbs-up fa-2x like-button': !checkLikedPosts(post.id)}"
+                    ></i>
                     {{post.likes}}
                   </button>
                 </span>
                 &nbsp;
                 <span>
                   <button class="button-invis" @click="addOrRemoveDislike(post.id)">
-                      <i :class="{ 'fa fa-thumbs-down fa-2x user-disliked-button': checkDislikedPosts(post.id), 'far fa-thumbs-down fa-2x dislike-button': !checkDislikedPosts(post.id) }"></i>
+                    <i
+                      :class="{ 'fa fa-thumbs-down fa-2x user-disliked-button': checkDislikedPosts(post.id), 'far fa-thumbs-down fa-2x dislike-button': !checkDislikedPosts(post.id) }"
+                    ></i>
                     {{post.dislikes}}
                   </button>
                 </span>
