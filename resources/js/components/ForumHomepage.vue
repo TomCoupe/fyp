@@ -82,7 +82,7 @@ export default {
       let app = this;
       if (this.checkLikedPosts(id) == true) {
         for (let index = 0; index < this.likes.length; index++) {
-          if (this.likes[index].id == id) {
+          if (this.likes[index].forum_post_id == id) {
             axios
               .post("/removeLike", app.likes[index], {
                 headers: {
@@ -111,6 +111,10 @@ export default {
         })
         .then(function(response) {
           app.likes.push(obj);
+
+          if(checkDislikedPosts(id) == true) {
+            app.addOrRemoveDislike(id);
+          }
         })
         .catch(function(error) {
           console.log("Could not add like");
@@ -121,7 +125,7 @@ export default {
       let app = this;
       if (this.checkDislikedPosts(id) == true) {
         for (let index = 0; index < this.dislikes.length; index++) {
-          if (this.dislikes[index].id == id) {
+          if (this.dislikes[index].forum_post_id == id) {
             axios
               .post("/removeDislike", app.dislikes[index], {
                 headers: {
@@ -150,6 +154,10 @@ export default {
         })
         .then(function(response) {
           app.dislikes.push(obj);
+
+          if(app.checkLikedPosts(id) == true) {
+            app.addOrRemoveLike(id);
+          }
         })
         .catch(function(error) {
           console.log("Could not add dislike");

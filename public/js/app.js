@@ -2062,6 +2062,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 //
 //
 //
+//
+//
+//
+//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2094,7 +2098,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
       if (this.checkLikedPosts(id) == true) {
         var _loop = function _loop(index) {
-          if (_this.likes[index].id == id) {
+          if (_this.likes[index].forum_post_id == id) {
             axios.post("/removeLike", app.likes[index], {
               headers: {
                 "content-type": "text/json"
@@ -2127,6 +2131,10 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         }
       }).then(function (response) {
         app.likes.push(obj);
+
+        if (checkDislikedPosts(id) == true) {
+          app.addOrRemoveDislike(id);
+        }
       })["catch"](function (error) {
         console.log("Could not add like");
       });
@@ -2138,7 +2146,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
       if (this.checkDislikedPosts(id) == true) {
         var _loop2 = function _loop2(index) {
-          if (_this2.dislikes[index].id == id) {
+          if (_this2.dislikes[index].forum_post_id == id) {
             axios.post("/removeDislike", app.dislikes[index], {
               headers: {
                 "content-type": "text/json"
@@ -2171,6 +2179,10 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         }
       }).then(function (response) {
         app.dislikes.push(obj);
+
+        if (app.checkLikedPosts(id) == true) {
+          app.addOrRemoveLike(id);
+        }
       })["catch"](function (error) {
         console.log("Could not add dislike");
       });
