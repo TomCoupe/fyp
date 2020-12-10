@@ -2105,6 +2105,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
               }
             }).then(function (response) {
               app.likes.splice(index, 1);
+              window.location.href = "/forum";
             })["catch"](function (error) {
               console.log("Could not remove like");
             });
@@ -2134,6 +2135,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
         if (checkDislikedPosts(id) == true) {
           app.addOrRemoveDislike(id);
+          window.location.href = "/forum";
         }
       })["catch"](function (error) {
         console.log("Could not add like");
@@ -2153,6 +2155,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
               }
             }).then(function (response) {
               app.dislikes.splice(index, 1);
+              window.location.href = "/forum";
             })["catch"](function (error) {
               console.log("Could not remove dislike");
             });
@@ -2182,6 +2185,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
         if (app.checkLikedPosts(id) == true) {
           app.addOrRemoveLike(id);
+          window.location.href = "/forum";
         }
       })["catch"](function (error) {
         console.log("Could not add dislike");

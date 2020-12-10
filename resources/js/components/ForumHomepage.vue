@@ -91,6 +91,7 @@ export default {
               })
               .then(function(response) {
                 app.likes.splice(index, 1);
+                window.location.href = "/forum";
               })
               .catch(function(error) {
                 console.log("Could not remove like");
@@ -112,8 +113,9 @@ export default {
         .then(function(response) {
           app.likes.push(obj);
 
-          if(checkDislikedPosts(id) == true) {
+          if (checkDislikedPosts(id) == true) {
             app.addOrRemoveDislike(id);
+            window.location.href = "/forum";
           }
         })
         .catch(function(error) {
@@ -134,6 +136,7 @@ export default {
               })
               .then(function(response) {
                 app.dislikes.splice(index, 1);
+                window.location.href = "/forum";
               })
               .catch(function(error) {
                 console.log("Could not remove dislike");
@@ -155,8 +158,9 @@ export default {
         .then(function(response) {
           app.dislikes.push(obj);
 
-          if(app.checkLikedPosts(id) == true) {
+          if (app.checkLikedPosts(id) == true) {
             app.addOrRemoveLike(id);
+            window.location.href = "/forum";
           }
         })
         .catch(function(error) {
