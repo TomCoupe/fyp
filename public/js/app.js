@@ -2072,7 +2072,6 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
   name: "ForumHomepage.vue",
   props: ["user", "posts", "likes", "dislikes"],
   methods: {
-    likePost: function likePost(postId) {},
     checkLikedPosts: function checkLikedPosts(id) {
       for (var index = 0; index < this.likes.length; index++) {
         if (this.likes[index].forum_post_id == id) {
@@ -2105,10 +2104,10 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
               }
             }).then(function (response) {
               app.likes.splice(index, 1);
-              window.location.href = "/forum";
             })["catch"](function (error) {
               console.log("Could not remove like");
             });
+            window.location.href = "/forum";
             return {
               v: void 0
             };
@@ -2135,11 +2134,11 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
         if (checkDislikedPosts(id) == true) {
           app.addOrRemoveDislike(id);
-          window.location.href = "/forum";
         }
       })["catch"](function (error) {
         console.log("Could not add like");
       });
+      window.location.href = "/forum";
     },
     addOrRemoveDislike: function addOrRemoveDislike(id) {
       var _this2 = this;
@@ -2155,10 +2154,10 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
               }
             }).then(function (response) {
               app.dislikes.splice(index, 1);
-              window.location.href = "/forum";
             })["catch"](function (error) {
               console.log("Could not remove dislike");
             });
+            window.location.href = "/forum";
             return {
               v: void 0
             };
@@ -2185,11 +2184,11 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
         if (app.checkLikedPosts(id) == true) {
           app.addOrRemoveLike(id);
-          window.location.href = "/forum";
         }
       })["catch"](function (error) {
         console.log("Could not add dislike");
       });
+      window.location.href = "/forum";
     }
   },
   data: function data() {

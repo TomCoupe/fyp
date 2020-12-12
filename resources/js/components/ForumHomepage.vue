@@ -58,8 +58,6 @@ export default {
   name: "ForumHomepage.vue",
   props: ["user", "posts", "likes", "dislikes"],
   methods: {
-    likePost(postId) {},
-
     checkLikedPosts(id) {
       for (let index = 0; index < this.likes.length; index++) {
         if (this.likes[index].forum_post_id == id) {
@@ -91,11 +89,11 @@ export default {
               })
               .then(function(response) {
                 app.likes.splice(index, 1);
-                window.location.href = "/forum";
               })
               .catch(function(error) {
                 console.log("Could not remove like");
               });
+            window.location.href = "/forum";
             return;
           }
         }
@@ -115,12 +113,12 @@ export default {
 
           if (checkDislikedPosts(id) == true) {
             app.addOrRemoveDislike(id);
-            window.location.href = "/forum";
           }
         })
         .catch(function(error) {
           console.log("Could not add like");
         });
+      window.location.href = "/forum";
     },
 
     addOrRemoveDislike(id) {
@@ -136,11 +134,11 @@ export default {
               })
               .then(function(response) {
                 app.dislikes.splice(index, 1);
-                window.location.href = "/forum";
               })
               .catch(function(error) {
                 console.log("Could not remove dislike");
               });
+            window.location.href = "/forum";
             return;
           }
         }
@@ -160,12 +158,12 @@ export default {
 
           if (app.checkLikedPosts(id) == true) {
             app.addOrRemoveLike(id);
-            window.location.href = "/forum";
           }
         })
         .catch(function(error) {
           console.log("Could not add dislike");
         });
+      window.location.href = "/forum";
     }
   },
 
