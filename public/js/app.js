@@ -2066,6 +2066,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 //
 //
 //
+//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -38289,6 +38290,11 @@ var render = function() {
                   _c("p", { staticClass: "card-text" }, [
                     _c("small", { staticClass: "text-muted" }, [
                       _vm._v("Posted at: " + _vm._s(post.created_at))
+                    ]),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("small", { staticClass: "text-muted" }, [
+                      _vm._v("Posted by: ")
                     ])
                   ]),
                   _vm._v(" "),

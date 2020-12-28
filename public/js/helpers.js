@@ -26,7 +26,7 @@ export function loadCharacterTexture(tiles) {
     });
 }
 
-//funciton used to define and draw a specified tile from
+//funciton used to define and draw a specified tile onto the canvas
 export function define(name, x, y, width, height, image, tiles) {
     const buffer = document.createElement('canvas');
     buffer.width = width;

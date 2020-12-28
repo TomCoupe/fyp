@@ -14,13 +14,15 @@ const gravity = 0.5;
 
 Promise.all([
     helpers.loadCharacterTexture(tiles),
-    helpers.loadBackgroundTextures(tiles),
+    // helpers.loadBackgroundTextures(tiles),
     helpers.loadLevel('level-1')
 ]).then(([characterSprite, textures, level]) => {
     const game = new Game();
-    const backgroundLayer = createBackground(level.backgrounds, backgroundBuffer, tiles);
-    game.layers.push(backgroundLayer);
+    // const backgroundLayer = createBackground(level.backgrounds, backgroundBuffer, tiles);
+    // game.layers.push(backgroundLayer);
 
+
+    //create character, then set the starting positions.
     const character = new Character();
     character.position.set(64, 180);
     character.velocity.set(2, -10);

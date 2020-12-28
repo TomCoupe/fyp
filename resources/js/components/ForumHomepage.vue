@@ -21,7 +21,8 @@
               </a>
               <p class="card-text">{{ post.text }}</p>
               <p class="card-text">
-                <small class="text-muted">Posted at: {{post.created_at}}</small>
+                <small class="text-muted">Posted at: {{post.created_at}}</small><br>
+                <small class="text-muted">Posted by: </small>
               </p>
               <div class="bottom-right">
                 &nbsp;
