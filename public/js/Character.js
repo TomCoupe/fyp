@@ -7,9 +7,9 @@ export default class Character {
         this.velocity = new Vector(0, 0);
     }
 
-    updateCharacter() {
-        this.position.x += this.velocity.x;
-        this.position.y += this.velocity.y;
+    updateCharacter(deltaTime) {
+        this.position.x += this.velocity.x * deltaTime;
+        this.position.y += this.velocity.y * deltaTime;
     }
 
     draw(context, tiles) {

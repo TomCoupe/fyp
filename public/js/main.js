@@ -10,7 +10,6 @@ context.scale(2, 2);
 
 const backgroundBuffer = document.createElement('canvas');
 const tiles = new Map();
-const gravity = 0.5;
 
 Promise.all([
     helpers.loadCharacterTexture(tiles),
@@ -24,23 +23,34 @@ Promise.all([
 
     //create character, then set the starting positions.
     const character = new Character();
+    const gravity = 1;
     character.position.set(64, 180);
-    character.velocity.set(2, -10);
+    character.velocity.set(10, -1);
 
     context.drawImage(backgroundBuffer,0 ,0);
     const spriteLayer = createSprite(character, tiles);
     game.layers.push(spriteLayer);
 
-    function update() { 
+
+    let deltaTime = 0;
+    let lastTime = 0;
+
+    function update(time) { 
+        deltaTime = (time - lastTime) / 1000;
         game.draw(context);
 
+        console.log(deltaTime);
         // helpers.draw('idle', context, character.position.x, character.position.y, tiles);
-
         // character.draw(context, tiles);
-        character.updateCharacter();
+        character.updateCharacter(deltaTime);
         character.velocity.y += gravity;
 
-        requestAnimationFrame(update);
+        console.log(character.position);
+
+        // requestAnimationFrame(update);
+        setTimeout(update, 1000/60, performance.now());
+
+        lastTime = time;
     }
-    update();
+    update(0);
 });
