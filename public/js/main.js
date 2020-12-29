@@ -23,9 +23,9 @@ Promise.all([
 
     //create character, then set the starting positions.
     const character = new Character();
-    const gravity = 1;
+    const gravity = 15;
     character.position.set(64, 180);
-    character.velocity.set(10, -1);
+    character.velocity.set(40, -80);
 
     context.drawImage(backgroundBuffer,0 ,0);
     const spriteLayer = createSprite(character, tiles);
@@ -36,8 +36,10 @@ Promise.all([
     let lastTime = 0;
 
     function update(time) { 
-        deltaTime = (time - lastTime) / 1000;
         game.draw(context);
+
+        // console.log(time);
+        deltaTime = (time - lastTime) / 1000;
 
         console.log(deltaTime);
         // helpers.draw('idle', context, character.position.x, character.position.y, tiles);
@@ -45,10 +47,12 @@ Promise.all([
         character.updateCharacter(deltaTime);
         character.velocity.y += gravity;
 
-        console.log(character.position);
+        // console.log(character.velocity.y);
 
-        // requestAnimationFrame(update);
-        setTimeout(update, 1000/60, performance.now());
+        // console.log(character.position);
+
+        requestAnimationFrame(update);
+        // setTimeout(update, 1000/60, performance.now());
 
         lastTime = time;
     }
