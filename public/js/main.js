@@ -1,5 +1,6 @@
 import * as helpers from "/js/helpers.js";
 import Character from "/js/Character.js";
+import Timer from "/js/Timer.js";
 import {createBackground, createSprite} from "/js/layers.js"
 import Game from "./Game.js";
 
@@ -13,13 +14,12 @@ const tiles = new Map();
 
 Promise.all([
     helpers.loadCharacterTexture(tiles),
-    // helpers.loadBackgroundTextures(tiles),
+    helpers.loadBackgroundTextures(tiles),
     helpers.loadLevel('level-1')
 ]).then(([characterSprite, textures, level]) => {
     const game = new Game();
-    // const backgroundLayer = createBackground(level.backgrounds, backgroundBuffer, tiles);
-    // game.layers.push(backgroundLayer);
-
+    const backgroundLayer = createBackground(level.backgrounds, backgroundBuffer, tiles);
+    game.layers.push(backgroundLayer);
 
     //create character, then set the starting positions.
     const character = new Character();
@@ -31,28 +31,12 @@ Promise.all([
     const spriteLayer = createSprite(character, tiles);
     game.layers.push(spriteLayer);
 
+    const timer = new Timer(1/60);
 
-    const deltaTime = 1/60;
-    let accTime = 0;
-    let lastTime = 0;
-
-    function update(time) { 
-        
-        accTime += (time - lastTime) / 1000;
-        console.log(accTime, deltaTime);
-        if(accTime > deltaTime) {
-            game.draw(context);
-            character.updateCharacter(deltaTime);
-            character.velocity.y += gravity;
-            accTime -= deltaTime;
-        }
-        // helpers.draw('idle', context, character.position.x, character.position.y, tiles);
-        // character.draw(context, tiles);
-
-        requestAnimationFrame(update);
-        // setTi meout(update, 1000/1, performance.now());
-
-        lastTime = time;
+    timer.update = function update(deltaTime) { 
+        game.draw(context);
+        character.updateCharacter(deltaTime);
+        character.velocity.y += gravity;
     }
-    update(0);
+    timer.start();
 });
