@@ -24,6 +24,8 @@ Promise.all([
     //create character, then set the starting positions.
     const character = new Character();
     const gravity = 30;
+
+    //set character starting position, and initial velocity.
     character.position.set(64, 180);
     character.velocity.set(200, -600);
 
@@ -31,8 +33,10 @@ Promise.all([
     const spriteLayer = createSprite(character, tiles);
     game.layers.push(spriteLayer);
 
+    //create time object, pass through deltatime constant
     const timer = new Timer(1/60);
 
+    //updates game state using the timer update function.
     timer.update = function update(deltaTime) { 
         game.draw(context);
         character.updateCharacter(deltaTime);
