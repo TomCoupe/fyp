@@ -8,8 +8,8 @@ export default class Character {
     }
 
     updateCharacter(deltaTime) {
-        this.position.x += this.velocity.x *deltaTime;
-        this.position.y += this.velocity.y *deltaTime;
+        this.position.x += this.velocity.x * deltaTime;
+        this.position.y += this.velocity.y * deltaTime;
     }
 
     draw(context, tiles) {
