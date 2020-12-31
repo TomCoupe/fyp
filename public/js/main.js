@@ -4,6 +4,16 @@ import Timer from "/js/Timer.js";
 import {createBackground, createSprite} from "/js/layers.js"
 import Game from "./Game.js";
 
+import KeyBoard from "./KeyBoard.js";
+
+const input = new KeyBoard();
+
+input.addMapping(32, keystate => {
+    console.log(keystate);
+})
+
+input.listenTo(window)
+
 const canvas = document.getElementById('game');
 const context = canvas.getContext('2d');
 
@@ -23,7 +33,7 @@ Promise.all([
 
     //create character, then set the starting positions.
     const character = new Character();
-    const gravity = 30;
+    const gravity = 1900;
 
     //set character starting position, and initial velocity.
     character.position.set(64, 180);
@@ -38,9 +48,9 @@ Promise.all([
 
     //updates game state using the timer update function.
     timer.update = function update(deltaTime) { 
-        game.draw(context);
         character.updateCharacter(deltaTime);
-        character.velocity.y += gravity;
+        game.draw(context);
+        character.velocity.y += gravity * deltaTime;
     }
     timer.start();
 });
