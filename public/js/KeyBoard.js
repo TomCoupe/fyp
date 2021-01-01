@@ -13,16 +13,26 @@ export default class KeyBoard {
     }
 
     handleEvent(event) {
-        const { keyCode } = event;
+
+        // console.log(event)
+        const keyCode = event.type;
+
+        console.log(keyCode);
 
         if (!this.keyMap.has(keyCode)) {
+
+            console.log('one')
             return;
         }
 
         event.preventDefault();
         const keyState = event.type === 'keydown' ? PRESSED : RELEASED;
 
+        console.log(keyState)
+
         if (this.keyStates.get(keyCode) === keyState) {
+
+            console.log('two')
             return;
         }
         this.keyStates.set(keyCode, keyState);
@@ -32,7 +42,7 @@ export default class KeyBoard {
     }
 
     listenTo(window) {
-        ['keydown', 'keydown'].forEach(eventName => {
+        ['keydown', 'keyup'].forEach(eventName => {
             window.addEventListener(eventName, event => {
                 this.handleEvent(event);
             })

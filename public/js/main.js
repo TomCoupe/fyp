@@ -8,11 +8,11 @@ import KeyBoard from "./KeyBoard.js";
 
 const input = new KeyBoard();
 
-input.addMapping(32, keystate => {
-    console.log(keystate);
-})
+input.addMapping(38, keyState => {
+    console.log(keyState);
+});
 
-input.listenTo(window)
+input.listenTo(window);
 
 const canvas = document.getElementById('game');
 const context = canvas.getContext('2d');
@@ -39,7 +39,7 @@ Promise.all([
     character.position.set(64, 180);
     character.velocity.set(200, -600);
 
-    context.drawImage(backgroundBuffer,0 ,0);
+    context.drawImage(backgroundBuffer, 0, 0);
     const spriteLayer = createSprite(character, tiles);
     game.layers.push(spriteLayer);
 
