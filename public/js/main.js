@@ -8,8 +8,8 @@ import KeyBoard from "./KeyBoard.js";
 
 const input = new KeyBoard();
 
-input.addMapping(38, keyState => {
-    console.log(keyState);
+input.addMapping(32, keyState => {
+    // console.log(keyState)
 });
 
 input.listenTo(window);

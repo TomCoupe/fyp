@@ -15,13 +15,12 @@ export default class KeyBoard {
     handleEvent(event) {
 
         // console.log(event)
-        const keyCode = event.type;
+        const {keyCode} = event;
 
-        console.log(keyCode);
+        // console.log(keyCode);
 
         if (!this.keyMap.has(keyCode)) {
-
-            console.log('one')
+            // console.log('one')
             return;
         }
 
@@ -31,12 +30,11 @@ export default class KeyBoard {
         console.log(keyState)
 
         if (this.keyStates.get(keyCode) === keyState) {
-
-            console.log('two')
+            // console.log('two')
             return;
         }
         this.keyStates.set(keyCode, keyState);
-        console.log(keyStates);
+        console.log(this.keyStates);
 
         this.keyMap.get(keyCode)(keyState);
     }
