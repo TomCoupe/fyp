@@ -1,10 +1,26 @@
 import { Vector } from "/js/maths.js";
 import { draw } from "/js/helpers.js";
+import { Trait } from "/js/Trait.js";
 
 export default class Character {
     constructor() {
         this.position = new Vector(0, 0);
         this.velocity = new Vector(0, 0);
+
+        this.trait = new Trait();
+
+        this.traits = [];
+    }
+
+    addTrait(trait) {
+        this.traits.push(trait);
+        this[trait.NAME] = trait;
+    }
+
+    update(deltaTime) {
+        this.traits.forEach(trait => {
+            trait.update(this, deltaTime);
+        })
     }
 
     updateCharacter(deltaTime) {

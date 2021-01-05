@@ -7,10 +7,7 @@ import Game from "./Game.js";
 import KeyBoard from "./KeyBoard.js";
 
 const input = new KeyBoard();
-
-input.addMapping(32, keyState => {
-    // console.log(keyState)
-});
+const SPACEBAR = 32;
 
 input.listenTo(window);
 
@@ -38,6 +35,14 @@ Promise.all([
     //set character starting position, and initial velocity.
     character.position.set(64, 180);
     character.velocity.set(200, -600);
+
+    input.addMapping(SPACEBAR, keyState => {
+        if(keyState) {
+            character.jump.start();
+        } else {
+            character.jump.cancel();
+        }
+    });
 
     context.drawImage(backgroundBuffer, 0, 0);
     const spriteLayer = createSprite(character, tiles);
