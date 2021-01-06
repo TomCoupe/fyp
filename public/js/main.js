@@ -30,6 +30,7 @@ Promise.all([
 
     //create character, then set the starting positions.
     const character = new Character();
+    character.addTrait(new Velocity());
     const gravity = 1900;
 
     //set character starting position, and initial velocity.
@@ -53,7 +54,7 @@ Promise.all([
 
     //updates game state using the timer update function.
     timer.update = function update(deltaTime) { 
-        character.updateCharacter(deltaTime);
+        character.update(deltaTime);
         game.draw(context);
         character.velocity.y += gravity * deltaTime;
     }

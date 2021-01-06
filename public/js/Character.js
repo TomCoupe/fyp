@@ -1,14 +1,12 @@
 import { Vector } from "/js/maths.js";
 import { draw } from "/js/helpers.js";
-import { Trait } from "/js/Trait.js";
+import Trait from "./Trait.js";
 
-export default class Character {
+export default class Character extends Trait {
     constructor() {
         this.position = new Vector(0, 0);
         this.velocity = new Vector(0, 0);
-
         this.trait = new Trait();
-
         this.traits = [];
     }
 
@@ -23,10 +21,10 @@ export default class Character {
         })
     }
 
-    updateCharacter(deltaTime) {
-        this.position.x += this.velocity.x * deltaTime;
-        this.position.y += this.velocity.y * deltaTime;
-    }
+    // updateCharacter(deltaTime) {
+    //     this.position.x += this.velocity.x * deltaTime;
+    //     this.position.y += this.velocity.y * deltaTime;
+    // }
 
     draw(context, tiles) {
         draw('idle', context, this.position.x, this.position.y, tiles)
