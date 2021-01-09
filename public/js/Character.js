@@ -1,9 +1,12 @@
 import { Vector } from "/js/maths.js";
 import { draw } from "/js/helpers.js";
 import Trait from "./Trait.js";
+import Velocity from "./Velocity.js"
 
 export default class Character extends Trait {
+
     constructor() {
+        super();
         this.position = new Vector(0, 0);
         this.velocity = new Vector(0, 0);
         this.trait = new Trait();
@@ -21,7 +24,7 @@ export default class Character extends Trait {
         })
     }
 
-    // updateCharacter(deltaTime) {
+    // updateCharacter(deltaTime) {x
     //     this.position.x += this.velocity.x * deltaTime;
     //     this.position.y += this.velocity.y * deltaTime;
     // }

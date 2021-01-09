@@ -1,5 +1,5 @@
 //JS file full of useful functions for the project.
-import Character from "/js/Character.js";
+import SpriteSheet from "/js/SpriteSheet.js";
 import Velocity from "./Velocity.js";
 
 // Function to take an image path 'url' and resolve image.
@@ -23,9 +23,10 @@ export function loadBackgroundTextures(tiles) {
 }
 
 export function loadCharacterTexture(tiles) {
-
     return loadImage('/images/game/characters.gif').then(image => {
-        define('idle', 276, 44, 16, 16, image, tiles);
+        const sprite = new SpriteSheet(image, 16, 16);
+        sprite.define('idle', 16, 16, 276, 44);
+        return sprite;
     });
 }
 
