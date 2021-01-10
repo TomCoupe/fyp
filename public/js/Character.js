@@ -1,15 +1,25 @@
 import { Vector } from "/js/maths.js";
 import { draw } from "/js/helpers.js";
-import Trait from "./Trait.js";
 import Velocity from "./Velocity.js"
 
-export default class Character extends Trait {
+
+export class Trait {
+    constructor(name) {
+        this.NAME = name
+    }
+
+    update() {
+        console.warn("unhandled update call in Trait");
+    }
+}
+
+export default class Character {
 
     constructor() {
-        super();
+        // super();
         this.position = new Vector(0, 0);
         this.velocity = new Vector(0, 0);
-        this.trait = new Trait();
+
         this.traits = [];
     }
 

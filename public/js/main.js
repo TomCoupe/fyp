@@ -1,5 +1,5 @@
 import * as helpers from "/js/helpers.js";
-import Character from "/js/Character.js";
+// import Character from "/js/Character.js";
 import {createCharacter} from "/js/characters.js";
 import Timer from "/js/Timer.js";
 import {createBackground, createSprite} from "/js/layers.js"
@@ -21,10 +21,12 @@ const backgroundBuffer = document.createElement('canvas');
 const tiles = new Map();
 
 Promise.all([
-    createCharacter(tiles),
+    createCharacter(),
     helpers.loadBackgroundTextures(tiles),
     helpers.loadLevel('level-1')
 ]).then(([characterSprite, textures, level]) => {
+
+    console.log(characterSprite)
     const game = new Game();
     const backgroundLayer = createBackground(level.backgrounds, backgroundBuffer, tiles);
     game.layers.push(backgroundLayer);
@@ -33,9 +35,10 @@ Promise.all([
     // const character = new Character();
     const gravity = 1900;
 
-    //set character starting position, and initial velocity.
+    //set character starting position
     characterSprite.position.set(64, 180);
-    // characterSprite.velocity.set(200, -600);
+
+    console.log(characterSprite.position);
 
     input.addMapping(SPACEBAR, keyState => {
         if(keyState) {
@@ -44,6 +47,8 @@ Promise.all([
             characterSprite.jump.cancel();
         }
     });
+
+    // console.log(characterSprite);
 
     context.drawImage(backgroundBuffer, 0, 0);
     const spriteLayer = createSprite(characterSprite, tiles);

@@ -22,7 +22,7 @@ export function loadBackgroundTextures(tiles) {
     });
 }
 
-export function loadCharacterTexture(tiles) {
+export function loadCharacterTexture() {
     return loadImage('/images/game/characters.gif').then(image => {
         const sprite = new SpriteSheet(image, 16, 16);
         sprite.define('idle', 16, 16, 276, 44);

@@ -1,6 +1,6 @@
-import Trait from "./Trait.js";
+import {Trait} from "./Character.js";
 
-export default class Velcoity extends Trait {
+export default class Velocity extends Trait {
     constructor() {
         super('velocity');
     }
