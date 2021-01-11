@@ -15,8 +15,8 @@ export function createBackground(backgrounds, buffer, tiles) {
 }
 
 //function to take a position attribute and apply a sprite object to that position.
-export function createSprite(character, tiles) {
+export function createSprite(character) {
     return function drawSpriteLayer(context) {
-        character.draw(context, tiles);
+        character.draw(context);
     }
 }

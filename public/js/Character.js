@@ -29,7 +29,9 @@ export default class Character {
     }
 
     update(deltaTime) {
+        // console.log(deltaTime);
         this.traits.forEach(trait => {
+            // console.log(trait);
             trait.update(this, deltaTime);
         })
     }
@@ -39,7 +41,9 @@ export default class Character {
     //     this.position.y += this.velocity.y * deltaTime;
     // }
 
-    draw(context, tiles) {
-        draw('idle', context, this.position.x, this.position.y, tiles)
-    }
+    // draw(context, tiles) {
+    //     console.log('ello');    
+    //     console.log(context, tiles);
+    //     draw('idle', context, this.position.x, this.position.y, tiles)
+    // }
 }

@@ -22,14 +22,13 @@ const tiles = new Map();
 
 Promise.all([
     createCharacter(),
-    helpers.loadBackgroundTextures(tiles),
-    helpers.loadLevel('level-1')
-]).then(([characterSprite, textures, level]) => {
+    // helpers.loadBackgroundTextures(tiles),
+    helpers.loadLevel('level-1'), 
+]).then(([characterSprite, level]) => {
 
-    console.log(characterSprite)
     const game = new Game();
-    const backgroundLayer = createBackground(level.backgrounds, backgroundBuffer, tiles);
-    game.layers.push(backgroundLayer);
+    // const backgroundLayer = createBackground(level.backgrounds, backgroundBuffer, tiles);
+    // game.layers.push(backgroundLayer);
 
     //create character, then set the starting positions.
     // const character = new Character();
@@ -38,7 +37,11 @@ Promise.all([
     //set character starting position
     characterSprite.position.set(64, 180);
 
-    console.log(characterSprite.position);
+    console.log(characterSprite);
+
+    // console.log(characterSprite)
+
+    // console.log(characterSprite.position);
 
     input.addMapping(SPACEBAR, keyState => {
         if(keyState) {
@@ -51,7 +54,11 @@ Promise.all([
     // console.log(characterSprite);
 
     context.drawImage(backgroundBuffer, 0, 0);
-    const spriteLayer = createSprite(characterSprite, tiles);
+    const spriteLayer = createSprite(characterSprite);
+
+
+
+    console.log(spriteLayer);
     game.layers.push(spriteLayer);
 
     //create time object, pass through deltatime constant
@@ -62,6 +69,8 @@ Promise.all([
         characterSprite.update(deltaTime);
         game.draw(context);
         characterSprite.velocity.y += gravity * deltaTime;
+
+        // console.log(characterSprite.velocity)
     }
     timer.start();
 });

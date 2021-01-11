@@ -7,9 +7,7 @@ export function createCharacter() {
         const character = new Character();
         character.addTrait(new Velocity());
 
-        console.log(character.velocity);
         character.draw = function drawCharacter(context) {
-            // console.log(sprite);
             sprite.draw('idle', context, this.position.x, this.position.y);
         }
         return character;

@@ -21,7 +21,6 @@ class ForumController extends Controller
     //function to load the forum homepage. (view of all forum posts)
     public function index()
     {
-
         $posts = $this->service->getForumPosts(200);
         $user = Auth::user();
         $dislikes = false;
