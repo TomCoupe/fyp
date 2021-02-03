@@ -1,76 +1,57 @@
-import * as helpers from "/js/helpers.js";
-// import Character from "/js/Character.js";
-import {createCharacter} from "/js/characters.js";
-import Timer from "/js/Timer.js";
-import {createBackground, createSprite} from "/js/layers.js"
-import Game from "./Game.js";
+import Compositor from './Compositor.js';
+import Timer from './Timer.js';
+import { loadLevel } from './loaders.js';
+import { createCharacter } from './entities.js';
+import { loadBackgroundSprites } from './sprites.js';
+import { createBackgroundLayer, createSpriteLayer } from './layers.js';
 
-import KeyBoard from "./KeyBoard.js";
+import Keyboard from './KeyboardState.js';
 
-const input = new KeyBoard();
-const SPACEBAR = 32;
-
-input.listenTo(window);
 
 const canvas = document.getElementById('game');
 const context = canvas.getContext('2d');
 
 context.scale(2, 2);
 
-const backgroundBuffer = document.createElement('canvas');
-const tiles = new Map();
-
 Promise.all([
     createCharacter(),
-    // helpers.loadBackgroundTextures(tiles),
-    helpers.loadLevel('level-1'), 
-]).then(([characterSprite, level]) => {
+    loadBackgroundSprites(),
+    loadLevel('1-1'),
+])
+    .then(([character, backgroundSprites, level]) => {
+        const comp = new Compositor();
 
-    const game = new Game();
-    // const backgroundLayer = createBackground(level.backgrounds, backgroundBuffer, tiles);
-    // game.layers.push(backgroundLayer);
+        const backgroundLayer = createBackgroundLayer(level.backgrounds, backgroundSprites);
+        comp.layers.push(backgroundLayer);
 
-    //create character, then set the starting positions.
-    // const character = new Character();
-    const gravity = 1900;
+        const gravity = 2000;
+        character.pos.set(64, 180);
+        // mario.vel.set(200, -600)
 
-    //set character starting position
-    characterSprite.position.set(64, 180);
 
-    console.log(characterSprite);
+        const SPACE = 32;
+        const input = new Keyboard();
+        input.addMapping(SPACE, keyState => {
+            if (keyState) {
+                character.jump.start();
+            } else {
+                character.jump.cancel();
+            }
+        });
+        input.listenTo(window);
 
-    // console.log(characterSprite)
 
-    // console.log(characterSprite.position);
+        const spriteLayer = createSpriteLayer(character);
+        comp.layers.push(spriteLayer);
 
-    input.addMapping(SPACEBAR, keyState => {
-        if(keyState) {
-            characterSprite.jump.start();
-        } else {
-            characterSprite.jump.cancel();
+        const timer = new Timer(1 / 60);
+        timer.update = function update(deltaTime) {
+            character.update(deltaTime);
+
+            comp.draw(context);
+
+            character.vel.y += gravity * deltaTime;
         }
+
+        timer.start();
     });
-
-    // console.log(characterSprite);
-
-    context.drawImage(backgroundBuffer, 0, 0);
-    const spriteLayer = createSprite(characterSprite);
-
-
-
-    console.log(spriteLayer);
-    game.layers.push(spriteLayer);
-
-    //create time object, pass through deltatime constant
-    const timer = new Timer(1/60);
-
-    //updates game state using the timer update function.
-    timer.update = function update(deltaTime) { 
-        characterSprite.update(deltaTime);
-        game.draw(context);
-        characterSprite.velocity.y += gravity * deltaTime;
-
-        // console.log(characterSprite.velocity)
-    }
-    timer.start();
-});

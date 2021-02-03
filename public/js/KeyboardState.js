@@ -1,10 +1,12 @@
-
 const PRESSED = 1;
 const RELEASED = 0;
 
-export default class KeyBoard {
+export default class KeyboardState {
     constructor() {
+        // Holds the current state of a given key
         this.keyStates = new Map();
+
+        // Holds the callback functions for a key code
         this.keyMap = new Map();
     }
 
@@ -13,26 +15,21 @@ export default class KeyBoard {
     }
 
     handleEvent(event) {
-
-        // console.log(event)
         const {keyCode} = event;
 
-        // console.log(keyCode);
-
         if (!this.keyMap.has(keyCode)) {
-            // console.log('one')
+            // Did not have key mapped.
             return;
         }
 
         event.preventDefault();
+
         const keyState = event.type === 'keydown' ? PRESSED : RELEASED;
 
-        console.log(keyState)
-
         if (this.keyStates.get(keyCode) === keyState) {
-            // console.log('two')
             return;
         }
+
         this.keyStates.set(keyCode, keyState);
         console.log(this.keyStates);
 
@@ -43,7 +40,7 @@ export default class KeyBoard {
         ['keydown', 'keyup'].forEach(eventName => {
             window.addEventListener(eventName, event => {
                 this.handleEvent(event);
-            })
+            });
         });
     }
 }
