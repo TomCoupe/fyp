@@ -1,6 +1,6 @@
-export class Vector{
+export class Vec2 {
     constructor(x, y) {
-        this.set(x, y)
+        this.set(x, y);
     }
 
     set(x, y) {
