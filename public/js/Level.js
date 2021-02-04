@@ -1,5 +1,5 @@
 import Compositor from './Compositor.js';
-import {Matrix} from './math.js';
+import { Matrix } from './math.js';
 
 export default class Level {
     constructor() {

@@ -6,11 +6,10 @@ export function createBackgroundLayer(level, sprites) {
 
     const context = buffer.getContext('2d');
 
-    level.tileMatrix.grid.forEach((column, x) => {
-        column.forEach((tile, y) => {
-            sprites.drawTile(tile.name, context, x, y);
-        });
-    });
+    level.tileMatrix.forEach((tile, x, y) => {
+        sprites.drawTile(tile.name, context, x, y);
+    })
+
 
     return function drawBackgroundLayer(context) {
         context.drawImage(buffer, 0, 0);
