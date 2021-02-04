@@ -15,7 +15,7 @@ context.scale(2, 2);
 Promise.all([
     createCharacter(),
     loadLevel('1-1'),
-]).then(([character, level]) => {
+]).then(([character, level]) => {   
     const gravity = 2000;
     character.pos.set(64, 64);
 
