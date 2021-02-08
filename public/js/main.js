@@ -1,9 +1,7 @@
-import Compositor from './Compositor.js';
+
 import Timer from './Timer.js';
 import { loadLevel } from './loaders.js';
 import { createCharacter } from './entities.js';
-import { loadBackgroundSprites } from './sprites.js';
-
 import Keyboard from './KeyboardState.js';
 
 
@@ -23,6 +21,7 @@ Promise.all([
 
     const SPACE = 32;
     const input = new Keyboard();
+
     input.addMapping(SPACE, keyState => {
         if (keyState) {
             character.jump.start();

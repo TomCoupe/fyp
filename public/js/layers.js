@@ -9,8 +9,7 @@ export function createBackgroundLayer(level, sprites) {
     level.tileMatrix.forEach((tile, x, y) => {
         sprites.drawTile(tile.name, context, x, y);
     })
-
-
+    
     return function drawBackgroundLayer(context) {
         context.drawImage(buffer, 0, 0);
     };
