@@ -1,23 +1,53 @@
 export default class TileDetector {
-    constructor(matrix, tilesize = 16) {
+    constructor(matrix, tileSize = 16) {
         this.matrix = matrix;
-        this.tilesize = tilesize;
+        this.tileSize = tileSize;
     }
 
     toIndex(position) {
-        return Math.floor(position / this.tilesize)
+        return Math.floor(position / this.tileSize)
+    }
+
+    toIndexRange(pos1, pos2) {
+        const pMax = Math.ceil(pos2 / this.tileSize) * this.tileSize;
+        const range = [];
+        let pos = pos1;
+        do {
+            range.push(this.toIndex(pos));
+            pos += this.tileSize
+        } while (post < pMax);
+        return range;
     }
 
     getByIndex(indX, indY) {
         const tile = this.matrix.get(indX, indY);
+        // console.log(tile);
         if(tile) {
+            const y1 = indY * this.tileSize;
+            const y2 = y1 + this.tileSize;
             return {
                 tile,
+                y1,
+                y2
             }
         }
     }
 
-    matchByPosition(posX, posY) {
+    searchByPosition(posX, posY) {
         return this.getByIndex(this.toIndex(posX), this.toIndex(posY));
+    }
+
+    searchByRange(x1, x2, y1, y2) {
+        const matches = [];
+        this.toIndexRange(x1, x2).forEach(indexX => {
+            this.toIndexRange(y1, y2).forEach(indexY => {
+                const match = this.getByIndex(indexX, indexY);
+                if(match) {
+                    matches.push(match);
+                }
+
+            });
+        });
+        return matches;
     }
 }
