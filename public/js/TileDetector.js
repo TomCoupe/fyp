@@ -23,12 +23,16 @@ export default class TileDetector {
         const tile = this.matrix.get(indX, indY);
         // console.log(tile);
         if(tile) {
+            const x1 = indX * this.tileSize;
+            const x2 = x1 + this.tileSize;  
             const y1 = indY * this.tileSize;
             const y2 = y1 + this.tileSize;
             return {
                 tile,
                 y1,
-                y2
+                y2,
+                x1,
+                x2
             }
         }
     }

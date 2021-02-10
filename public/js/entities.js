@@ -8,17 +8,17 @@ export function createCharacter() {
     return loadMarioSprite()
     .then(sprite => {
     
-        const mario = new Entity();
+        const player = new Entity();
 
-        mario.size.set(14, 16);
-        mario.addTrait(new Move());
-        mario.addTrait(new Jump());
-        mario.addTrait(new Velocity());
+        player.size.set(14, 16);
+        player.addTrait(new Move());
+        player.addTrait(new Jump());
+        // mario.addTrait(new Velocity());
 
-        mario.draw = function drawMario(context) {
+        player.draw = function drawMario(context) {
             sprite.draw('idle', context, this.pos.x, this.pos.y);
         }
 
-        return mario;
+        return player;
     });
 }

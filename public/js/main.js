@@ -10,7 +10,7 @@ import {createCollisionLayer} from './layers.js'
 const canvas = document.getElementById('game');
 const context = canvas.getContext('2d');
 
-context.scale(2, 2);
+context.scale(2.5, 2.5);
 
 Promise.all([
     createCharacter(),
@@ -25,7 +25,7 @@ Promise.all([
 
     const SPACE = 32;
     const RIGHT = 39;
-    const LEFT = 38;
+    const LEFT = 37;
     const input = new Keyboard();
 
     input.addMapping(SPACE, keyState => {
