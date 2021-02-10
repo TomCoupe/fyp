@@ -15,7 +15,7 @@ export default class TileDetector {
         do {
             range.push(this.toIndex(pos));
             pos += this.tileSize
-        } while (post < pMax);
+        } while (pos < pMax);
         return range;
     }
 

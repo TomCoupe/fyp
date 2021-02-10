@@ -1,5 +1,6 @@
 import Entity from './Entity.js';
 import Jump from './traits/Jump.js';
+import Move from './traits/Move.js';
 import Velocity from './traits/Velocity.js';
 import {loadMarioSprite} from './sprites.js';
 
@@ -10,6 +11,7 @@ export function createCharacter() {
         const mario = new Entity();
 
         mario.size.set(14, 16);
+        mario.addTrait(new Move());
         mario.addTrait(new Jump());
         mario.addTrait(new Velocity());
 

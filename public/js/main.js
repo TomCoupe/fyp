@@ -24,6 +24,8 @@ Promise.all([
     level.entities.add(character);
 
     const SPACE = 32;
+    const RIGHT = 39;
+    const LEFT = 38;
     const input = new Keyboard();
 
     input.addMapping(SPACE, keyState => {
@@ -33,6 +35,15 @@ Promise.all([
             character.jump.cancel();
         }
     }); 
+
+    input.addMapping(RIGHT, keyState => {
+        character.Move.direction = keyState;
+    });
+
+    input.addMapping(LEFT, keyState => {
+        character.Move.direction = -keyState;
+    });
+
     input.listenTo(window);
 
     //debugging code
