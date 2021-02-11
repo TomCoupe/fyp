@@ -8,13 +8,6 @@ export default class TileCollision {
 
     checkPosY(entity) {
 
-        // let y;
-        // if (entity.vel.x > 0) {
-        //     y = entity.pos.x + entity.size.x;
-        // } else if (entity.vel.x < 0) {
-        //     y = entity.pos.x;
-        // } else {return;}
-
         const matches = this.tiles.searchByRange(
             entity.pos.x, entity.pos.x + entity.size.x,
             entity.pos.y, entity.pos.y + entity.size.y);
@@ -39,12 +32,6 @@ export default class TileCollision {
     }
 
     checkPosX(entity) {
-        // let x;
-        // if (entity.vel.x > 0) {
-        //     x = entity.pos.x + entity.size.x;
-        // } else if (entity.vel.x < 0) {
-        //     x = entity.pos.x;
-        // } else {return;}
 
         const matches = this.tiles.searchByRange(
             entity.pos.x, entity.pos.x + entity.size.x,

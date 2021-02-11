@@ -6,9 +6,10 @@ export function watchKeyBoard(character) {
     on key press the keyboard handles the event.
     */
     const keyBoardInput = new Keyboard();
-    const SPACE = 32;
-    const RIGHT = 39;
-    const LEFT = 37;
+    
+    const SPACE = 'Space';
+    const RIGHT = 'ArrowRight';
+    const LEFT = 'ArrowLeft';
 
     keyBoardInput.addMapping(SPACE, keyState => {
         if (keyState) {

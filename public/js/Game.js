@@ -3,9 +3,9 @@ export default class Game {
         this.layers = [];
     }
 
-    draw(context) {
+    draw(context, screen) {
         this.layers.forEach(layer => {
-            layer(context);
+            layer(context, screen);
         });
     }
 }

@@ -1,7 +1,7 @@
 
 export function createBackgroundLayer(level, sprites) {
     const buffer = document.createElement('canvas');
-    buffer.width = 256;
+    buffer.width = 2048;
     buffer.height = 240;
 
     const context = buffer.getContext('2d');
@@ -10,8 +10,8 @@ export function createBackgroundLayer(level, sprites) {
         sprites.drawTile(tile.name, context, x, y);
     })
     
-    return function drawBackgroundLayer(context) {
-        context.drawImage(buffer, 0, 0);
+    return function drawBackgroundLayer(context, screen) {
+        context.drawImage(buffer, -screen.position.x, -screen.position.y);
     };
 }
 
