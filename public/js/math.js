@@ -8,7 +8,7 @@ export class Matrix {
         if(column) {
             return column[y];
         }
-         return undefined;
+        return undefined;
     }
 
     forEach(callback) {

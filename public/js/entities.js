@@ -2,10 +2,10 @@ import Entity from './Entity.js';
 import Jump from './traits/Jump.js';
 import Move from './traits/Move.js';
 import Velocity from './traits/Velocity.js';
-import {loadMarioSprite} from './sprites.js';
+import {loadPlayerSprite} from './sprites.js';
 
 export function createCharacter() {
-    return loadMarioSprite()
+    return loadPlayerSprite()
     .then(sprite => {
     
         const player = new Entity();

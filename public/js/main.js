@@ -2,9 +2,8 @@
 import Timer from './Timer.js';
 import { loadLevel } from './loaders.js';
 import { createCharacter } from './entities.js';
-import Keyboard from './KeyboardState.js';
-
-import {createCollisionLayer} from './layers.js'
+import { watchKeyBoard } from './KeyboardState.js';
+import { createCollisionLayer } from './layers.js'
 
 
 const canvas = document.getElementById('game');
@@ -19,41 +18,20 @@ Promise.all([
     const gravity = 2000;
     character.pos.set(64, 64);
 
-    level.comp.layers.push(createCollisionLayer(level));
+    
+    level.game.layers.push(createCollisionLayer(level));
 
     level.entities.add(character);
 
-    const SPACE = 32;
-    const RIGHT = 39;
-    const LEFT = 37;
-    const input = new Keyboard();
+    watchKeyBoard(character);
 
-    input.addMapping(SPACE, keyState => {
-        if (keyState) {
-            character.jump.start();
-        } else {
-            character.jump.cancel();
-        }
-    }); 
-
-    input.addMapping(RIGHT, keyState => {
-        character.Move.direction = keyState;
-    });
-
-    input.addMapping(LEFT, keyState => {
-        character.Move.direction = -keyState;
-    });
-
-    input.listenTo(window);
-
-    //debugging code
+    //debugging code (allows me to move via mouse.)
     ['mousedown', 'mousemove'].forEach(eventName => {
         canvas.addEventListener(eventName, event => {
             if(event.buttons === 1) {
                 character.vel.set(0, 0);
                 character.pos.set(event.offsetX, event.offsetY);
 
-                console.log(event.offsetX, event.offsetY);
             }
         });
     });
@@ -62,7 +40,7 @@ Promise.all([
     timer.update = function update(deltaTime) {
         level.update(deltaTime);
 
-        level.comp.draw(context);
+        level.game.draw(context);
 
         character.vel.y += gravity * deltaTime;
     }

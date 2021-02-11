@@ -36,11 +36,11 @@ export function loadLevel(name) {
         createTiles(level, levelSpec.backgrounds);
 
         const backgroundLayer = createBackgroundLayer(level, backgroundSprite);
-        level.comp.layers.push(backgroundLayer);
+        level.game.layers.push(backgroundLayer);
 
         const spriteLayer = createSpriteLayer(level.entities);
-        level.comp.layers.push(spriteLayer);
-        // console.table(level.tileMatrix.grid);
+        level.game.layers.push(spriteLayer);
+    
         return level;
     })
 }

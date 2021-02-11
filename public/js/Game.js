@@ -1,4 +1,4 @@
-export default class Compositor {
+export default class Game {
     constructor() {
         this.layers = [];
     }

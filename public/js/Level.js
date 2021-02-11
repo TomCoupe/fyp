@@ -1,11 +1,11 @@
-import Compositor from './Compositor.js';
+import Game from './Game.js';
 import { Matrix } from './math.js';
 import TileCollision from './TileCollision.js';
 
 export default class Level {
     constructor() {
         this.entities = new Set();
-        this.comp = new Compositor();
+        this.game = new Game();
         this.tileMatrix = new Matrix();
 
         this.tileCollision = new TileCollision(this.tileMatrix);
