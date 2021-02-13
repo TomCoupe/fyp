@@ -11,7 +11,7 @@ const canvas = document.getElementById('game');
 const context = canvas.getContext('2d');
 
 // context.scale(2.5, 2.5);
-
+    
 Promise.all([
     createCharacter(),
     loadLevel('1-1'),
@@ -30,15 +30,8 @@ Promise.all([
     watchKeyBoard(character);
 
     //debugging code (allows me to move via)
-    ['mousedown', 'mousemove'].forEach(eventName => {
-        canvas.addEventListener(eventName, event => {
-            if(event.buttons === 1) {
-                character.vel.set(0, 0);
-                character.pos.set(event.offsetX, event.offsetY);
-
-            }
-        });
-    });
+    
+    mouseTester(character, screen);
 
     const timer = new Timer(1 / 60);
     timer.update = function update(deltaTime) {
@@ -51,3 +44,22 @@ Promise.all([
 
     timer.start();
 });
+
+function mouseTester(character, screen) {
+    ['mousedown', 'mousemove'].forEach(eventName => {
+        let lastEvent;
+        canvas.addEventListener(eventName, event => {
+            if(event.buttons === 1) {
+                character.vel.set(0, 0);
+                character.pos.set(event.offsetX + screen.position.x, event.offsetY + screen.position.y);
+
+            } else if (event.buttons === 2 && lastEvent && lastEvent.buttons === 2 && lastEvent.type === 'mousemove') {
+                screen.position.x -= event.offsetX - lastEvent.offsetX;
+            }
+            lastEvent = event;
+        });
+        canvas.addEventListener('contextmenu', event => {
+            event.preventDefault();
+        })
+    });
+}

@@ -16,9 +16,18 @@ export function createBackgroundLayer(level, sprites) {
 }
 
 export function createSpriteLayer(entities) {
-    return function drawSpriteLayer(context) {
+    const spriteBuffer = document.createElement('canvas');
+    spriteBuffer.width = 64;
+    spriteBuffer.height = 64;
+    const spriteBufferContext = spriteBuffer.getContext('2d');
+
+    return function drawSpriteLayer(context, screen) {
         entities.forEach(entity => {
-            entity.draw(context);
+            spriteBufferContext.clearRect(0, 0, spriteBuffer.width, spriteBuffer.height);
+
+            entity.draw(spriteBufferContext);
+
+            context.drawImage(spriteBuffer, entity.pos.x - screen.position.x, entity.pos.y - screen.position.y)
         })
     };
 }
@@ -34,18 +43,18 @@ export function createCollisionLayer(level) {
         return getByIndexOriginal.call(tileDetector, x, y);
     }
 
-    return function drawCollision(context) {
+    return function drawCollision(context, screen) {
         context.strokeStyle = 'blue';
 
         resolvedTiles.forEach(({x, y}) => {
             context.beginPath();
-            context.rect(x * tileSize, y * tileSize, tileSize, tileSize);
+            context.rect(x * tileSize - screen.position.x, y * tileSize - screen.position.y, tileSize, tileSize);
             context.stroke();
         });
         context.strokeStyle = 'purple';
         level.entities.forEach(entity => {
             context.beginPath();
-            context.rect(entity.pos.x, entity.pos.y, entity.size.x, entity.size.y);
+            context.rect(entity.pos.x - screen.position.x, entity.pos.y - screen.position.y, entity.size.x, entity.size.y);
             context.stroke();
         })
         resolvedTiles.length = 0;
