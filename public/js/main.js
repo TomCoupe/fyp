@@ -4,14 +4,14 @@ import Screen from './Screen.js';
 import { loadLevel } from './loaders.js';
 import { createCharacter } from './entities.js';
 import { watchKeyBoard } from './KeyboardState.js';
-import { createCollisionLayer } from './layers.js'
+import { createCollisionLayer, createScreenLayer } from './layers.js'
 
 
 const canvas = document.getElementById('game');
 const context = canvas.getContext('2d');
 
 // context.scale(2.5, 2.5);
-    
+
 Promise.all([
     createCharacter(),
     loadLevel('1-1'),
@@ -23,7 +23,7 @@ Promise.all([
     character.pos.set(64, 64);
 
     
-    level.game.layers.push(createCollisionLayer(level));
+    level.game.layers.push(createCollisionLayer(level), createScreenLayer(screen));
 
     level.entities.add(character);
 

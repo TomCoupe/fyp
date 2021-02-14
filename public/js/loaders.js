@@ -38,6 +38,7 @@ export function createTiles(level, backgrounds){
             for (let y = yPos; y < yPos + yLen; ++y) {
                 level.tileMatrix.set(x, y, {
                     name: background.tile,
+                    type: background.type
                 })
             }
         }
@@ -65,9 +66,8 @@ export function createTiles(level, backgrounds){
 export function loadLevel(name) {
     return Promise.all([
         loadJSON(`/levels/${name}.json`),
-        loadSpriteSheet('1-1')
+        loadSpriteSheet('1-1')  
     ]).then(([levelSpec, backgroundSprite]) => {
-
         console.log(backgroundSprite);
         const level = new Level();
         createTiles(level, levelSpec.backgrounds);

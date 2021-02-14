@@ -4,14 +4,38 @@ export function createBackgroundLayer(level, sprites) {
     buffer.width = 2048;
     buffer.height = 240;
 
-    const context = buffer.getContext('2d');
+    const tiles = level.tileMatrix;
+    const tileDetector = level.tileCollision.tiles;
 
-    level.tileMatrix.forEach((tile, x, y) => {
-        sprites.drawTile(tile.name, context, x, y);
-    })
-    
+    const context = buffer.getContext('2d');
+    let startIndex, endIndex;
+
+    function reDraw(drawFrom, drawTo) {
+
+        if(drawFrom == startIndex && drawTo == endIndex) {
+            return;
+        }
+        startIndex = drawFrom;
+        endIndex = drawTo;
+
+        console.log('redrawing');
+        for(let x = startIndex; x <= endIndex; x++) {
+            if(tiles.grid[x]) {
+                tiles.grid[x].forEach((tile, y) => {
+                    sprites.drawTile(tile.name, context, x - startIndex, y);
+                });
+            }
+
+        }
+     }
+
     return function drawBackgroundLayer(context, screen) {
-        context.drawImage(buffer, -screen.position.x, -screen.position.y);
+        const drawWidth = tileDetector.toIndex(screen.size.x);
+        const drawFrom = tileDetector.toIndex(screen.position.x);
+        const drawTo = drawWidth + drawFrom;
+
+        reDraw(drawFrom, drawTo); 
+        context.drawImage(buffer, -screen.position.x % 16, -screen.position.y);
     };
 }
 
@@ -30,6 +54,15 @@ export function createSpriteLayer(entities) {
             context.drawImage(spriteBuffer, entity.pos.x - screen.position.x, entity.pos.y - screen.position.y)
         })
     };
+}
+
+export function createScreenLayer(screenToDraw) {
+    return function drawScreen(context, screen){
+        context.strokeStyle = 'red';
+        context.beginPath();
+        context.rect(screenToDraw.position.x - screen.position.x, screenToDraw.position.y - screen.position.y, screenToDraw.size.x, screenToDraw.size.y);
+        context.stroke();
+    }
 }
 
 export function createCollisionLayer(level) {
