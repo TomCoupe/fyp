@@ -10,7 +10,7 @@ import { createCollisionLayer, createScreenLayer } from './layers.js'
 const canvas = document.getElementById('game');
 const context = canvas.getContext('2d');
 
-// context.scale(2.5, 2.5);
+context.scale(2.5, 2.5);
 
 Promise.all([
     createCharacter(),
