@@ -20,11 +20,11 @@ export function watchKeyBoard(character) {
     }); 
 
     keyBoardInput.addMapping(RIGHT, keyState => {
-        character.Move.direction = keyState;
+        character.Move.direction += keyState ? 1 : -1;
     });
 
     keyBoardInput.addMapping(LEFT, keyState => {
-        character.Move.direction = -keyState;
+        character.Move.direction += keyState ? -1 : 1;
     });
     keyBoardInput.listenTo(window);
 }

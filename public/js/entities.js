@@ -17,15 +17,11 @@ export function createCharacter() {
 
         function choosePlayerFrame(player) {
             if(player.Move.direction !== 0) {
-                // console.log(player.Move.distance)
                 const playerFrameIndex = Math.floor(player.Move.distance / 10) % playerFrame.length; 
-                // console.log(playerFrame[playerFrameIndex]);
                 return playerFrame[playerFrameIndex];
             }
             return 'idle';
         }  
-
-    
 
         player.draw = function drawMario(context) {
             sprite.draw(choosePlayerFrame(this), context, 0, 0, player.Move.directionFacing < 0);

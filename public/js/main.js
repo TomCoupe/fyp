@@ -36,7 +36,9 @@ Promise.all([
     const timer = new Timer(1 / 60);
     timer.update = function update(deltaTime) {
         level.update(deltaTime);
-
+        if(character.pos.x > 100) {
+            screen.position.x = character.pos.x - 100;
+        }
         level.game.draw(context, screen);
 
         character.vel.y += gravity * deltaTime;
