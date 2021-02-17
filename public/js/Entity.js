@@ -5,6 +5,10 @@ export class Trait {
         this.NAME = name;
     }
 
+    obstruct() {
+
+    }
+
     update() {
         console.warn('Unhandled update call in Trait');
     }
@@ -26,8 +30,9 @@ export default class Entity {
     }
 
     obstruct(side) {
-        console.log(side);    
-    
+        this.traits.forEach(trait => {
+            trait.obstruct(this, side);
+        });
     }
 
     playerReset() {
