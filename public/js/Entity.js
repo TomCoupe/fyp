@@ -17,7 +17,6 @@ export default class Entity {
         this.size = new Vec2(0, 0);
 
         this.lives = 3;
-
         this.traits = [];
     }
 

@@ -4,7 +4,7 @@ import Screen from './Screen.js';
 import { loadLevel } from './loaders.js';
 import { createCharacter } from './entities.js';
 import { watchKeyBoard } from './KeyboardState.js';
-import { createCollisionLayer, createScreenLayer, createLivesCounter } from './layers.js'
+import { createCollisionLayer, createScreenLayer} from './layers.js'
 
 
 const canvas = document.getElementById('game');
@@ -19,9 +19,8 @@ Promise.all([
     const gravity = 2000;
     const screen = new Screen();
 
-
     character.playerReset();
-    level.game.layers.push(createCollisionLayer(level), createScreenLayer(screen), createLivesCounter(character));
+    level.game.layers.push(createCollisionLayer(level), createScreenLayer(screen));
     level.entities.add(character);
 
     watchKeyBoard(character);
@@ -33,9 +32,11 @@ Promise.all([
     const timer = new Timer(1 / 60);
     timer.update = function update(deltaTime) {
         level.update(deltaTime, screen);
+
         if(character.pos.x > 100) {
             screen.position.x = character.pos.x - 100;
         }
+
         level.game.draw(context, screen);
 
         character.vel.y += gravity * deltaTime;

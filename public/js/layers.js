@@ -47,9 +47,7 @@ export function createSpriteLayer(entities) {
     return function drawSpriteLayer(context, screen) {
         entities.forEach(entity => {
             spriteBufferContext.clearRect(0, 0, spriteBuffer.width, spriteBuffer.height);
-
             entity.draw(spriteBufferContext);
-
             context.drawImage(spriteBuffer, entity.pos.x - screen.position.x, entity.pos.y - screen.position.y)
         })
     };
@@ -61,16 +59,6 @@ export function createScreenLayer(screenToDraw) {
         context.beginPath();
         context.rect(screenToDraw.position.x - screen.position.x, screenToDraw.position.y - screen.position.y, screenToDraw.size.x, screenToDraw.size.y);
         context.stroke();
-    }
-}
-
-export function createLivesCounter(character) {
-    return function drawLives(context) {
-
-        context.font = '40px Helvetica';
-        context.fillStyle = 'white'
-        context.strokeText('Lives:' + character.lives, 400, 50);
-
     }
 }
 
