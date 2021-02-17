@@ -11,7 +11,6 @@ export function createBackgroundLayer(level, sprites) {
     let startIndex, endIndex;
 
     function reDraw(drawFrom, drawTo) {
-
         if(drawFrom == startIndex && drawTo == endIndex) {
             return;
         }
@@ -65,6 +64,16 @@ export function createScreenLayer(screenToDraw) {
     }
 }
 
+export function createLivesCounter(character) {
+    return function drawLives(context) {
+
+        context.font = '40px Helvetica';
+        context.fillStyle = 'white'
+        context.strokeText('Lives:' + character.lives, 400, 50);
+
+    }
+}
+
 export function createCollisionLayer(level) {
     const resolvedTiles = [];
     const tileDetector = level.tileCollision.tiles;
@@ -77,19 +86,19 @@ export function createCollisionLayer(level) {
     }
 
     return function drawCollision(context, screen) {
-        context.strokeStyle = 'blue';
+        // context.strokeStyle = 'blue';
 
-        resolvedTiles.forEach(({x, y}) => {
-            context.beginPath();
-            context.rect(x * tileSize - screen.position.x, y * tileSize - screen.position.y, tileSize, tileSize);
-            context.stroke();
-        });
-        context.strokeStyle = 'purple';
-        level.entities.forEach(entity => {
-            context.beginPath();
-            context.rect(entity.pos.x - screen.position.x, entity.pos.y - screen.position.y, entity.size.x, entity.size.y);
-            context.stroke();
-        })
-        resolvedTiles.length = 0;
+        // resolvedTiles.forEach(({x, y}) => {
+        //     context.beginPath();
+        //     context.rect(x * tileSize - screen.position.x, y * tileSize - screen.position.y, tileSize, tileSize);
+        //     context.stroke();
+        // });
+        // context.strokeStyle = 'purple';
+        // level.entities.forEach(entity => {
+        //     context.beginPath();
+        //     context.rect(entity.pos.x - screen.position.x, entity.pos.y - screen.position.y, entity.size.x, entity.size.y);
+        //     context.stroke();
+        // })
+        // resolvedTiles.length = 0;
     }
 }

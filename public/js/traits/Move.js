@@ -5,7 +5,7 @@ export default class Move extends Trait {
         super('Move');
 
         this.direction = 0;
-        this.speed = 4000;
+        this.speed = 5000;
         this.distance = 0;
         this.directionFacing = 1;
     }

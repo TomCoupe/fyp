@@ -16,12 +16,24 @@ export default class Entity {
         this.vel = new Vec2(0, 0);
         this.size = new Vec2(0, 0);
 
+        this.lives = 3;
+
         this.traits = [];
     }
 
     addTrait(trait) {
         this.traits.push(trait);
         this[trait.NAME] = trait;
+    }
+
+    obstruct(side) {
+        console.log(side);    
+    
+    }
+
+    playerReset() {
+        this.pos.set(64, 64);
+        this.lives = 3;
     }
 
     update(deltaTime) {

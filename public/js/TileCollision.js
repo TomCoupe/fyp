@@ -6,14 +6,19 @@ export default class TileCollision {
         this.tiles = new TileDetector(tileMatrix);
     }
 
-    checkPosY(entity) {
+    checkPosY(entity, screen) {
 
         const matches = this.tiles.searchByRange(
             entity.pos.x, entity.pos.x + entity.size.x,
             entity.pos.y, entity.pos.y + entity.size.y);
 
-        matches.forEach(match => {
+        matches.forEach(match => { 
             if(match.tile.name !== 'ground') {
+                if(match.tile.name == 'death-block'){
+                    entity.pos.set(64, 64);
+                    screen.position.set(0, 0);
+                }
+
                 return;
             }
     
@@ -21,6 +26,8 @@ export default class TileCollision {
                 if(entity.pos.y + entity.size.y > match.y1) {
                     entity.pos.y = match.y1 - entity.size.y;
                     entity.vel.y = 0;
+
+                    entity.obstruct('bottom');
                 }
             } else if (entity.vel.y < 0) {
                 if(entity.pos.y < match.y2) {   
@@ -31,7 +38,7 @@ export default class TileCollision {
         })
     }
 
-    checkPosX(entity) {
+    checkPosX(entity, screen) {
 
         const matches = this.tiles.searchByRange(
             entity.pos.x, entity.pos.x + entity.size.x,
@@ -39,6 +46,12 @@ export default class TileCollision {
 
         matches.forEach(match => {
             if(match.tile.type !== 'ground') {
+                if(match.tile.name == 'death-block'){
+                    entity.pos.set(64, 64);
+                    screen.position.set(0, 0);
+                    // screen.position.x = entity.pos.x - 100;
+
+                }
                 return;
             }
     
