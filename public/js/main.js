@@ -34,7 +34,7 @@ Promise.all([
     timer.update = function update(deltaTime) {
         level.update(deltaTime, screen);
 
-        console.log(character.pos.x, character.pos.y)
+        // console.log(character.pos.x, character.pos.y)
 
         if(character.pos.x > 100) {
             screen.position.x = character.pos.x - 100;
