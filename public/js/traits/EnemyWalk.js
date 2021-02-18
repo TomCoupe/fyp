@@ -46,7 +46,7 @@ export default class EnemyWalk extends Trait {
             // console.log(this.distance);
             // this.directionFacing = this.direction;
             this.distance += Math.abs(entity.vel.x * deltaTime);
-        } else if (entity.pos.x <= lastPos)
+        }
         else {
             console.log('das')
             this.direction = this.getDirection(); 
