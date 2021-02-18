@@ -21,6 +21,16 @@
             ]
         },
         {
+            "tile": "ground",
+            "type": "ground",
+            "ranges": [
+                [
+                    18, 1,
+                    10
+                ]
+            ]
+        },
+        {
             "tile": "sky",
             "ranges": [
                 [

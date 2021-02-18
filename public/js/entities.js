@@ -1,6 +1,7 @@
 import Entity from './Entity.js';
 import Jump from './traits/Jump.js';
 import Move from './traits/Move.js';
+import EnemyWalk from './traits/EnemyWalk.js';
 import {loadSpriteSheet} from './loaders.js';
 
 export function createCharacter() {
@@ -41,11 +42,17 @@ export function createEnemy1() {
         const enemyFrame = ['mov-1', 'mov-2'];
 
         function chooseEnemyFrame(enemy) {
-            if(){
-                
+            if(enemy.enemyWalk.direction !== 0) {
+                const enemyFrameIndex = Math.floor(enemy.enemyWalk.distance / 10) % enemyFrame.length;
+                return enemyFrame[enemyFrameIndex];
             }
+            return 'mov-1';
         }
 
+        enemy.draw = function drawEnemy(context) {
+            sprite.draw(chooseEnemyFrame(this), context, 0, 0, enemy.vel.x < 0);
+        }
+        return enemy;
     })
 
 }

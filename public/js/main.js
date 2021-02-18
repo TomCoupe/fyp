@@ -20,12 +20,12 @@ Promise.all([
     const gravity = 2000;
     const screen = new Screen();
 
-    enemy1.position.set(64, 64);
+    enemy1.pos.set(192, 160);
 
     character.playerReset();
 
     level.game.layers.push(createCollisionLayer(level), createScreenLayer(screen));
-    level.entity.add(enemy1);
+    level.entities.add(enemy1);
     level.entities.add(character);
 
     watchKeyBoard(character);
@@ -33,6 +33,8 @@ Promise.all([
     const timer = new Timer(1 / 60);
     timer.update = function update(deltaTime) {
         level.update(deltaTime, screen);
+
+        console.log(character.pos.x, character.pos.y)
 
         if(character.pos.x > 100) {
             screen.position.x = character.pos.x - 100;
