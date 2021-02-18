@@ -6,7 +6,6 @@ import {loadSpriteSheet} from './loaders.js';
 export function createCharacter() {
     return loadSpriteSheet('player')
     .then(sprite => {
-        console.log(sprite);
         const player = new Entity();
 
         player.size.set(14, 16);
@@ -29,4 +28,24 @@ export function createCharacter() {
 
         return player;
     });
+}
+
+export function createEnemy1() {
+    return loadSpriteSheet('enemy-1')
+    .then(sprite => {
+        const enemy = new Entity();
+
+        enemy.addTrait(new EnemyWalk());
+        enemy.size.set(16, 16);
+
+        const enemyFrame = ['mov-1', 'mov-2'];
+
+        function chooseEnemyFrame(enemy) {
+            if(){
+                
+            }
+        }
+
+    })
+
 }

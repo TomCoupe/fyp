@@ -22,7 +22,6 @@ export function loadSpriteSheet(name) {
         spriteSheet,
         loadImage(spriteSheet.imagePath)
     ])).then(([spriteSheet, image]) => {
-        console.log(spriteSheet)
         const sprites = new SpriteSheet(image, spriteSheet.tileWidth, spriteSheet.tileHeight)
 
         if (spriteSheet.tiles) {
@@ -77,7 +76,6 @@ export function loadLevel(name) {
         loadJSON(`/levels/${name}.json`),
         loadSpriteSheet('1-1')
     ]).then(([levelSpec, backgroundSprite]) => {
-        console.log(backgroundSprite);
         const level = new Level();
         createTiles(level, levelSpec.backgrounds);
 

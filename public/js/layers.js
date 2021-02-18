@@ -10,6 +10,8 @@ export function createBackgroundLayer(level, sprites) {
     const context = buffer.getContext('2d');
     let startIndex, endIndex;
 
+
+    //need refactor
     function reDraw(drawFrom, drawTo) {
         if(drawFrom == startIndex && drawTo == endIndex) {
             return;
@@ -17,7 +19,6 @@ export function createBackgroundLayer(level, sprites) {
         startIndex = drawFrom;
         endIndex = drawTo;
 
-        console.log('redrawing');
         for(let x = startIndex; x <= endIndex; x++) {
             if(tiles.grid[x]) {
                 tiles.grid[x].forEach((tile, y) => {
