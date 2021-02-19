@@ -16,7 +16,7 @@ Promise.all([
     createCharacter(),
     createEnemy1(),
     loadLevel('1-1'),
-]).then(([character, enemy1, level]) => {
+]).then(([character, enemy1, level]) => {   
     const gravity = 2000;
     const screen = new Screen();
 
@@ -34,13 +34,16 @@ Promise.all([
     timer.update = function update(deltaTime) {
         level.update(deltaTime, screen);
 
-        // console.log(character.pos.x, character.pos.y)
-
         if(character.pos.x > 100) {
             screen.position.x = character.pos.x - 100;
         }
 
         level.game.draw(context, screen);
+        console.log(Math.floor(enemy1.pos.x));
+        if(Math.floor(enemy1.pos.x) === Math.floor(character.pos.x) && Math.floor(enemy1.pos.y) === Math.floor(character.pos.y)){
+            character.pos.set(64, 64);
+            screen.position.set(0, 0);
+        }
 
         character.vel.y += gravity * deltaTime;
     }
