@@ -14,7 +14,7 @@ export default class TileCollision {
 
         matches.forEach(match => {
             if (match.tile.name !== 'ground') {
-                if (match.tile.name == 'death-block') {
+                if (match.tile.name == 'death-block' || match.tile.name == 'spike') {
                     entity.pos.set(64, 64);
                     screen.position.set(0, 0);
                 }
