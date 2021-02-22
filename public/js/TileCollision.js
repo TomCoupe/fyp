@@ -4,6 +4,8 @@ export default class TileCollision {
 
     constructor(tileMatrix) {
         this.tiles = new TileDetector(tileMatrix);
+
+         this.killBlocks = ['death-block', 'spike-1', 'spike-2'];
     }
 
     checkPosY(entity, screen) {
@@ -13,25 +15,32 @@ export default class TileCollision {
             entity.pos.y, entity.pos.y + entity.size.y);
 
         matches.forEach(match => {
+
             if (match.tile.name !== 'ground') {
-                if (match.tile.name == 'death-block' || match.tile.name == 'spike') {
+
+                if (this.killBlocks.includes(match.tile.name)) {
                     entity.pos.set(64, 64);
                     screen.position.set(0, 0);
                 }
+                
                 return;
             }
 
             if (entity.vel.y > 0) {
+
                 if (entity.pos.y + entity.size.y > match.y1) {
                     entity.pos.y = match.y1 - entity.size.y;
                     entity.vel.y = 0;
                     entity.obstruct('bottom');
                 }
+
             } else if (entity.vel.y < 0) {
+
                 if (entity.pos.y < match.y2) {
                     entity.pos.y = match.y2;
                     entity.vel.y = 0;
                 }
+
             }
         })
     }
@@ -44,7 +53,7 @@ export default class TileCollision {
 
         matches.forEach(match => {
             if (match.tile.type !== 'ground') {
-                if (match.tile.name == 'death-block') {
+                if (this.killBlocks.includes(match.tile.name)) {
                     entity.pos.set(64, 64);
                     screen.position.set(0, 0);
                 }
@@ -68,9 +77,6 @@ export default class TileCollision {
     testCollision(entity) {
         this.checkPosX(entity)
         this.checkPosY(entity);
-        const match = this.tiles.searchByPosition(entity.pos.x, entity.pos.y);
-        if (match) {
-            // console.log('matched tile', match, match.tile);
-        }
+        this.tiles.searchByPosition(entity.pos.x, entity.pos.y);
     }
 }
