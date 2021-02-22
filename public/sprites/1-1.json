@@ -12,6 +12,10 @@
             "index": [3, 23]
         },
         {
+            "name": "cloud",
+            "index": [8, 320]
+        },
+        {
             "name": "death-block",
             "index": [3, 23]
         },

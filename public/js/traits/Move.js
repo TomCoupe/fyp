@@ -12,6 +12,9 @@ export default class Move extends Trait {
 
     update(entity, deltaTime) {
         entity.vel.x = this.speed * this.direction * deltaTime;
+
+
+        console.log(entity.pos.x, entity.pos.y);
         if (this.direction) {
             this.directionFacing = this.direction;
             this.distance += Math.abs(entity.vel.x * deltaTime);

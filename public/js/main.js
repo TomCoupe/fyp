@@ -4,19 +4,23 @@ import Screen from './Screen.js';
 import { loadLevel } from './loaders.js';
 import { createCharacter, createEnemy1 } from './entities.js';
 import { watchKeyBoard } from './KeyboardState.js';
-import { createCollisionLayer, createScreenLayer} from './layers.js'
+import { createCollisionLayer, createScreenLayer } from './layers.js'
 
 
 const canvas = document.getElementById('game');
 const context = canvas.getContext('2d');
+
+const LEVEL1 = '1-1';
+const LEVEL2 = '1-2';
+const LEVEL3 = '1-3';
 
 context.scale(2.5, 2.5);
 
 Promise.all([
     createCharacter(),
     createEnemy1(),
-    loadLevel('1-1'),
-]).then(([character, enemy1, level]) => {   
+    loadLevel(LEVEL1)
+]).then(([character, enemy1, level]) => {
     const gravity = 2000;
     const screen = new Screen();
 
@@ -34,13 +38,14 @@ Promise.all([
     timer.update = function update(deltaTime) {
         level.update(deltaTime, screen);
 
-        if(character.pos.x > 100) {
+        if (character.pos.x > 100) {
             screen.position.x = character.pos.x - 100;
         }
 
         level.game.draw(context, screen);
         console.log(Math.floor(enemy1.pos.x));
-        if(Math.floor(enemy1.pos.x) === Math.floor(character.pos.x) && Math.floor(enemy1.pos.y) === Math.floor(character.pos.y)){
+        
+        if (Math.floor(enemy1.pos.x) === Math.floor(character.pos.x) && Math.floor(enemy1.pos.y) === Math.floor(character.pos.y)) {
             character.pos.set(64, 64);
             screen.position.set(0, 0);
         }
