@@ -1,0 +1,14 @@
+{
+    "imagePath": "/img/characters.gif",
+
+    "frames": [
+        {
+            "name": "mov-1",
+            "rect": [447, 314, 16, 16]
+        },
+        {
+            "name": "mov-2",
+            "rect": [466, 314, 16, 16]
+        }    
+    ]  
+}

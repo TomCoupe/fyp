@@ -56,3 +56,29 @@ export function createEnemy1() {
     })
 
 }
+
+export function createEnemy2() {
+    return loadSpriteSheet('enemy-2')
+    .then(sprite => {
+        const enemy = new Entity();
+
+        enemy.addTrait(new EnemyWalk());
+        enemy.size.set(16, 16);
+
+        const enemyFrame = ['mov-1', 'mov-2'];
+
+        function chooseEnemyFrame(enemy) {
+            if(enemy.enemyWalk.direction !== 0) {
+                const enemyFrameIndex = Math.floor(enemy.enemyWalk.distance / 10) % enemyFrame.length;
+                return enemyFrame[enemyFrameIndex];
+            }
+            return 'mov-1';
+        }
+
+        enemy.draw = function drawEnemy(context) {
+            sprite.draw(chooseEnemyFrame(this), context, 0, 0, enemy.vel.x < 0);
+        }
+        return enemy;
+    })
+
+}
