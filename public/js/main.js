@@ -4,8 +4,9 @@ import Screen from './Screen.js';
 import { loadLevel } from './loaders.js';
 import { createCharacter, createEnemy1, createEnemy2 } from './entities.js';
 import { watchKeyBoard } from './KeyboardState.js';
-import { createCollisionLayer, createScreenLayer } from './layers.js'
+import { createCollisionLayer, createScreenLayer } from './layers.js';
 import LevelHandler from './LevelHandler.js';
+import { checkCollision, checkWinBlock } from './LevelHelpers.js';
 
 
 const canvas = document.getElementById('game');
@@ -15,18 +16,18 @@ const LEVEL1 = '1-1';
 const LEVEL2 = '1-2';
 const LEVEL3 = '1-3';
 
-var currentLevel = 1;
+var currentLevel = 2;
 
 context.scale(2.5, 2.5);
 
 const levelHandler = new LevelHandler();
 
 
-if (currentLevel == 1) {
-    level1();
-} else if (currentLevel == 2) {
-    level2();
-}
+// if (currentLevel == 1) {
+//     level1();
+// } else if (currentLevel == 2) {
+level2();
+// }
 
 
 function level1() {
@@ -67,14 +68,13 @@ function level1() {
 
                 level.game.draw(context, screen);
 
-                if (Math.round(enemy1.pos.x) === Math.round(character.pos.x) && Math.round(enemy1.pos.y) === Math.round(character.pos.y)) {
-                    character.pos.set(64, 64);
-                    screen.position.set(0, 0);
-                }
+                checkCollision(character, enemy1, screen);
+                checkCollision(character, enemy2, screen);
+                checkCollision(character, enemy3, screen);
 
                 character.vel.y += gravity * deltaTime;
-
-                if (Math.floor(character.pos.x) == 1407 && Math.floor(character.pos.y) == 176) {
+                
+                if (checkWinBlock(1407, 176, character)) {
                     timer.stop();
                     currentLevel = 2;
                     level2();
@@ -89,22 +89,27 @@ function level1() {
 function level2() {
     Promise.all([
         createCharacter(),
+        createEnemy1(),
+        createEnemy1(),
         loadLevel(LEVEL2)
-    ]).then(([character, level]) => {
+    ]).then(([character, enemy1, enemy2, level]) => {
         const gravity = 2000;
         const screen = new Screen();
 
         character.playerReset();
 
+        enemy1.pos.set(498, 144);
+        enemy2.pos.set(464, 144);
+
         if (!Window.event) {
             watchKeyBoard(character);
         }
 
-        console.log(character.vel.x);
-
         level.game.layers.push(createCollisionLayer(level), createScreenLayer(screen));
 
         level.entities.add(character);
+        level.entities.add(enemy1);
+        level.entities.add(enemy2);
 
         const timer = new Timer(1 / 60);
         timer.update = function update(deltaTime) {
@@ -117,11 +122,13 @@ function level2() {
 
                 level.game.draw(context, screen);
 
+                console.log(character.pos.x, character.pos.y);
+
                 character.vel.y += gravity * deltaTime;
             }
         }
 
         timer.start();
-    });
+    }); 
 }
 
