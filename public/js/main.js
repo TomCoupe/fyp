@@ -122,6 +122,9 @@ function level2() {
 
                 level.game.draw(context, screen);
 
+                checkCollision(character, enemy1, screen);
+                checkCollision(character, enemy2, screen);
+
                 console.log(character.pos.x, character.pos.y);
 
                 character.vel.y += gravity * deltaTime;
