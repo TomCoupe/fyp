@@ -16,7 +16,7 @@ const LEVEL1 = '1-1';
 const LEVEL2 = '1-2';
 const LEVEL3 = '1-3';
 
-var currentLevel = 2;
+var currentLevel = 1;
 
 context.scale(2.5, 2.5);
 
@@ -26,7 +26,7 @@ const levelHandler = new LevelHandler();
 // if (currentLevel == 1) {
 //     level1();
 // } else if (currentLevel == 2) {
-level2();
+level1();
  // }
 
 
@@ -45,9 +45,9 @@ function level1() {
         enemy2.pos.set(1362, 176);
         enemy3.pos.set(1250, 96);
 
-        character.playerReset();
+        // character.playerReset();
 
-        // character.pos.set(1350, 170)
+        character.pos.set(1392, 176)
 
         level.game.layers.push(createCollisionLayer(level), createScreenLayer(screen));
         level.entities.add(enemy1);
@@ -67,14 +67,14 @@ function level1() {
                 }
 
                 level.game.draw(context, screen);
-
+                console.log(character.pos.x, character.pos.y);
                 checkCollision(character, enemy1, screen);
                 checkCollision(character, enemy2, screen);
                 checkCollision(character, enemy3, screen);
 
                 character.vel.y += gravity * deltaTime;
                 
-                if (checkWinBlock(1407, 176, character)) {
+                if (checkWinBlock(1426, 160, character)) {
                     timer.stop();
                     currentLevel = 2;
                     level2();
