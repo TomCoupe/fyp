@@ -2,7 +2,7 @@
 import Timer from './Timer.js';
 import Screen from './Screen.js';
 import { loadLevel } from './loaders.js';
-import { createCharacter, createEnemy1, createEnemy2 } from './entities.js';
+import { createCharacter, createEnemy1, createEnemy2, createEnemy3 } from './entities.js';
 import { watchKeyBoard } from './KeyboardState.js';
 import { createCollisionLayer, createScreenLayer } from './layers.js';
 import LevelHandler from './LevelHandler.js';
@@ -27,7 +27,7 @@ const levelHandler = new LevelHandler();
 //     level1();
 // } else if (currentLevel == 2) {
 level2();
-// }
+ // }
 
 
 function level1() {
@@ -47,7 +47,7 @@ function level1() {
 
         character.playerReset();
 
-        character.pos.set(1350, 170)
+        // character.pos.set(1350, 170)
 
         level.game.layers.push(createCollisionLayer(level), createScreenLayer(screen));
         level.entities.add(enemy1);
@@ -91,15 +91,18 @@ function level2() {
         createCharacter(),
         createEnemy1(),
         createEnemy1(),
+        createEnemy3(),
         loadLevel(LEVEL2)
-    ]).then(([character, enemy1, enemy2, level]) => {
+    ]).then(([character, enemy1, enemy2, enemy3, level]) => {
         const gravity = 2000;
         const screen = new Screen();
 
-        character.playerReset();
+        // character.playerReset();
 
+        character.pos.set(1182, 176);
         enemy1.pos.set(498, 144);
         enemy2.pos.set(464, 144);
+        enemy3.pos.set(687, 128);
 
         if (!Window.event) {
             watchKeyBoard(character);
@@ -110,6 +113,7 @@ function level2() {
         level.entities.add(character);
         level.entities.add(enemy1);
         level.entities.add(enemy2);
+        level.entities.add(enemy3);
 
         const timer = new Timer(1 / 60);
         timer.update = function update(deltaTime) {
@@ -122,10 +126,10 @@ function level2() {
 
                 level.game.draw(context, screen);
 
+                console.log(character.pos.x, character.pos.y);
+
                 checkCollision(character, enemy1, screen);
                 checkCollision(character, enemy2, screen);
-
-                console.log(character.pos.x, character.pos.y);
 
                 character.vel.y += gravity * deltaTime;
             }
