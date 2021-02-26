@@ -60,7 +60,7 @@ function level1() {
         const timer = new Timer(1 / 60);
         timer.update = function update(deltaTime) {
             if (currentLevel == 1) {
-                level.update(deltaTime, screen, levelHandler);
+                level.update(deltaTime, screen);
 
                 if (character.pos.x > 100) {
                     screen.position.x = character.pos.x - 100;
@@ -131,11 +131,22 @@ function level2() {
                 checkCollision(character, enemy1, screen);
                 checkCollision(character, enemy2, screen);
 
+                if (checkWinBlock(1088, 96, character)) {
+                    timer.stop();
+                    currentLevel = 3;
+                    level3();
+                    return;
+                }
+
                 character.vel.y += gravity * deltaTime;
             }
         }
 
         timer.start();
     }); 
+}
+
+function level3() {
+
 }
 

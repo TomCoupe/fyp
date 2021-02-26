@@ -12,16 +12,16 @@ export default class Level {
 
     }
 
-    update(deltaTime, screen, levelHandler) {
+    update(deltaTime, screen) {
         this.entities.forEach(entity => {
             entity.update(deltaTime);
             //Set position to the x velocity of the entity multiplied by deltaTime
             entity.pos.x += entity.vel.x * deltaTime;
-            this.tileCollision.checkPosX(entity, screen, levelHandler);
+            this.tileCollision.checkPosX(entity, screen);
             
             //Set position to the y velocity of the entity multiplied by deltaTime
             entity.pos.y += entity.vel.y * deltaTime;
-            this.tileCollision.checkPosY(entity, screen, levelHandler);
+            this.tileCollision.checkPosY(entity, screen);
         })
     }
 }

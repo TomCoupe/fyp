@@ -8,7 +8,7 @@ export default class TileCollision {
          this.killBlocks = ['death-block', 'spike-1', 'spike-2'];
     }
 
-    checkPosY(entity, screen, levelHandler) {
+    checkPosY(entity, screen) {
 
         const matches = this.tiles.searchByRange(
             entity.pos.x, entity.pos.x + entity.size.x,
@@ -17,8 +17,6 @@ export default class TileCollision {
         matches.forEach(match => {
 
             if(match.tile.name == 'win-block') {
-                let level = levelHandler.getLevel();
-                levelHandler.setLevel(level+1);
                 return;
             }
             
@@ -51,7 +49,7 @@ export default class TileCollision {
         })
     }
 
-    checkPosX(entity, screen, levelHandler) {
+    checkPosX(entity, screen) {
 
         const matches = this.tiles.searchByRange(
             entity.pos.x, entity.pos.x + entity.size.x,
@@ -60,8 +58,6 @@ export default class TileCollision {
         matches.forEach(match => {
 
             if(match.tile.name == 'win-block') {
-                let level = levelHandler.getLevel();
-                levelHandler.setLevel(level+1);
                 return;
             }
 
