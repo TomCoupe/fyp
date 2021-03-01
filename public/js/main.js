@@ -16,7 +16,7 @@ const LEVEL1 = '1-1';
 const LEVEL2 = '1-2';
 const LEVEL3 = '1-3';
 
-var currentLevel = 2;
+var currentLevel = 3;
 
 context.scale(2.5, 2.5);
 
@@ -26,7 +26,7 @@ const levelHandler = new LevelHandler();
 // if (currentLevel == 1) {
 //     level1();
 // } else if (currentLevel == 2) {
-level2();
+level3();
  // }
 
 
@@ -149,28 +149,36 @@ function level2() {
 function level3() {
     Promise.all([
         createCharacter(),
+        createEnemy3(),
+        createEnemy3(),
+        createEnemy2(),
         loadLevel(LEVEL3)
-    ]).then(([character, level]) => {
+    ]).then(([character, enemy1, enemy2, enemy3, level]) => {
         const gravity = 2000;
         const screen = new Screen();
 
         character.playerReset();
+
+        enemy1.pos.set(688, 144);
+        enemy2.pos.set(767, 144);
+        enemy3.pos.set(1218, 80);
 
         if (!Window.event) {
             watchKeyBoard(character);
         }
 
         level.game.layers.push(createCollisionLayer(level), createScreenLayer(screen));
-
         level.entities.add(character);
-        // level.entities.add(enemy1);
-        // level.entities.add(enemy2);
-        // level.entities.add(enemy3);
+        level.entities.add(enemy1);
+        level.entities.add(enemy2);
+        level.entities.add(enemy3);
 
         const timer = new Timer(1 / 60);
         timer.update = function update(deltaTime) {
             if (currentLevel == 3) {
-                level.update(deltaTime, screen);    
+                level.update(deltaTime, screen);   
+                
+                console.log(character.pos.x, character.pos.y);
 
                 if (character.pos.x > 100) {
                     screen.position.x = character.pos.x - 100;
@@ -180,7 +188,7 @@ function level3() {
 
                 console.log(character.pos.x, character.pos.y);
 
-                if (checkWinBlock(1088, 96, character)) {
+                if (checkWinBlock(1266, 160, character)) {
                     //game complete
                     return;
                 }
