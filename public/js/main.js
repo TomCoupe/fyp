@@ -35,17 +35,17 @@ function updateTime() {
 function updateUI(context, screen, player) {
     //time
     context.font = '8px Comic Sans MS';
-    context.fillStyle = 'red';
+    context.fillStyle = 'white';
     context.fillText(time, screen.size.x - 252, screen.size.y - 210);
 
     //lives
     context.font = '8px Comic Sans MS';
-    context.fillStyle = 'red';
+    context.fillStyle = 'white';
     context.fillText(player.lives + ' Lives', screen.size.x - 252, screen.size.y - 200);
 
     //points
     context.font = '8px Comic Sans MS';
-    context.fillStyle = 'red';
+    context.fillStyle = 'white';
     context.fillText(0 + ' points', screen.size.x - 252, screen.size.y - 190);
 
 }
@@ -239,8 +239,7 @@ function level3() {
 function gameComplete(character) {
     listen();
     gameEnd(character);
-    lastPageRestart();
-    lastPageExit();
+    lastPageRestart(character);
     //game needs to end here.
 }
 var rectExit = {
@@ -257,7 +256,39 @@ var rect = {
     heigth: 125
 };
 
-function lastPageRestart() {
+function lastPageRestart(character) {
+    //top rect
+    context.beginPath();
+    context.rect(0, 0, 300, 40);
+    context.fillStyle = '#7d7d7d';
+    context.fillRect(80, 110, 100, 50);
+    context.fill();
+    context.closePath();
+    context.font = '20px Comic Sans MS';
+    context.fillStyle = 'white';
+    context.fillText('Game Complete!', 55, 25);
+
+    //bottom rect
+    context.beginPath();
+    context.rect(0, 200, 300, 40);
+    context.fillStyle = '#7d7d7d';
+    context.fillRect(80, 110, 100, 50);
+    context.fill();
+    context.closePath();
+
+    context.font = '8px Comic Sans MS';
+    context.fillStyle = 'white';
+    context.fillText('Time: ' + time, 20, 225);
+
+    context.font = '8px Comic Sans MS';
+    context.fillStyle = 'white';
+    context.fillText('Points: ' + character.points, 110, 225);
+
+    context.font = '8px Comic Sans MS';
+    context.fillStyle = 'white';
+    context.fillText('Lives: ' + character.lives, 200, 225);
+
+    //restart rect
     context.beginPath();
     context.rect(80, 110, 100, 50);
     context.fillStyle = '#7d7d7d';
@@ -267,9 +298,8 @@ function lastPageRestart() {
     context.font = '12px Comic Sans MS';
     context.fillStyle = 'white';
     context.fillText('Restart', 109, 139);
-}
 
-function lastPageExit() {
+    //exit rect
     context.beginPath();
     context.rect(80, 50, 100, 50);
     context.fillStyle = '#b85c5c';
