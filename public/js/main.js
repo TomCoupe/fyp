@@ -25,8 +25,8 @@ var currentTime = setInterval(updateTime, 1000);
 
 function updateTime() {
     seconds = seconds + 1;
-    if(seconds % 60 == 0) {
-        mins = mins+1;
+    if (seconds % 60 == 0) {
+        mins = mins + 1;
         seconds = 0;
     }
     time = mins + 'm ' + seconds + 's';
@@ -36,13 +36,14 @@ function updateUI(context, screen, player) {
     //time
     context.font = '8px Comic Sans MS';
     context.fillStyle = 'red';
-    context.fillText(time, screen.size.x - 252, screen.size.y - 210); 
+    context.fillText(time, screen.size.x - 252, screen.size.y - 210);
 
     //lives
     context.font = '8px Comic Sans MS';
     context.fillStyle = 'red';
     context.fillText(player.lives + ' Lives', screen.size.x - 252, screen.size.y - 200);
 
+    //points
     context.font = '8px Comic Sans MS';
     context.fillStyle = 'red';
     context.fillText(0 + ' points', screen.size.x - 252, screen.size.y - 190);
@@ -99,7 +100,7 @@ function level1() {
                 checkCollision(character, enemy3, screen);
 
                 character.vel.y += gravity * deltaTime;
-                
+
                 if (checkWinBlock(1426, 160, character)) {
                     timer.stop();
                     currentLevel = 2;
@@ -143,7 +144,7 @@ function level2() {
         const timer = new Timer(1 / 60);
         timer.update = function update(deltaTime) {
             if (currentLevel == 2) {
-                level.update(deltaTime, screen);    
+                level.update(deltaTime, screen);
 
                 if (character.pos.x > 100) {
                     screen.position.x = character.pos.x - 100;
@@ -170,7 +171,7 @@ function level2() {
         }
 
         timer.start();
-    }); 
+    });
 }
 
 function level3() {
@@ -184,7 +185,7 @@ function level3() {
         const gravity = 2000;
         const screen = new Screen();
 
-        character.pos.set(64, 64);
+        character.pos.set(1077, 96);
 
         enemy1.pos.set(688, 144);
         enemy2.pos.set(767, 144);
@@ -203,8 +204,8 @@ function level3() {
         const timer = new Timer(1 / 60);
         timer.update = function update(deltaTime) {
             if (currentLevel == 3) {
-                level.update(deltaTime, screen);   
-                
+                level.update(deltaTime, screen);
+
                 // console.log(character.pos.x, character.pos.y);
 
                 if (character.pos.x > 100) {
@@ -214,7 +215,7 @@ function level3() {
                 level.game.draw(context, screen);
 
                 updateUI(context, screen, character);
-
+                console.log(character.pos.x, character.pos.y);
                 checkCollision(character, enemy1, screen);
                 checkCollision(character, enemy2, screen);
                 checkCollision(character, enemy3, screen);
@@ -232,12 +233,67 @@ function level3() {
         }
 
         timer.start();
-    }); 
+    });
 }
 
 function gameComplete(character) {
+    listen();
     gameEnd(character);
+    lastPageRestart();
+    lastPageExit();
     //game needs to end here.
+}
+var rect = {
+    x: 80,
+    y: 110,
+    width: 100, 
+    heigth: 50
+};
+
+function lastPageRestart() {
+    context.beginPath();
+    context.rect(80, 110, 100, 50);
+    context.fillStyle = '#7d7d7d';
+    context.fillRect(80, 110, 100, 50);
+    context.fill();
+    context.closePath();
+    context.font = '12px Comic Sans MS';
+    context.fillStyle = 'white';
+    context.fillText('Restart', 109, 139);
+}
+
+function lastPageExit() {
+    context.beginPath();
+    context.rect(80, 50, 100, 50);
+    context.fillStyle = '#b85c5c';
+    context.fillRect(80, 50, 100, 50);
+    context.fill();
+    context.closePath();
+    context.font = '12px Comic Sans MS';
+    context.fillStyle = 'white';
+    context.fillText('Exit', 118, 80);
+}
+
+function getMousePos(canvas, event) {
+    var rect = canvas.getBoundingClientRect();
+    return {
+        x: event.clientX - rect.left,
+        y: event.clientY - rect.top
+    };
+}
+function isInside(pos, rect) {
+    return pos.x > rect.x && pos.x < rect.x + rect.width && pos.y < rect.y + rect.heigth && pos.y > rect.y
+}
+
+function listen() {
+    canvas.addEventListener('click', function (evt) {
+        var mousePos = getMousePos(canvas, evt);
+        if (isInside(mousePos, rect)) {
+            alert('clicked inside rect');
+        } else {
+            alert('clicked outside rect');
+        }
+    }, false);
 }
 
 function gameEnd(character) {
@@ -257,13 +313,13 @@ function gameEnd(character) {
         },
         body: JSON.stringify(gameData)
     }).then(function (response) {
-        if(response.ok) {
+        if (response.ok) {
             return gameData;
         }
         return Promise.reject(response);
-    }).then(function(response) {
+    }).then(function (response) {
         console.log(response);
-    }).catch(function(response) {
+    }).catch(function (response) {
         console.log(response);
     })
 }
