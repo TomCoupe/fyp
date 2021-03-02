@@ -42,16 +42,16 @@ export function createEnemy1() {
 
         const enemyFrame = ['mov-1', 'mov-2'];
 
-        function chooseEnemyFrame(enemy) {
-            if(enemy.enemyWalk.direction !== 0) {
-                const enemyFrameIndex = Math.floor(enemy.enemyWalk.distance / 10) % enemyFrame.length;
-                return enemyFrame[enemyFrameIndex];
-            }
-            return 'mov-1';
-        }
+        // function chooseEnemyFrame(enemy) {
+        //     if(enemy.enemyWalk.direction !== 0) {
+        //         const enemyFrameIndex = Math.floor(enemy.enemyWalk.distance / 10) % enemyFrame.length;
+        //         return enemyFrame[enemyFrameIndex];
+        //     }
+        //     return 'mov-1';
+        // }
 
         enemy.draw = function drawEnemy(context) {
-            sprite.draw(chooseEnemyFrame(this), context, 0, 0, enemy.vel.x < 0);
+            sprite.draw('mov-1', context, 0, 0, enemy.vel.x < 0);
         }
         return enemy;
     })
@@ -68,16 +68,16 @@ export function createEnemy2() {
 
         const enemyFrame = ['mov-1', 'mov-2'];
 
-        function chooseEnemyFrame(enemy) {
-            if(enemy.enemyWalk.direction !== 0) {
-                const enemyFrameIndex = Math.floor(enemy.enemyWalk.distance / 10) % enemyFrame.length;
-                return enemyFrame[enemyFrameIndex];
-            }
-            return 'mov-1';
-        }
+        // function chooseEnemyFrame(enemy) {
+        //     if(enemy.enemyWalk.direction !== 0) {
+        //         const enemyFrameIndex = Math.floor(enemy.enemyWalk.distance / 10) % enemyFrame.length;
+        //         return enemyFrame[enemyFrameIndex];
+        //     }
+        //     return 'mov-1';
+        // }
 
         enemy.draw = function drawEnemy(context) {
-            sprite.draw(chooseEnemyFrame(this), context, 0, 0, enemy.vel.x < 0);
+            sprite.draw('mov-1', context, 0, 0, enemy.vel.x < 0);
         }
         return enemy;
     })
@@ -94,16 +94,16 @@ export function createEnemy3() {
 
         const enemyFrame = ['mov-1', 'mov-2'];
 
-        function chooseEnemyFrame(enemy) {
-            if(enemy.enemyFly.direction !== 0) {
-                const enemyFrameIndex = Math.floor(enemy.enemyFly.distance / 10) % enemyFrame.length;
-                return enemyFrame[enemyFrameIndex];
-            }
-            return 'mov-1';
-        }
+        // function chooseEnemyFrame(enemy) {
+        //     if(enemy.enemyFly.direction !== 0) {
+        //         const enemyFrameIndex = Math.floor(enemy.enemyFly.distance / 10) % enemyFrame.length;
+        //         return enemyFrame[enemyFrameIndex];
+        //     }
+        //     return 'mov-1';
+        // }
 
         enemy.draw = function drawEnemy(context) {
-            sprite.draw(chooseEnemyFrame(this), context, 0, 0, enemy.vel.y < 0);
+            sprite.draw('mov-1', context, 0, 0, enemy.vel.y < 0);
         }
         return enemy;
     })

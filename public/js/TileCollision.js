@@ -24,6 +24,7 @@ export default class TileCollision {
 
                 if (this.killBlocks.includes(match.tile.name)) {
                     entity.pos.set(64, 64);
+                    entity.lives = entity.lives -1;
                     screen.position.set(0, 0);
                 }
 
@@ -64,6 +65,7 @@ export default class TileCollision {
             if (match.tile.type !== 'ground') {
                 if (this.killBlocks.includes(match.tile.name)) {
                     entity.pos.set(64, 64);
+                    entity.lives = entity.lives -1;
                     screen.position.set(0, 0);
                 }
                 return;
