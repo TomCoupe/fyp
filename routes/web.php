@@ -39,4 +39,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/addLike', 'ForumController@addLike');
     Route::post('/addDislike', 'ForumController@addDislike');
     Route::post('/removeDislike', 'ForumController@removeDislike');
+    Route::post('/game/post', 'GameController@save');
 });

@@ -1,6 +1,7 @@
 
 import Timer from './Timer.js';
 import Screen from './Screen.js';
+// import axios from 'axios';
 import { loadLevel } from './loaders.js';
 import { createCharacter, createEnemy1, createEnemy2, createEnemy3 } from './entities.js';
 import { watchKeyBoard } from './KeyboardState.js';
@@ -14,30 +15,43 @@ const LEVEL1 = '1-1';
 const LEVEL2 = '1-2';
 const LEVEL3 = '1-3';
 
-var currentLevel = 1;
-var lives = 3;
-var time = 0;
+// const axios = require("axios");
+
+var currentLevel = 3;
+var time = '';
+var seconds = 0;
+var mins = 0;
 var currentTime = setInterval(updateTime, 1000);
 
 function updateTime() {
-    time = time + 1;
+    seconds = seconds + 1;
+    if(seconds % 60 == 0) {
+        mins = mins+1;
+        seconds = 0;
+    }
+    time = mins + 'm ' + seconds + 's';
 }
 
 function updateUI(context, screen, player) {
     //time
     context.font = '8px Comic Sans MS';
     context.fillStyle = 'red';
-    context.fillText(time + ' seconds', screen.size.x - 252, screen.size.y - 210); 
+    context.fillText(time, screen.size.x - 252, screen.size.y - 210); 
 
     //lives
     context.font = '8px Comic Sans MS';
     context.fillStyle = 'red';
     context.fillText(player.lives + ' Lives', screen.size.x - 252, screen.size.y - 200);
+
+    context.font = '8px Comic Sans MS';
+    context.fillStyle = 'red';
+    context.fillText(0 + ' points', screen.size.x - 252, screen.size.y - 190);
+
 }
 
 context.scale(2.5, 2.5);
 
-level1();
+level3();
 
 function level1() {
     Promise.all([
@@ -109,7 +123,7 @@ function level2() {
         const gravity = 2000;
         const screen = new Screen();
 
-        character.playerReset();
+        character.pos.set(64, 64);
 
         enemy1.pos.set(498, 144);
         enemy2.pos.set(464, 144);
@@ -138,6 +152,8 @@ function level2() {
                 level.game.draw(context, screen);
 
                 console.log(character.pos.x, character.pos.y);
+
+                updateUI(context, screen, character);
 
                 checkCollision(character, enemy1, screen);
                 checkCollision(character, enemy2, screen);
@@ -168,7 +184,7 @@ function level3() {
         const gravity = 2000;
         const screen = new Screen();
 
-        character.playerReset();
+        character.pos.set(64, 64);
 
         enemy1.pos.set(688, 144);
         enemy2.pos.set(767, 144);
@@ -189,7 +205,7 @@ function level3() {
             if (currentLevel == 3) {
                 level.update(deltaTime, screen);   
                 
-                console.log(character.pos.x, character.pos.y);
+                // console.log(character.pos.x, character.pos.y);
 
                 if (character.pos.x > 100) {
                     screen.position.x = character.pos.x - 100;
@@ -197,14 +213,17 @@ function level3() {
 
                 level.game.draw(context, screen);
 
+                updateUI(context, screen, character);
+
                 checkCollision(character, enemy1, screen);
                 checkCollision(character, enemy2, screen);
                 checkCollision(character, enemy3, screen);
 
-                console.log(character.pos.x, character.pos.y);
+                // console.log(character.pos.x, character.pos.y);
 
                 if (checkWinBlock(1266, 160, character)) {
-                    //game complete
+                    gameComplete(character);
+                    currentLevel = 4;
                     return;
                 }
 
@@ -214,5 +233,38 @@ function level3() {
 
         timer.start();
     }); 
+}
+
+function gameComplete(character) {
+    gameEnd(character);
+    //game needs to end here.
+}
+
+function gameEnd(character) {
+
+    let gameData = {
+        points: character.points,
+        lives: character.lives,
+        time: time
+    }
+
+    //posting data to backend
+    fetch('/game/post', {
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+            "content-type": "text/json"
+        },
+        body: JSON.stringify(gameData)
+    }).then(function (response) {
+        if(response.ok) {
+            return gameData;
+        }
+        return Promise.reject(response);
+    }).then(function(response) {
+        console.log(response);
+    }).catch(function(response) {
+        console.log(response);
+    })
 }
 
