@@ -243,11 +243,18 @@ function gameComplete(character) {
     lastPageExit();
     //game needs to end here.
 }
+var rectExit = {
+    x: 200,
+    y: 125,
+    width: 250, 
+    heigth: 125
+};
+
 var rect = {
-    x: 80,
-    y: 110,
-    width: 100, 
-    heigth: 50
+    x: 200,
+    y: 275,
+    width: 250, 
+    heigth: 125
 };
 
 function lastPageRestart() {
@@ -276,6 +283,8 @@ function lastPageExit() {
 
 function getMousePos(canvas, event) {
     var rect = canvas.getBoundingClientRect();
+
+    // console.log(event.clientX, event.clientY);
     return {
         x: event.clientX - rect.left,
         y: event.clientY - rect.top
@@ -288,8 +297,11 @@ function isInside(pos, rect) {
 function listen() {
     canvas.addEventListener('click', function (evt) {
         var mousePos = getMousePos(canvas, evt);
+        console.log(mousePos);
         if (isInside(mousePos, rect)) {
-            alert('clicked inside rect');
+            window.location.href = '/game';
+        } else if (isInside(mousePos, rectExit)) {
+            window.location.href = '/home';
         } else {
             alert('clicked outside rect');
         }
