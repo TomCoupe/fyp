@@ -20,10 +20,6 @@
             "index": [3, 23]
         },
         {
-            "name": "lava",
-            "index": [3, 24]
-        },
-        {
             "name": "spike",
             "index": [27, 6]
         },
@@ -38,18 +34,6 @@
         {
             "name": "spike-2",
             "index": [10, 14]
-        },
-        {
-            "name": "chocolate",
-            "index": [0, 1]
-        },
-        {
-            "name": "bricks",
-            "index": [1, 0]
-        },
-        {
-            "name": "chance",
-            "index": [24, 0]
         }
     ]
 }

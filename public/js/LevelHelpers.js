@@ -1,5 +1,6 @@
 export function checkCollision(character, enemy, screen) {
-    if (Math.round(enemy.pos.x) === Math.round(character.pos.x) && Math.round(enemy.pos.y) === Math.round(character.pos.y)) {
+    if (Math.round(enemy.pos.x + enemy.size.x) === Math.round(character.pos.x + enemy.size.x) && 
+    Math.round(enemy.pos.y + enemy.size.y) === Math.round(character.pos.y + character.size.y)) {
         character.pos.set(64, 64);
         screen.position.set(0, 0);
     }

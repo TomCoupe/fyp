@@ -5,9 +5,7 @@ export class Trait {
         this.NAME = name;
     }
 
-    obstruct() {
-
-    }
+    obstruct() {}
 
     update() {
         console.warn('Unhandled update call in Trait');
@@ -37,7 +35,7 @@ export default class Entity {
 
     playerReset() {
         this.pos.set(64, 64);
-        this.lives = 3;
+        this.lives = this.lives - 1;
     }
 
     update(deltaTime) {
