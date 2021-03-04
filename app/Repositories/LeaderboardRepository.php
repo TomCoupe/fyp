@@ -20,4 +20,8 @@ class LeaderboardRepository {
             'minutes' => $data['minutes']
         ]);
     }
+
+    public function getTopTen() {
+        return $this->model->orderBy('points', 'DESC')->orderBy('minutes', 'ASC')->orderBy('seconds', 'ASC')->take(10)->get();
+    }
 }

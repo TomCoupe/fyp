@@ -4,6 +4,6 @@
 @section('content')
 &nbsp;
 <div>
-    <leaderboards></leaderboards>
+    <leaderboards :scores="{{json_encode($scores)}}"></leaderboards>
 </div>
 @endsection

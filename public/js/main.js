@@ -7,29 +7,33 @@ import { watchKeyBoard } from './KeyboardState.js';
 import { createCollisionLayer, createScreenLayer} from './layers.js';
 import { checkCollision, checkWinBlock, updateUI, gameEnd, lastPageRestart } from './LevelHelpers.js';
 
+//declaring constants
 const canvas = document.getElementById('game');
 const context = canvas.getContext('2d');
-
 const LEVEL1 = '1-1';
 const LEVEL2 = '1-2';
 const LEVEL3 = '1-3';
 
+//declaring vars
 var currentLevel = 3;
 var time = '';
 var seconds = 0;
 var mins = 0;
-var currentTime = setInterval(updateTime, 1000);
+setInterval(updateTime, 1000);
+var rectExit = {
+    x: 200,
+    y: 125,
+    width: 250, 
+    heigth: 125
+};
+var rect = {
+    x: 200,
+    y: 275,
+    width: 250, 
+    heigth: 125
+};
 
-function updateTime() {
-    seconds = seconds + 1;
-    if (seconds % 60 == 0) {
-        mins = mins + 1;
-        seconds = 0;
-    }
-    time = mins + 'm ' + seconds + 's';
-}
-
-
+//scale context to fix full canvas width/height
 context.scale(2.5, 2.5);
 
 level3();
@@ -216,25 +220,20 @@ function level3() {
     });
 }
 
+function updateTime() {
+    seconds = seconds + 1;
+    if (seconds % 60 == 0) {
+        mins = mins + 1;
+        seconds = 0;
+    }
+    time = mins + 'm ' + seconds + 's';
+}
+
 function gameComplete(character) {
     listen();
     gameEnd(character, mins, seconds);
     lastPageRestart(context, character, time);
-    //game needs to end here.
 }
-var rectExit = {
-    x: 200,
-    y: 125,
-    width: 250, 
-    heigth: 125
-};
-
-var rect = {
-    x: 200,
-    y: 275,
-    width: 250, 
-    heigth: 125
-};
 
 function getMousePos(canvas, event) {
     var rect = canvas.getBoundingClientRect();

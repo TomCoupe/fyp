@@ -55,8 +55,6 @@ export function gameEnd(character, mins, seconds) {
             return gameData;
         }
         return Promise.reject(response);
-    }).then(function (response) {
-        console.log(response);
     }).catch(function (response) {
         console.log(response);
     })
@@ -82,14 +80,17 @@ export function lastPageRestart(context, character, time) {
     context.fill();
     context.closePath();
 
+    //time
     context.font = '8px Comic Sans MS';
     context.fillStyle = 'white';
     context.fillText('Time: ' + time, 20, 225);
 
+    //points
     context.font = '8px Comic Sans MS';
     context.fillStyle = 'white';
     context.fillText('Points: ' + character.points, 110, 225);
 
+    //lives
     context.font = '8px Comic Sans MS';
     context.fillStyle = 'white';
     context.fillText('Lives: ' + character.lives, 200, 225);

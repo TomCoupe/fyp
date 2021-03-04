@@ -19,6 +19,10 @@ class GameService
         $this->leaderboardRepository = $leaderboardRepository;
     }
 
+    public function getLeaderboardList() {
+        return $this->leaderboardRepository->getTopTen();
+    }
+
     public function storeLeaderboardScores($user, $request)
     {
         $data = [

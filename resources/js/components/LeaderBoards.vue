@@ -10,9 +10,20 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Player Name</th>
-                        <th scope="col">Score</th>
+                        <th scope="col">Points</th>
+                        <th scope="col">Time Taken</th>
                     </tr>
                 </thead>
+                <tbody>
+                    <template v-for="score in highscores">
+                    <tr>    
+                        <td>1</td>
+                        <td>d</td>
+                        <td>{{score.points}}</td>
+                        <td>{{score.minutes + 'm '+ score.seconds + 's'}}</td>
+                    </tr>
+                    </template>
+                </tbody>
                 <!-- TODO
                     add tbody that loops through all high scores of players and display in table.
                  -->
@@ -25,6 +36,11 @@
 <script>
 export default {
     name: "LeaderBoards.vue",
-
+    props: ['scores'],
+    data() {
+        return {
+            highscores: this.scores,
+        }
+    }
 }
 </script>
