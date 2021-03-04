@@ -6,8 +6,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
+use App\Services\GameService;
+
 class GameController extends Controller
 {
+    protected $service;
+
+    public function __construct(GameService $service) {
+        $this->service = $service;
+    }   
+
     public function index() {
 
         $user = Auth::user();
@@ -19,11 +27,11 @@ class GameController extends Controller
         $user = Auth::user();
 
         Log::info($request);
-        
+
         if($user == null) {
             return;
         }
-
         
+        $this->service->storeLeaderboardScores($user, $request);  
     }
 }

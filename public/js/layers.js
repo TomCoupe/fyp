@@ -39,13 +39,6 @@ export function createBackgroundLayer(level, sprites) {
     };
 }
 
-export function createTime(time) {
-    return function drawTime(context, screen) {
-        context.font = '12px serif';
-        context.fillText(time, screen.size.x - 20, screen.size.y - 200); 
-    }
-}
-
 export function createSpriteLayer(entities) {
     const spriteBuffer = document.createElement('canvas');
     spriteBuffer.width = 64;

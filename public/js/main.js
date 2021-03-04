@@ -1,12 +1,11 @@
 
 import Timer from './Timer.js';
 import Screen from './Screen.js';
-// import axios from 'axios';
 import { loadLevel } from './loaders.js';
 import { createCharacter, createEnemy1, createEnemy2, createEnemy3 } from './entities.js';
 import { watchKeyBoard } from './KeyboardState.js';
-import { createCollisionLayer, createScreenLayer, createTime } from './layers.js';
-import { checkCollision, checkWinBlock } from './LevelHelpers.js';
+import { createCollisionLayer, createScreenLayer} from './layers.js';
+import { checkCollision, checkWinBlock, updateUI, gameEnd, lastPageRestart } from './LevelHelpers.js';
 
 const canvas = document.getElementById('game');
 const context = canvas.getContext('2d');
@@ -14,8 +13,6 @@ const context = canvas.getContext('2d');
 const LEVEL1 = '1-1';
 const LEVEL2 = '1-2';
 const LEVEL3 = '1-3';
-
-// const axios = require("axios");
 
 var currentLevel = 3;
 var time = '';
@@ -32,23 +29,6 @@ function updateTime() {
     time = mins + 'm ' + seconds + 's';
 }
 
-function updateUI(context, screen, player) {
-    //time
-    context.font = '8px Comic Sans MS';
-    context.fillStyle = 'white';
-    context.fillText(time, screen.size.x - 252, screen.size.y - 210);
-
-    //lives
-    context.font = '8px Comic Sans MS';
-    context.fillStyle = 'white';
-    context.fillText(player.lives + ' Lives', screen.size.x - 252, screen.size.y - 200);
-
-    //points
-    context.font = '8px Comic Sans MS';
-    context.fillStyle = 'white';
-    context.fillText(0 + ' points', screen.size.x - 252, screen.size.y - 190);
-
-}
 
 context.scale(2.5, 2.5);
 
@@ -92,7 +72,7 @@ function level1() {
 
                 level.game.draw(context, screen);
                 // createTime(time);
-                updateUI(context, screen, character);
+                updateUI(context, screen, character, time);
 
                 // console.log(character.pos.x, character.pos.y);
                 checkCollision(character, enemy1, screen);
@@ -154,7 +134,7 @@ function level2() {
 
                 console.log(character.pos.x, character.pos.y);
 
-                updateUI(context, screen, character);
+                updateUI(context, screen, character, time);
 
                 checkCollision(character, enemy1, screen);
                 checkCollision(character, enemy2, screen);
@@ -185,7 +165,7 @@ function level3() {
         const gravity = 2000;
         const screen = new Screen();
 
-        character.pos.set(1077, 96);
+        character.pos.set(64, 64);
 
         enemy1.pos.set(688, 144);
         enemy2.pos.set(767, 144);
@@ -214,8 +194,8 @@ function level3() {
 
                 level.game.draw(context, screen);
 
-                updateUI(context, screen, character);
-                console.log(character.pos.x, character.pos.y);
+                updateUI(context, screen, character, time);
+                
                 checkCollision(character, enemy1, screen);
                 checkCollision(character, enemy2, screen);
                 checkCollision(character, enemy3, screen);
@@ -238,8 +218,8 @@ function level3() {
 
 function gameComplete(character) {
     listen();
-    gameEnd(character);
-    lastPageRestart(character);
+    gameEnd(character, mins, seconds);
+    lastPageRestart(context, character, time);
     //game needs to end here.
 }
 var rectExit = {
@@ -256,65 +236,9 @@ var rect = {
     heigth: 125
 };
 
-function lastPageRestart(character) {
-    //top rect
-    context.beginPath();
-    context.rect(0, 0, 300, 40);
-    context.fillStyle = '#7d7d7d';
-    context.fillRect(80, 110, 100, 50);
-    context.fill();
-    context.closePath();
-    context.font = '20px Comic Sans MS';
-    context.fillStyle = 'white';
-    context.fillText('Game Complete!', 55, 25);
-
-    //bottom rect
-    context.beginPath();
-    context.rect(0, 200, 300, 40);
-    context.fillStyle = '#7d7d7d';
-    context.fillRect(80, 110, 100, 50);
-    context.fill();
-    context.closePath();
-
-    context.font = '8px Comic Sans MS';
-    context.fillStyle = 'white';
-    context.fillText('Time: ' + time, 20, 225);
-
-    context.font = '8px Comic Sans MS';
-    context.fillStyle = 'white';
-    context.fillText('Points: ' + character.points, 110, 225);
-
-    context.font = '8px Comic Sans MS';
-    context.fillStyle = 'white';
-    context.fillText('Lives: ' + character.lives, 200, 225);
-
-    //restart rect
-    context.beginPath();
-    context.rect(80, 110, 100, 50);
-    context.fillStyle = '#7d7d7d';
-    context.fillRect(80, 110, 100, 50);
-    context.fill();
-    context.closePath();
-    context.font = '12px Comic Sans MS';
-    context.fillStyle = 'white';
-    context.fillText('Restart', 109, 139);
-
-    //exit rect
-    context.beginPath();
-    context.rect(80, 50, 100, 50);
-    context.fillStyle = '#b85c5c';
-    context.fillRect(80, 50, 100, 50);
-    context.fill();
-    context.closePath();
-    context.font = '12px Comic Sans MS';
-    context.fillStyle = 'white';
-    context.fillText('Exit', 118, 80);
-}
-
 function getMousePos(canvas, event) {
     var rect = canvas.getBoundingClientRect();
-
-    // console.log(event.clientX, event.clientY);
+    
     return {
         x: event.clientX - rect.left,
         y: event.clientY - rect.top
@@ -332,38 +256,8 @@ function listen() {
             window.location.href = '/game';
         } else if (isInside(mousePos, rectExit)) {
             window.location.href = '/home';
-        } else {
-            alert('clicked outside rect');
         }
     }, false);
 }
 
-function gameEnd(character) {
-
-    let gameData = {
-        points: character.points,
-        lives: character.lives,
-        minutes: mins,
-        seconds: seconds
-    }
-
-    //posting data to backend
-    fetch('/game/post', {
-        method: 'POST',
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-            "content-type": "text/json"
-        },
-        body: JSON.stringify(gameData)
-    }).then(function (response) {
-        if (response.ok) {
-            return gameData;
-        }
-        return Promise.reject(response);
-    }).then(function (response) {
-        console.log(response);
-    }).catch(function (response) {
-        console.log(response);
-    })
-}
 
