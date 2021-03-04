@@ -12,4 +12,8 @@ class UserRepository {
         $this->user = $user;
     }
 
+    public function getNameByID($id) {
+        return $this->user->where('id', $id)->get();
+    }
+
 }
