@@ -343,7 +343,8 @@ function gameEnd(character) {
     let gameData = {
         points: character.points,
         lives: character.lives,
-        time: time
+        minutes: mins,
+        seconds: seconds
     }
 
     //posting data to backend

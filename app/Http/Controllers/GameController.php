@@ -16,6 +16,14 @@ class GameController extends Controller
     }
 
     public function save(Request $request) {
+        $user = Auth::user();
+
         Log::info($request);
+        
+        if($user == null) {
+            return;
+        }
+
+        
     }
 }
