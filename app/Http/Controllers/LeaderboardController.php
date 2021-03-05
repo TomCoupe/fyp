@@ -23,16 +23,17 @@ class LeaderboardController extends Controller
 
         $data = [];
         $scores = $this->gameService->getLeaderboardList();
-
+        
         foreach ($scores as $score) {
             $user  = $this->userService->getNameByID($score->user_id);
+            Log::info($user);
             $data[] = [
                 'scores' => $score,
-                'user' => $user
+                'user' => $user[0]
             ];
         }
-        Log::info($data);
+        // Log::info($data);
 
-        return view('leaderboard.leaderboard')->with('scores', $scores);
+        return view('leaderboard.leaderboard')->with('scores', $data);
     }
 }

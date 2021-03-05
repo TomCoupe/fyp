@@ -2,7 +2,7 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
-            LeaderBoards
+            <h5>LeaderBoards</h5>
         </div>
         <div class="card-body">
             <table class="table">
@@ -15,12 +15,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <template v-for="score in highscores">
+                    <template v-for="(score, index) in highscores">
                     <tr>    
-                        <td>1</td>
-                        <td>d</td>
-                        <td>{{score.points}}</td>
-                        <td>{{score.minutes + 'm '+ score.seconds + 's'}}</td>
+                        <td>{{index+1}}</td>
+                        <td>{{score.user.name}}</td>
+                        <td>{{score.scores.points}}</td>
+                        <td>{{score.scores.minutes + 'm '+ score.scores.seconds + 's'}}</td>
                     </tr>
                     </template>
                 </tbody>

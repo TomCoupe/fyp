@@ -38898,28 +38898,33 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "col-md-12" }, [
     _c("div", { staticClass: "card" }, [
-      _c("div", { staticClass: "card-header" }, [
-        _vm._v("\n        LeaderBoards\n    ")
-      ]),
+      _vm._m(0),
       _vm._v(" "),
       _c("div", { staticClass: "card-body" }, [
         _c("table", { staticClass: "table" }, [
-          _vm._m(0),
+          _vm._m(1),
           _vm._v(" "),
           _c(
             "tbody",
             [
-              _vm._l(_vm.highscores, function(score) {
+              _vm._l(_vm.highscores, function(score, index) {
                 return [
                   _c("tr", [
-                    _c("td", [_vm._v("1")]),
+                    _c("td", [_vm._v(_vm._s(index + 1))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v("d")]),
+                    _c("td", [_vm._v(_vm._s(score.user.name))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(score.points))]),
+                    _c("td", [_vm._v(_vm._s(score.scores.points))]),
                     _vm._v(" "),
                     _c("td", [
-                      _vm._v(_vm._s(score.minutes + "m " + score.seconds + "s"))
+                      _vm._v(
+                        _vm._s(
+                          score.scores.minutes +
+                            "m " +
+                            score.scores.seconds +
+                            "s"
+                        )
+                      )
                     ])
                   ])
                 ]
@@ -38933,6 +38938,14 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h5", [_vm._v("LeaderBoards")])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
