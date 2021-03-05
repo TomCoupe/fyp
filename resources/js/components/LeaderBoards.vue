@@ -17,16 +17,13 @@
                 <tbody>
                     <template v-for="(score, index) in highscores">
                     <tr>    
-                        <td>{{index+1}}</td>
+                        <td><b>{{index+1}}</b></td>
                         <td>{{score.user.name}}</td>
                         <td>{{score.scores.points}}</td>
                         <td>{{score.scores.minutes + 'm '+ score.scores.seconds + 's'}}</td>
                     </tr>
                     </template>
                 </tbody>
-                <!-- TODO
-                    add tbody that loops through all high scores of players and display in table.
-                 -->
             </table>
         </div>
       </div>

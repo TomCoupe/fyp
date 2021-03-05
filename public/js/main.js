@@ -19,7 +19,7 @@ var currentLevel = 3;
 var time = '';
 var seconds = 0;
 var mins = 0;
-setInterval(updateTime, 1000);
+
 var rectExit = {
     x: 200,
     y: 125,
@@ -36,7 +36,9 @@ var rect = {
 //scale context to fix full canvas width/height
 context.scale(2.5, 2.5);
 
+setInterval(updateTime, 1000);
 level3();
+
 
 function level1() {
     Promise.all([
@@ -136,8 +138,6 @@ function level2() {
 
                 level.game.draw(context, screen);
 
-                console.log(character.pos.x, character.pos.y);
-
                 updateUI(context, screen, character, time);
 
                 checkCollision(character, enemy1, screen);
@@ -189,8 +189,6 @@ function level3() {
         timer.update = function update(deltaTime) {
             if (currentLevel == 3) {
                 level.update(deltaTime, screen);
-
-                // console.log(character.pos.x, character.pos.y);
 
                 if (character.pos.x > 100) {
                     screen.position.x = character.pos.x - 100;

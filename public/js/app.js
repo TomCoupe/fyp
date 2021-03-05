@@ -38910,7 +38910,7 @@ var render = function() {
               _vm._l(_vm.highscores, function(score, index) {
                 return [
                   _c("tr", [
-                    _c("td", [_vm._v(_vm._s(index + 1))]),
+                    _c("td", [_c("b", [_vm._v(_vm._s(index + 1))])]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(score.user.name))]),
                     _vm._v(" "),
