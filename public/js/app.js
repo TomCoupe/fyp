@@ -2556,9 +2556,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "LeaderBoards.vue",
   props: ['scores'],
@@ -38867,7 +38864,7 @@ var staticRenderFns = [
           {
             staticClass: "btn btn-outline2",
             staticStyle: { width: "300px" },
-            attrs: { href: "#" }
+            attrs: { href: "/game" }
           },
           [_vm._v("Play as guest")]
         )

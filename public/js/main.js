@@ -70,17 +70,14 @@ function level1() {
             if (currentLevel == 1) {
                 level.update(deltaTime, screen);
 
-                // console.log(time);
-
                 if (character.pos.x > 100) {
                     screen.position.x = character.pos.x - 100;
                 }
 
                 level.game.draw(context, screen);
-                // createTime(time);
+                
                 updateUI(context, screen, character, time);
 
-                // console.log(character.pos.x, character.pos.y);
                 checkCollision(character, enemy1, screen);
                 checkCollision(character, enemy2, screen);
                 checkCollision(character, enemy3, screen);
@@ -202,7 +199,6 @@ function level3() {
                 checkCollision(character, enemy2, screen);
                 checkCollision(character, enemy3, screen);
 
-                // console.log(character.pos.x, character.pos.y);
 
                 if (checkWinBlock(1266, 160, character)) {
                     gameComplete(character);

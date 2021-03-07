@@ -1,8 +1,8 @@
-import {Vec2} from './math.js'
+import {Vector} from './math.js'
 
 export default class Screen {
     constructor() {
-        this.position = new Vec2(0, 0);
-        this.size = new Vec2(256, 224);
+        this.position = new Vector(0, 0);
+        this.size = new Vector(256, 224);
     }
 }

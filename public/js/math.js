@@ -26,8 +26,8 @@ export class Matrix {
         this.grid[x][y] = tileValue;
     }
 }
-window.Matrix = Matrix;
-export class Vec2 {
+
+export class Vector {
     constructor(x, y) {
         this.set(x, y);
     }
