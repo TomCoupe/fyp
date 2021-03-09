@@ -34,6 +34,10 @@
         {
             "name": "spike-2",
             "index": [10, 14]
+        },
+        {
+            "name": "coin",
+            "index": [13, 12]
         }
     ]
 }

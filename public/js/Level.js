@@ -14,6 +14,9 @@ export default class Level {
 
     update(deltaTime, screen) {
         this.entities.forEach(entity => {
+
+            // console.log(this.tileMatrix.grid.x);
+
             entity.update(deltaTime);
             //Set position to the x velocity of the entity multiplied by deltaTime
             entity.pos.x += entity.vel.x * deltaTime;

@@ -5,10 +5,13 @@ export default class TileCollision {
     constructor(tileMatrix) {
         this.tiles = new TileDetector(tileMatrix);
 
-         this.killBlocks = ['death-block', 'spike-1', 'spike-2'];
+        this.killBlocks = ['death-block', 'spike-1', 'spike-2'];
+        this.pointBlocks = ['coin'];
     }
 
     checkPosY(entity, screen) {
+
+        // console.log(this.tileMatrix)
 
         const matches = this.tiles.searchByRange(
             entity.pos.x, entity.pos.x + entity.size.x,
@@ -16,16 +19,24 @@ export default class TileCollision {
 
         matches.forEach(match => {
 
-            if(match.tile.name == 'win-block') {
+            // console.log(match);
+
+            if (match.tile.name == 'win-block') {
                 return;
             }
-            
+
             if (match.tile.name !== 'ground') {
 
                 if (this.killBlocks.includes(match.tile.name)) {
+                    console.log('ffff');
                     entity.pos.set(64, 64);
-                    entity.lives = entity.lives -1;
+                    entity.lives = entity.lives - 1;
                     screen.position.set(0, 0);
+                }
+                
+                if (this.pointBlocks.includes(match.tile.name)) {
+                    entity.points = entity.points + 100;
+                    console.log('hello');
                 }
 
                 return;
@@ -58,14 +69,16 @@ export default class TileCollision {
 
         matches.forEach(match => {
 
-            if(match.tile.name == 'win-block') {
+            // console.log(match);
+
+            if (match.tile.name == 'win-block') {
                 return;
             }
 
             if (match.tile.type !== 'ground') {
                 if (this.killBlocks.includes(match.tile.name)) {
                     entity.pos.set(64, 64);
-                    entity.lives = entity.lives -1;
+                    entity.lives = entity.lives - 1;
                     screen.position.set(0, 0);
                 }
                 return;

@@ -82,6 +82,8 @@ function level1() {
                 checkCollision(character, enemy2, screen);
                 checkCollision(character, enemy3, screen);
 
+                console.log(character.pos.x / 16, character.pos.y / 16);
+
                 character.vel.y += gravity * deltaTime;
 
                 if (checkWinBlock(1426, 160, character)) {
@@ -132,6 +134,7 @@ function level2() {
                 if (character.pos.x > 100) {
                     screen.position.x = character.pos.x - 100;
                 }
+
 
                 level.game.draw(context, screen);
 
@@ -199,6 +202,8 @@ function level3() {
                 checkCollision(character, enemy2, screen);
                 checkCollision(character, enemy3, screen);
 
+                console.log(character.pos.x / 16, character.pos.y / 16);
+
 
                 if (checkWinBlock(1266, 160, character)) {
                     gameComplete(character);
@@ -231,7 +236,6 @@ function gameComplete(character) {
 
 function getMousePos(canvas, event) {
     var rect = canvas.getBoundingClientRect();
-    
     return {
         x: event.clientX - rect.left,
         y: event.clientY - rect.top
