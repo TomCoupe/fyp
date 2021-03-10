@@ -9,13 +9,13 @@ export default class TileCollision {
         this.pointBlocks = ['coin'];
     }
 
-    checkPosY(entity, screen) {
+    checkPosY(entity, screen, level) {
 
         // console.log(this.tileMatrix)
 
         const matches = this.tiles.searchByRange(
-            entity.pos.x, entity.pos.x + entity.size.x,
-            entity.pos.y, entity.pos.y + entity.size.y);
+            entity.pos.x, entity.pos.x + entity.size.x, //x1, x2
+            entity.pos.y, entity.pos.y + entity.size.y); //y1, y2
 
         matches.forEach(match => {
 
@@ -28,15 +28,18 @@ export default class TileCollision {
             if (match.tile.name !== 'ground') {
 
                 if (this.killBlocks.includes(match.tile.name)) {
-                    console.log('ffff');
+                    // console.log('ffff');
                     entity.pos.set(64, 64);
                     entity.lives = entity.lives - 1;
                     screen.position.set(0, 0);
                 }
                 
-                if (this.pointBlocks.includes(match.tile.name)) {
-                    entity.points = entity.points + 100;
-                    console.log('hello');
+                if (match.tile.name === 'coin' && entity.type === 'player') {
+                    if(this.tiles.matrix.grid[Math.round(entity.pos.x/16)][Math.round(entity.pos.y/16)].name == 'coin') {
+                        this.tiles.matrix.grid[Math.round(entity.pos.x/16)][Math.round(entity.pos.y/16)].name = 'sky';
+                        entity.points = entity.points + 100;
+                        console.log(entity.points);
+                    }
                 }
 
                 return;
@@ -61,7 +64,7 @@ export default class TileCollision {
         })
     }
 
-    checkPosX(entity, screen) {
+    checkPosX(entity, screen, context) {
 
         const matches = this.tiles.searchByRange(
             entity.pos.x, entity.pos.x + entity.size.x,

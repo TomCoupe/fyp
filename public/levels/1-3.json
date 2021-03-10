@@ -245,6 +245,7 @@
         },
         {
             "tile": "coin",
+            "type": "coin",
             "ranges": [
                 [
                     17, 1, 4

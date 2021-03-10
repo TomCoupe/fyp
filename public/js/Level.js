@@ -20,11 +20,11 @@ export default class Level {
             entity.update(deltaTime);
             //Set position to the x velocity of the entity multiplied by deltaTime
             entity.pos.x += entity.vel.x * deltaTime;
-            this.tileCollision.checkPosX(entity, screen);
+            this.tileCollision.checkPosX(entity, screen, this);
             
             //Set position to the y velocity of the entity multiplied by deltaTime
             entity.pos.y += entity.vel.y * deltaTime;
-            this.tileCollision.checkPosY(entity, screen);
+            this.tileCollision.checkPosY(entity, screen, this);
         })
     }
 }

@@ -170,6 +170,7 @@ function level3() {
         const screen = new Screen();
 
         character.pos.set(64, 64);
+        character.type = 'player';
 
         enemy1.pos.set(688, 144);
         enemy2.pos.set(767, 144);
@@ -202,7 +203,7 @@ function level3() {
                 checkCollision(character, enemy2, screen);
                 checkCollision(character, enemy3, screen);
 
-                console.log(character.pos.x / 16, character.pos.y / 16);
+                // console.log(character.pos.x / 16, character.pos.y / 16);
 
 
                 if (checkWinBlock(1266, 160, character)) {

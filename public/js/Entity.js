@@ -21,6 +21,8 @@ export default class Entity {
         this.lives = 3;
         this.points = 0;
         this.traits = [];
+
+        this.type = '';
     }
 
     addTrait(trait) {
