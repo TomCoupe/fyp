@@ -23,6 +23,7 @@ export default class Entity {
         this.traits = [];
 
         this.type = '';
+        this.dead = false;
     }
 
     addTrait(trait) {

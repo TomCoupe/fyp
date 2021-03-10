@@ -25,9 +25,12 @@ export default class TileCollision {
 
                 if (this.killBlocks.includes(match.tile.name)) {
                     entity.pos.set(64, 64);
-                    entity.lives = entity.lives - 1;
-
                     screen.position.set(0, 0);
+                    if (entity.lives > 0) {
+                        entity.lives = entity.lives - 1;
+                    } else {
+                        entity.dead = true;
+                    } 
                 }
                 
                 if (match.tile.name === 'coin' && entity.type === 'player') {

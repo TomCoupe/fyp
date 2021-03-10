@@ -15,7 +15,7 @@ const LEVEL2 = '1-2';
 const LEVEL3 = '1-3';
 
 //declaring vars
-var currentLevel = 2;
+var currentLevel = 1;
 var time = '';
 var seconds = 0;
 var mins = 0;
@@ -37,7 +37,7 @@ var rect = {
 context.scale(2.5, 2.5);
 
 setInterval(updateTime, 1000);
-level2();
+level1();
 
 
 function level1() {
@@ -90,7 +90,7 @@ function level1() {
                 if (checkWinBlock(1426, 160, character)) {
                     timer.stop();
                     currentLevel = 2;
-                    level2();
+                    level2(character.points, character.lives);
                     return;
                 }
             }
@@ -99,7 +99,7 @@ function level1() {
     });
 }
 
-function level2() {
+function level2(points, lives) {
     Promise.all([
         createCharacter(),
         createEnemy1(),
@@ -112,6 +112,8 @@ function level2() {
 
         character.pos.set(64, 64);
         character.type = 'player';
+        character.points = points;
+        character.lives = lives;
 
         enemy1.pos.set(498, 144);
         enemy2.pos.set(464, 144);
@@ -149,7 +151,7 @@ function level2() {
                 if (checkWinBlock(1088, 96, character)) {
                     timer.stop();
                     currentLevel = 3;
-                    level3();
+                    level3(character.points, character.lives);
                     return;
                 }
 
@@ -161,7 +163,7 @@ function level2() {
     });
 }
 
-function level3() {
+function level3(points, lives) {
     Promise.all([
         createCharacter(),
         createEnemy3(),
@@ -173,6 +175,8 @@ function level3() {
         const screen = new Screen();
 
         character.pos.set(64, 64);
+        character.points = points;
+        character.lives = lives;
         character.type = 'player';
 
         enemy1.pos.set(688, 144);
