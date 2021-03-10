@@ -15,7 +15,7 @@ const LEVEL2 = '1-2';
 const LEVEL3 = '1-3';
 
 //declaring vars
-var currentLevel = 1;
+var currentLevel = 2;
 var time = '';
 var seconds = 0;
 var mins = 0;
@@ -37,7 +37,7 @@ var rect = {
 context.scale(2.5, 2.5);
 
 setInterval(updateTime, 1000);
-level1();
+level2();
 
 
 function level1() {
@@ -83,7 +83,7 @@ function level1() {
                 checkCollision(character, enemy2, screen);
                 checkCollision(character, enemy3, screen);
 
-                console.log(character.pos.x / 16, character.pos.y / 16);
+                console.log(Math.round(character.pos.x / 16), Math.round(character.pos.y / 16));
 
                 character.vel.y += gravity * deltaTime;
 
@@ -144,6 +144,7 @@ function level2() {
 
                 checkCollision(character, enemy1, screen);
                 checkCollision(character, enemy2, screen);
+                console.log(character.pos.x/16, character.pos.y/16);
 
                 if (checkWinBlock(1088, 96, character)) {
                     timer.stop();
