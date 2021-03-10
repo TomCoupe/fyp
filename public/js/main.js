@@ -15,7 +15,7 @@ const LEVEL2 = '1-2';
 const LEVEL3 = '1-3';
 
 //declaring vars
-var currentLevel = 3;
+var currentLevel = 1;
 var time = '';
 var seconds = 0;
 var mins = 0;
@@ -37,7 +37,7 @@ var rect = {
 context.scale(2.5, 2.5);
 
 setInterval(updateTime, 1000);
-level3();
+level1();
 
 
 function level1() {
@@ -56,6 +56,7 @@ function level1() {
         enemy3.pos.set(1250, 96);
 
         character.pos.set(64, 64);
+        character.type = 'player';
 
         level.game.layers.push(createCollisionLayer(level), createScreenLayer(screen));
         level.entities.add(enemy1);
@@ -68,7 +69,7 @@ function level1() {
         const timer = new Timer(1 / 60);
         timer.update = function update(deltaTime) {
             if (currentLevel == 1) {
-                level.update(deltaTime, screen);
+                level.update(deltaTime, screen, context);
 
                 if (character.pos.x > 100) {
                     screen.position.x = character.pos.x - 100;
@@ -110,6 +111,7 @@ function level2() {
         const screen = new Screen();
 
         character.pos.set(64, 64);
+        character.type = 'player';
 
         enemy1.pos.set(498, 144);
         enemy2.pos.set(464, 144);
@@ -129,7 +131,7 @@ function level2() {
         const timer = new Timer(1 / 60);
         timer.update = function update(deltaTime) {
             if (currentLevel == 2) {
-                level.update(deltaTime, screen);
+                level.update(deltaTime, screen, context);
 
                 if (character.pos.x > 100) {
                     screen.position.x = character.pos.x - 100;
@@ -189,7 +191,7 @@ function level3() {
         const timer = new Timer(1 / 60);
         timer.update = function update(deltaTime) {
             if (currentLevel == 3) {
-                level.update(deltaTime, screen);
+                level.update(deltaTime, screen, context);
 
                 if (character.pos.x > 100) {
                     screen.position.x = character.pos.x - 100;
@@ -202,9 +204,6 @@ function level3() {
                 checkCollision(character, enemy1, screen);
                 checkCollision(character, enemy2, screen);
                 checkCollision(character, enemy3, screen);
-
-                // console.log(character.pos.x / 16, character.pos.y / 16);
-
 
                 if (checkWinBlock(1266, 160, character)) {
                     gameComplete(character);

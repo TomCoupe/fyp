@@ -30,7 +30,7 @@ export function updateUI(context, screen, player, time) {
     //points
     context.font = '8px Comic Sans MS';
     context.fillStyle = 'white';
-    context.fillText(0 + ' points', screen.size.x - 252, screen.size.y - 190);
+    context.fillText(player.points + ' points', screen.size.x - 252, screen.size.y - 190);
 }
 
 export function gameEnd(character, mins, seconds) {

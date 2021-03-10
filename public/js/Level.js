@@ -12,19 +12,18 @@ export default class Level {
 
     }
 
-    update(deltaTime, screen) {
+    update(deltaTime, screen, context) {
         this.entities.forEach(entity => {
 
-            // console.log(this.tileMatrix.grid.x);
-
             entity.update(deltaTime);
+
             //Set position to the x velocity of the entity multiplied by deltaTime
             entity.pos.x += entity.vel.x * deltaTime;
-            this.tileCollision.checkPosX(entity, screen, this);
+            this.tileCollision.checkPosX(entity, screen, this, context);
             
             //Set position to the y velocity of the entity multiplied by deltaTime
             entity.pos.y += entity.vel.y * deltaTime;
-            this.tileCollision.checkPosY(entity, screen, this);
+            this.tileCollision.checkPosY(entity, screen, this, context);
         })
     }
 }
