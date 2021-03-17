@@ -2629,6 +2629,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 $(document).ready(function () {
   $('[data-toggle="tooltip"]').tooltip();
 });
@@ -2636,7 +2664,25 @@ $(document).ready(function () {
   name: "ProfilePage.vue",
   props: ["user", "bestscore", "underthree", "fulllives", "highestpoints"],
   data: function data() {
-    return {};
+    return {
+      bestScore: this.bestscore,
+      underThree: this.underthree,
+      fullLives: this.fulllives,
+      highestPoints: this.highestpoints
+    };
+  },
+  methods: {
+    checkForAchievements: function checkForAchievements() {
+      var arr = [this.bestScore, this.underThree, this.fullLives, this.highestPoints];
+
+      for (var i = 0; i < arr.length; i++) {
+        if (arr[i].length !== 0) {
+          return true;
+        }
+      }
+
+      return false;
+    }
   }
 });
 
@@ -39023,7 +39069,34 @@ var render = function() {
       _c("h5", [_vm._v(_vm._s(this.user.name) + "'s Profile")])
     ]),
     _vm._v(" "),
-    _vm._m(0)
+    _c("div", { staticClass: "card-body" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("h5", [_vm._v("Achievements")]),
+      _vm._v(" \n    "),
+      _c(
+        "div",
+        { staticClass: "row" },
+        [
+          _vm.checkForAchievements() === true
+            ? [
+                _vm.fullLives.length !== 0 ? [_vm._m(1)] : _vm._e(),
+                _vm._v(" "),
+                _vm.underThree.length !== 0 ? [_vm._m(2)] : _vm._e(),
+                _vm._v(" "),
+                _vm.underThree.length !== 0 && _vm.highestPoints.length !== 0
+                  ? [_vm._m(3)]
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.highestPoints.length !== 0 ? [_vm._m(4)] : _vm._e()
+              ]
+            : _vm.checkForAchievements() === false
+            ? [_c("p", [_vm._v("No Achievements earned yet!")])]
+            : _vm._e()
+        ],
+        2
+      )
+    ])
   ])
 }
 var staticRenderFns = [
@@ -39031,79 +39104,89 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-body" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-3" }, [
-          _c("img", { attrs: { src: "/images/pfp.png", width: "100" } })
-        ]),
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-3" }, [
+        _c("img", { attrs: { src: "/images/pfp.png", width: "100" } })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-9" }, [
+        _c("h5", [_vm._v("Best Score:")]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-md-9" }, [
-          _c("h5", [_vm._v("Best Score:")]),
+        _c("table", { staticClass: "table" }, [
+          _c("thead", { staticClass: "thead-dark" }, [
+            _c("tr", [
+              _c("th", { attrs: { scope: "col" } }, [_vm._v("Points")]),
+              _vm._v(" "),
+              _c("th", { attrs: { scope: "col" } }, [_vm._v("Time Taken")])
+            ])
+          ]),
           _vm._v(" "),
-          _c("table", { staticClass: "table" }, [
-            _c("thead", { staticClass: "thead-dark" }, [
-              _c("tr", [
-                _c("th", { attrs: { scope: "col" } }, [_vm._v("Points")]),
-                _vm._v(" "),
-                _c("th", { attrs: { scope: "col" } }, [_vm._v("Time Taken")])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("tbody", [
-              _c("tr", [
-                _c("td", [_vm._v("points")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("time")])
-              ])
+          _c("tbody", [
+            _c("tr", [
+              _c("td", [_vm._v("points")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("time")])
             ])
           ])
         ])
-      ]),
-      _vm._v(" "),
-      _c("h5", [_vm._v("Achievements")]),
-      _vm._v("\n         \n        "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-sm-3 text-center" }, [
-          _c("i", {
-            staticClass: "fas fa-award fa-2x",
-            attrs: {
-              "data-toggle": "tooltip",
-              title: "Completed all three levels without dying"
-            }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3 text-center" }, [
-          _c("i", {
-            staticClass: "fas fa-clock fa-2x",
-            attrs: {
-              "data-toggle": "tooltip",
-              title: "Completed the game in under three minutes"
-            }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3 text-center" }, [
-          _c("i", {
-            staticClass: "fas fa-crown fa-2x",
-            attrs: {
-              "data-toggle": "tooltip",
-              title:
-                "Completed the game in under three minutes with all coins collected"
-            }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3 text-center" }, [
-          _c("i", {
-            staticClass: "fas fa-dollar-sign fa-2x",
-            attrs: {
-              "data-toggle": "tooltip",
-              title: "Completed the game with all coins collected"
-            }
-          })
-        ])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-3 text-center" }, [
+      _c("i", {
+        staticClass: "fas fa-award fa-2x",
+        attrs: {
+          "data-toggle": "tooltip",
+          title: "Completed all three levels without dying"
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-3 text-center" }, [
+      _c("i", {
+        staticClass: "fas fa-clock fa-2x",
+        attrs: {
+          "data-toggle": "tooltip",
+          title: "Completed the game in under three minutes"
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-3 text-center" }, [
+      _c("i", {
+        staticClass: "fas fa-crown fa-2x",
+        attrs: {
+          "data-toggle": "tooltip",
+          title:
+            "Completed the game in under three minutes with all coins collected"
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-3 text-center" }, [
+      _c("i", {
+        staticClass: "fas fa-dollar-sign fa-2x",
+        attrs: {
+          "data-toggle": "tooltip",
+          title: "Completed the game with all coins collected"
+        }
+      })
     ])
   }
 ]
