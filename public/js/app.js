@@ -2505,9 +2505,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    console.log('Component mounted.');
-  },
   data: function data() {
     return {};
   }
@@ -2595,6 +2592,46 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+$(document).ready(function () {
+  $('[data-toggle="tooltip"]').tooltip();
+});
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ProfilePage.vue",
   props: ["user"],
@@ -39001,7 +39038,51 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-md-9" }, [
-          _vm._v("\n                dsfhbkjsdbfkjsdb\n            ")
+          _c("h5", [_vm._v("Best Score:")]),
+          _vm._v(" "),
+          _c("table", { staticClass: "table" }, [
+            _c("thead", { staticClass: "thead-dark" }, [
+              _c("tr", [
+                _c("th", { attrs: { scope: "col" } }, [_vm._v("Points")]),
+                _vm._v(" "),
+                _c("th", { attrs: { scope: "col" } }, [_vm._v("Time Taken")])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tbody", [
+              _c("tr", [
+                _c("td", [_vm._v("points")]),
+                _vm._v(" "),
+                _c("td", [_vm._v("time")])
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("h5", [_vm._v("Achievements")]),
+      _vm._v("\n         \n        "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-sm-3 text-center" }, [
+          _c("i", {
+            staticClass: "fas fa-award fa-2x",
+            attrs: {
+              "data-toggle": "tooltip",
+              title: "Completed all three levels without dying"
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-3 text-center" }, [
+          _c("i", { staticClass: "fas fa-clock fa-2x" })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-3 text-center" }, [
+          _c("i", { staticClass: "fas fa-crown fa-2x" })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-3 text-center" }, [
+          _c("i", { staticClass: "fas fa-dollar-sign fa-2x" })
         ])
       ])
     ])

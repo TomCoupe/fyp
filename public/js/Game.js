@@ -5,7 +5,6 @@ export default class Game {
 
     draw(context, screen) {
         this.layers.forEach(layer => {
-            // console.log(layer);
             layer(context, screen);
         });
     }
