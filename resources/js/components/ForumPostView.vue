@@ -5,6 +5,7 @@
         <div class="card-header">
           <div class="float-left">
             <h5>{{post.title}}</h5>
+            <h6> Posted by: {{user[0].name}}</h6>
           </div>
           <div class="float-right">
             <button class="btn btn-outline-dark" @click="goBack">
@@ -88,7 +89,7 @@
 const axios = require("axios");
 export default {
   name: "ForumPostView.vue",
-  props: ["post", "comments", "likes", "dislikes"],
+  props: ["post", "comments", "likes", "dislikes", "user"],
 
   data() {
     return {

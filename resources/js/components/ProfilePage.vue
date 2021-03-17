@@ -15,13 +15,17 @@
               <tr>
                 <th scope="col">Points</th>
                 <th scope="col">Time Taken</th>
+                <th scope="col">Lives</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>points</td>
-                <td>time</td>
-              </tr>
+                <template v-for="score in bestScore">
+                    <tr>
+                        <td>{{score.points}}</td>
+                        <td>{{score.minutes + 'm ' + score.seconds + 's'}}</td>   
+                        <td>{{score.lives}}</td>
+                    </tr>
+              </template>
             </tbody>
           </table>
         </div>

@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Repositories\ForumPostRepository;
+use App\Repositories\UserRepository;
 use Carbon\Carbon;
 
 
@@ -10,11 +11,12 @@ class ForumPostService
 {
 
     protected $repository;
+    protected $userRepository;
 
-    public function __construct(ForumPostRepository $repository)
+    public function __construct(ForumPostRepository $repository, UserRepository $userRepository)
     {
-
         $this->repository = $repository;
+        $this->userRepository = $userRepository;
     }
 
     //function that takes $amount in params and returns relevant amount of forum posts.
@@ -100,6 +102,10 @@ class ForumPostService
 
     public function addDislike($postID, $userId) {
         return $this->repository->addDislike($postID, $userId);
+    }
+
+    public function getUserFromPost($id) {
+        return $this->userRepository->getNameByID($id);
     }
 
     public function validateLikeOrDislikePayload($request) { 

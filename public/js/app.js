@@ -2427,11 +2427,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ForumPostView.vue",
-  props: ["post", "comments", "likes", "dislikes"],
+  props: ["post", "comments", "likes", "dislikes", "user"],
   data: function data() {
     return {
       post: this.post // dislikes: this.dislikes,
@@ -2574,6 +2575,10 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
 //
 //
 //
@@ -38679,7 +38684,9 @@ var render = function() {
       _c("div", { staticClass: "card" }, [
         _c("div", { staticClass: "card-header" }, [
           _c("div", { staticClass: "float-left" }, [
-            _c("h5", [_vm._v(_vm._s(_vm.post.title))])
+            _c("h5", [_vm._v(_vm._s(_vm.post.title))]),
+            _vm._v(" "),
+            _c("h6", [_vm._v(" Posted by: " + _vm._s(_vm.user[0].name))])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "float-right" }, [
@@ -39070,7 +39077,39 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "card-body" }, [
-      _vm._m(0),
+      _c("div", { staticClass: "row" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-9" }, [
+          _c("h5", [_vm._v("Best Score:")]),
+          _vm._v(" "),
+          _c("table", { staticClass: "table" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              [
+                _vm._l(_vm.bestScore, function(score) {
+                  return [
+                    _c("tr", [
+                      _c("td", [_vm._v(_vm._s(score.points))]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(
+                          _vm._s(score.minutes + "m " + score.seconds + "s")
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(score.lives))])
+                    ])
+                  ]
+                })
+              ],
+              2
+            )
+          ])
+        ])
+      ]),
       _vm._v(" "),
       _c("h5", [_vm._v("Achievements")]),
       _vm._v(" \n    "),
@@ -39080,15 +39119,15 @@ var render = function() {
         [
           _vm.checkForAchievements() === true
             ? [
-                _vm.fullLives.length !== 0 ? [_vm._m(1)] : _vm._e(),
+                _vm.fullLives.length !== 0 ? [_vm._m(2)] : _vm._e(),
                 _vm._v(" "),
-                _vm.underThree.length !== 0 ? [_vm._m(2)] : _vm._e(),
+                _vm.underThree.length !== 0 ? [_vm._m(3)] : _vm._e(),
                 _vm._v(" "),
                 _vm.underThree.length !== 0 && _vm.highestPoints.length !== 0
-                  ? [_vm._m(3)]
+                  ? [_vm._m(4)]
                   : _vm._e(),
                 _vm._v(" "),
-                _vm.highestPoints.length !== 0 ? [_vm._m(4)] : _vm._e()
+                _vm.highestPoints.length !== 0 ? [_vm._m(5)] : _vm._e()
               ]
             : _vm.checkForAchievements() === false
             ? [_c("p", [_vm._v("No Achievements earned yet!")])]
@@ -39104,31 +39143,21 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-3" }, [
-        _c("img", { attrs: { src: "/images/pfp.png", width: "100" } })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-9" }, [
-        _c("h5", [_vm._v("Best Score:")]),
+    return _c("div", { staticClass: "col-md-3" }, [
+      _c("img", { attrs: { src: "/images/pfp.png", width: "100" } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "thead-dark" }, [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Points")]),
         _vm._v(" "),
-        _c("table", { staticClass: "table" }, [
-          _c("thead", { staticClass: "thead-dark" }, [
-            _c("tr", [
-              _c("th", { attrs: { scope: "col" } }, [_vm._v("Points")]),
-              _vm._v(" "),
-              _c("th", { attrs: { scope: "col" } }, [_vm._v("Time Taken")])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("tbody", [
-            _c("tr", [
-              _c("td", [_vm._v("points")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("time")])
-            ])
-          ])
-        ])
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Time Taken")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Lives")])
       ])
     ])
   },

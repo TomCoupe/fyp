@@ -8,7 +8,8 @@
     :post="{{ json_encode($post) }}" 
     :comments="{{$comments}}" 
     :likes="{{$likes}}" 
-    :dislikes="{{$dislikes}}">
+    :dislikes="{{$dislikes}}"
+    :user="{{$user}}">
     </forum-post-view>
 </div>
 @endsection

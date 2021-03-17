@@ -70,6 +70,7 @@ class ForumController extends Controller
         }
 
         $post = $this->service->findByPostId($id);
+        $userFromPost = $this->service->getUserFromPost($post->user_id);
         if ($post !== null) {
             $comments = $this->service->getPostCommentsByPostId($id);
             $commentsArray = [];
@@ -83,7 +84,8 @@ class ForumController extends Controller
                     'post' => $post,
                     'comments' => json_encode($commentsArray),
                     'likes' => json_encode($likes),
-                    'dislikes' => json_encode($dislikes)
+                    'dislikes' => json_encode($dislikes),
+                    'user' => json_encode($userFromPost)
                 ]
             );
         }
