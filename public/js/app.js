@@ -2634,7 +2634,7 @@ $(document).ready(function () {
 });
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ProfilePage.vue",
-  props: ["user"],
+  props: ["user", "bestscore", "underthree", "fulllives", "highestpoints"],
   data: function data() {
     return {};
   }
@@ -39074,15 +39074,34 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-sm-3 text-center" }, [
-          _c("i", { staticClass: "fas fa-clock fa-2x" })
+          _c("i", {
+            staticClass: "fas fa-clock fa-2x",
+            attrs: {
+              "data-toggle": "tooltip",
+              title: "Completed the game in under three minutes"
+            }
+          })
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-sm-3 text-center" }, [
-          _c("i", { staticClass: "fas fa-crown fa-2x" })
+          _c("i", {
+            staticClass: "fas fa-crown fa-2x",
+            attrs: {
+              "data-toggle": "tooltip",
+              title:
+                "Completed the game in under three minutes with all coins collected"
+            }
+          })
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-sm-3 text-center" }, [
-          _c("i", { staticClass: "fas fa-dollar-sign fa-2x" })
+          _c("i", {
+            staticClass: "fas fa-dollar-sign fa-2x",
+            attrs: {
+              "data-toggle": "tooltip",
+              title: "Completed the game with all coins collected"
+            }
+          })
         ])
       ])
     ])

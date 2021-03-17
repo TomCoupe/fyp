@@ -36,17 +36,17 @@
 
                 <!-- complete game in under 3 minutes -->
                 <div class="col-sm-3 text-center">
-                    <i class="fas fa-clock fa-2x"></i>
+                    <i class="fas fa-clock fa-2x" data-toggle="tooltip" title="Completed the game in under three minutes"></i>
                 </div>
 
                 <!-- complete game in under 3 minutes with all coins collected-->
                 <div class="col-sm-3 text-center">
-                    <i class="fas fa-crown fa-2x"></i>
+                    <i class="fas fa-crown fa-2x" data-toggle="tooltip" title="Completed the game in under three minutes with all coins collected"></i>
                 </div>
 
                 <!-- complete game with all coins collected -->
                 <div class="col-sm-3 text-center">
-                    <i class="fas fa-dollar-sign fa-2x"></i>
+                    <i class="fas fa-dollar-sign fa-2x" data-toggle="tooltip" title="Completed the game with all coins collected"></i>
                 </div>
             </div>
         </div>
@@ -55,12 +55,12 @@
 
 <script>
 $(document).ready(function(){
-        $('[data-toggle="tooltip"]').tooltip();   
-    });
-    
+    $('[data-toggle="tooltip"]').tooltip();   
+});
+
 export default {
     name: "ProfilePage.vue",
-    props: ["user"],
+    props: ["user", "bestscore", "underthree", "fulllives", "highestpoints"],
     data() {
         return {
 

@@ -21,7 +21,24 @@ class LeaderboardRepository {
         ]);
     }
 
-    public function getTopTen() {
-        return $this->model->orderBy('points', 'DESC')->orderBy('minutes', 'ASC')->orderBy('seconds', 'ASC')->take(10)->get();
+    public function getTopScores($amount) {
+        return $this->model->orderBy('points', 'DESC')->orderBy('minutes', 'ASC')->orderBy('seconds', 'ASC')->take($amount)->get();
     }
+
+    public function getTopScoresForUser($user, $amount) {
+        return $this->model->where('user_id', $user->id)->orderBy('points', 'DESC')->orderBy('minutes', 'ASC')->orderBy('seconds', 'ASC')->take($amount)->get();
+    }
+
+    public function getTimeUnderThree($user) {
+        return $this->model->where('user_id', $user->id)->where('minutes', '<', 3)->get();
+    }
+
+    public function getScoreWithFullLives($user) {
+        return $this->model->where('user_id', $user->id)->where('lives', '=', 3)->get();
+    }
+    
+    public function getHighestPoints($user) {
+        return $this->model->where('user_id', $user->id)->where('points', '=', 2000)->get();
+    }
+
 }
