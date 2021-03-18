@@ -87,6 +87,12 @@ function level1() {
 
                 character.vel.y += gravity * deltaTime;
 
+                if(character.lives == 0) {
+                    currentLevel = 0;
+                    gameOver(character);
+                    return;
+                }
+
                 if (checkWinBlock(1426, 160, character)) {
                     timer.stop();
                     currentLevel = 2;
@@ -146,7 +152,12 @@ function level2(points, lives) {
 
                 checkCollision(character, enemy1, screen);
                 checkCollision(character, enemy2, screen);
-                console.log(character.pos.x/16, character.pos.y/16);
+                
+
+                if(character.lives == 0) {
+                    lastPageRestart(context, character, time, true);
+                    return;
+                }
 
                 if (checkWinBlock(1088, 96, character)) {
                     timer.stop();
@@ -210,6 +221,11 @@ function level3(points, lives) {
                 checkCollision(character, enemy2, screen);
                 checkCollision(character, enemy3, screen);
 
+                if(character.lives == 0) {
+                    lastPageRestart(context, character, time, true)
+                    return;
+                }
+
                 if (checkWinBlock(1266, 160, character)) {
                     gameComplete(character);
                     currentLevel = 4;
@@ -237,6 +253,12 @@ function gameComplete(character) {
     listen();
     gameEnd(character, mins, seconds);
     lastPageRestart(context, character, time);
+}
+
+function gameOver(character) {
+    listen();
+    // gameEnd(character, mins, seconds);
+    lastPageRestart(context, character, time, true);
 }
 
 function getMousePos(canvas, event) {

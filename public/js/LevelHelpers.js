@@ -60,7 +60,7 @@ export function gameEnd(character, mins, seconds) {
     })
 }
 
-export function lastPageRestart(context, character, time) {
+export function lastPageRestart(context, character, time, dead = false) {
     //top rect
     context.beginPath();
     context.rect(0, 0, 300, 40);
@@ -70,7 +70,11 @@ export function lastPageRestart(context, character, time) {
     context.closePath();
     context.font = '20px Comic Sans MS';
     context.fillStyle = 'white';
-    context.fillText('Game Complete!', 55, 25);
+    if(dead === true){
+        context.fillText('Game Over!', 75, 25);
+    } else {
+        context.fillText('Game Complete!', 55, 25);
+    }
 
     //bottom rect
     context.beginPath();
