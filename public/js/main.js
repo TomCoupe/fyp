@@ -83,7 +83,7 @@ function level1() {
                 checkCollision(character, enemy2, screen);
                 checkCollision(character, enemy3, screen);
 
-                console.log(Math.round(character.pos.x / 16), Math.round(character.pos.y / 16));
+                // console.log(Math.round(character.pos.x / 16), Math.round(character.pos.y / 16));
 
                 character.vel.y += gravity * deltaTime;
 
@@ -155,7 +155,8 @@ function level2(points, lives) {
                 
 
                 if(character.lives == 0) {
-                    lastPageRestart(context, character, time, true);
+                    currentLevel = 0;
+                    gameOver(character);
                     return;
                 }
 
@@ -222,7 +223,8 @@ function level3(points, lives) {
                 checkCollision(character, enemy3, screen);
 
                 if(character.lives == 0) {
-                    lastPageRestart(context, character, time, true)
+                    currentLevel = 0;
+                    gameOver(character);
                     return;
                 }
 
@@ -257,7 +259,6 @@ function gameComplete(character) {
 
 function gameOver(character) {
     listen();
-    // gameEnd(character, mins, seconds);
     lastPageRestart(context, character, time, true);
 }
 
