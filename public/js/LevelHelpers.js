@@ -1,6 +1,6 @@
 export function checkCollision(character, enemy, screen) {
-    if (Math.round(enemy.pos.x + enemy.size.x) === Math.round(character.pos.x + enemy.size.x) && 
-    Math.round(enemy.pos.y + enemy.size.y) === Math.round(character.pos.y + character.size.y)) {
+    if (Math.round(enemy.pos.x/16) === Math.round(character.pos.x/16) && 
+    Math.round(enemy.pos.y/16) === Math.round(character.pos.y/16)) {
         character.pos.set(64, 64);
         screen.position.set(0, 0);
         if (character.lives > 0) {
@@ -14,7 +14,7 @@ export function checkWinBlock(xPos, yPos, character) {
         return true;
     }
     return false;
-}
+}   
 
 export function updateUI(context, screen, player, time) {
     //time
