@@ -27,6 +27,7 @@ export default class Jump extends Trait {
         }
     }
 
+    //if player has started jumping, minus y velocity by velocity, and minus deltatime from engagetime until 0.
     update(entity, deltaTime) {
         if (this.engageTime > 0) {
             entity.vel.y = -this.velocity;

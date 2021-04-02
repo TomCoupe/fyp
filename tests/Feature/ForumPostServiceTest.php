@@ -26,15 +26,14 @@ class ForumPostServiceTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function testFindByPostId() {
-        $post = ForumPost::create([
-            'user_id' => 1,
-            'text' => 'test test test',
-            'likes' => 1,
-            'dislikes' => 2,
-            'title' => 'test title'
-        ]);
-        dd($post);
-    }
-
+    // public function testFindByPostId() {
+    //     $post = ForumPost::create([
+    //         'user_id' => 1,
+    //         'text' => 'test test test',
+    //         'likes' => 1,
+    //         'dislikes' => 2,
+    //         'title' => 'test title'
+    //     ]);
+    //     dd($post);
+    // }
 }
