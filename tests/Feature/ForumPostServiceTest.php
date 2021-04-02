@@ -26,6 +26,12 @@ class ForumPostServiceTest extends TestCase
         $response->assertStatus(200);
     }
 
+    public function testGame() {
+        $response = $this->get('/game');
+
+        $response->assertStatus(200);
+    }
+
     // public function testFindByPostId() {
     //     $post = ForumPost::create([
     //         'user_id' => 1,

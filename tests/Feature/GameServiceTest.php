@@ -16,9 +16,9 @@ class GameServiceTest extends TestCase
      * @return void
      */
     
-    public function setup(): void {
-        $this->service = resolve(GameService::class);
-    }
+    // public function setup(): void {
+        
+    // }
 
     public function testGameRoute() {
         $response = $this->get('/game');
