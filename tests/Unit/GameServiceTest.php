@@ -14,26 +14,28 @@ class GameServiceTest extends TestCase
      * @return void
      */
 
-    public function setup(): void {
-        $this->service = resolve(GameService::class);
-    }
+    // public function setup(): void {
+    //     parent::setup();
+    //     $this->service = resolve(GameService::class);
+    // }
 
     public function testExample()
     {
         $this->assertTrue(true);
     }
 
-    // public function testGetTopTenScores() {
+    public function testGetTopTenScores() {
+        $this->service = resolve(GameService::class);
 
-    //     Leaderboard::create([
-    //         'user_id' => 1,
-    //         'lives' => 3,
-    //         'points' => 200,
-    //         'minutes' => 1,
-    //         'seconds' => 20
-    //     ]);
+        Leaderboard::create([
+            'user_id' => 1,
+            'lives' => 3,
+            'points' => 200,
+            'minutes' => 1,
+            'seconds' => 20
+        ]);
         
-    //     $list = $this->service->getLeaderboardList();
-    //     $this->assertNotNull($list);
-    // }
+        $list = $this->service->getLeaderboardList();
+        $this->assertNotNull($list);
+    }
 }
