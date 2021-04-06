@@ -7,6 +7,7 @@ use App\Services\ForumPostService;
 use Tests\TestCase;
 use App\ForumPost;
 use App\User;
+use App\ForumComment;
 use Exception;
 class ForumPostServiceTest extends TestCase
 {
@@ -99,6 +100,53 @@ class ForumPostServiceTest extends TestCase
     public function testFindPostByIdOnFake() {
         $returnedPost = $this->service->findByPostId(3000);
         $this->assertNull($returnedPost);
+    }
+
+    public function testGetPostCommentsByPostId() {
+        $user = User::create([
+            'name' => 'Tom',
+            'email' => 'tom@tom.com',
+            'password' => bcrypt('password123')
+        ]);
+        $post = ForumPost::create([
+            'user_id' => $user->id,
+            'text' => 'testing is boring',
+            'likes' => 1,
+            'dislikes' => 1,
+            'title' => 'yawn'
+        ]);
+        $comment = ForumComment::create([
+            'forum_post_id' => $post->id,
+            'text' => 'test data',
+            'user_id' => $user->id,
+            'likes' => 1,
+            'dislikes' => 1
+        ]);
+
+        $returnedComments = $this->service->getPostCommentsByPostId($post->id);
+        $this->assertNotNull($returnedComments);
+        $this->assertEquals($returnedComments[0]['text'], $comment->text);
+        $this->assertEquals($returnedComments[0]['forum_post_id'], $comment->forum_post_id);
+        $this->assertEquals($returnedComments[0]['user_id'], $comment->user_id);
+    }
+
+    public function testGetNullPostCommentsByPostId() {
+        $user = User::create([
+            'name' => 'Tom',
+            'email' => 'tom@tom.com',
+            'password' => bcrypt('password123')
+        ]);
+        $post = ForumPost::create([
+            'user_id' => $user->id,
+            'text' => 'testing is boring',
+            'likes' => 1,
+            'dislikes' => 1,
+            'title' => 'yawn'
+        ]);
+
+        $returnedComments = $this->service->getPostCommentsByPostId($post->id);
+        $returnedComments = $returnedComments->toArray();
+        $this->assertEmpty($returnedComments);
     }
 
 
