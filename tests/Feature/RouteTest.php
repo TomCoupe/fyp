@@ -27,26 +27,10 @@ class RouteTest extends TestCase
         $response->assertStatus(200);
     }
 
-    // public function testForum() {
-    //     $response = $this->get('/forum');
+    public function testForum() {
+        $response = $this->get('/forum');
 
-    //     $response->assertStatus(200);
-    // }
-
-    // public function testForumCreate() {
-    //     $user = Auth::user();
-    //     $this->be($user);
-    //     $response = $this->get('/forum/create');
-
-    //     $response->assertStatus(200);
-    // }
-
-    // public function testPostViewOnFakePo st() {
-    //     $user = Auth::user();
-    //     $this->be($user);
-    //     $response = $this->get('/forum/post/34343434');
-
-    //     $response->assertStatus(500);
-    // }
+        $response->assertStatus(200);
+    }
 
 }

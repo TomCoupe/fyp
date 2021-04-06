@@ -14,7 +14,6 @@ class GameService
 
     public function __construct(UserRepository $repository, LeaderboardRepository $leaderboardRepository)
     {
-
         $this->repository = $repository;
         $this->leaderboardRepository = $leaderboardRepository;
     }
