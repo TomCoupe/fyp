@@ -37,8 +37,7 @@ export default class TileCollision {
                     if(this.tiles.matrix.grid[Math.round(entity.pos.x/16)][Math.round(entity.pos.y/16)].name == 'coin') {
                         this.tiles.matrix.grid[Math.round(entity.pos.x/16)][Math.round(entity.pos.y/16)].name = 'sky';
                         entity.points = entity.points + 100;
-                        level.game.draw(context, screen)
-                        console.log(entity.points);
+                        level.game.draw(context, screen);
                     }
                 }
 
@@ -79,7 +78,7 @@ export default class TileCollision {
             if (match.tile.type !== 'ground') {
                 if (this.killBlocks.includes(match.tile.name)) {
                     entity.pos.set(64, 64);
-                    entity.lives = entity.lives - 1;
+                    // entity.lives = entity.lives - 1;
                     screen.position.set(0, 0);
                 }
 
