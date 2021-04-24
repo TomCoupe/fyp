@@ -21,8 +21,9 @@
               </a>
               <p class="card-text">{{ post.text }}</p>
               <p class="card-text">
-                <small class="text-muted">Posted at: {{post.created_at}}</small><br>
-                <small class="text-muted">Posted by: </small>
+                <small class="text-muted">Posted at: {{post.created_at}}</small>
+                <br />
+                <!-- <small class="text-muted">Posted by: {{getUserFromPost(post.user_id)}}</small> -->
               </p>
               <div class="bottom-right">
                 &nbsp;
@@ -31,7 +32,7 @@
                     <i
                       :class="{'fa fa-thumbs-up fa-2x user-liked-button' : checkLikedPosts(post.id), 'far fa-thumbs-up fa-2x like-button': !checkLikedPosts(post.id)}"
                     ></i>
-                    {{post.likes}}
+                    {{getNumOfLikes(post.id)}}
                   </button>
                 </span>
                 &nbsp;
@@ -40,7 +41,7 @@
                     <i
                       :class="{ 'fa fa-thumbs-down fa-2x user-disliked-button': checkDislikedPosts(post.id), 'far fa-thumbs-down fa-2x dislike-button': !checkDislikedPosts(post.id) }"
                     ></i>
-                    {{post.dislikes}}
+                    {{getNumOfDislikes(post.id)}}
                   </button>
                 </span>
                 &nbsp;
@@ -66,6 +67,25 @@ export default {
         }
       }
       return false;
+    },
+    getNumOfLikes(postId){
+      let temp = 0;
+      for(let i = 0; i < this.likes.length; i++) {
+        if(this.likes[i].forum_post_id == postId) {
+          temp += 1;
+        }
+      }
+      return temp;
+    },
+
+    getNumOfDislikes(postId){
+      let temp = 0;
+      for(let i = 0; i < this.dislikes.length; i++) {
+        if(this.dislikes[i].forum_post_id == postId) {
+          temp += 1;
+        }
+      }
+      return temp;
     },
 
     checkDislikedPosts(id) {
@@ -120,6 +140,20 @@ export default {
           console.log("Could not add like");
         });
       window.location.href = "/forum";
+    },
+
+    getUserFromPost(id) {
+      axios.post('/userID', id, {
+        headers: {
+          "content-type": "text/json"
+        }
+      })
+      .then(function(response) {
+          return response.data[0].name;
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
     },
 
     addOrRemoveDislike(id) {

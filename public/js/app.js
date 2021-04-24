@@ -2114,6 +2114,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 //
 //
 //
+//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2128,6 +2129,28 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       }
 
       return false;
+    },
+    getNumOfLikes: function getNumOfLikes(postId) {
+      var temp = 0;
+
+      for (var i = 0; i < this.likes.length; i++) {
+        if (this.likes[i].forum_post_id == postId) {
+          temp += 1;
+        }
+      }
+
+      return temp;
+    },
+    getNumOfDislikes: function getNumOfDislikes(postId) {
+      var temp = 0;
+
+      for (var i = 0; i < this.dislikes.length; i++) {
+        if (this.dislikes[i].forum_post_id == postId) {
+          temp += 1;
+        }
+      }
+
+      return temp;
     },
     checkDislikedPosts: function checkDislikedPosts(id) {
       for (var index = 0; index < this.dislikes.length; index++) {
@@ -2187,6 +2210,17 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         console.log("Could not add like");
       });
       window.location.href = "/forum";
+    },
+    getUserFromPost: function getUserFromPost(id) {
+      axios.post('/userID', id, {
+        headers: {
+          "content-type": "text/json"
+        }
+      }).then(function (response) {
+        return response.data[0].name;
+      })["catch"](function (error) {
+        console.log(error);
+      });
     },
     addOrRemoveDislike: function addOrRemoveDislike(id) {
       var _this2 = this;
@@ -38440,11 +38474,8 @@ var render = function() {
                     _c("small", { staticClass: "text-muted" }, [
                       _vm._v("Posted at: " + _vm._s(post.created_at))
                     ]),
-                    _c("br"),
                     _vm._v(" "),
-                    _c("small", { staticClass: "text-muted" }, [
-                      _vm._v("Posted by: ")
-                    ])
+                    _c("br")
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "bottom-right" }, [
@@ -38473,7 +38504,7 @@ var render = function() {
                           }),
                           _vm._v(
                             "\n                  " +
-                              _vm._s(post.likes) +
+                              _vm._s(_vm.getNumOfLikes(post.id)) +
                               "\n                "
                           )
                         ]
@@ -38504,7 +38535,7 @@ var render = function() {
                           }),
                           _vm._v(
                             "\n                  " +
-                              _vm._s(post.dislikes) +
+                              _vm._s(_vm.getNumOfDislikes(post.id)) +
                               "\n                "
                           )
                         ]

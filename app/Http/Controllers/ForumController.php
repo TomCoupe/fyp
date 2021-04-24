@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\ForumPostService;
+use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
@@ -12,10 +13,12 @@ use App\ForumPost;
 class ForumController extends Controller
 {
     protected $service;
+    protected $userService;
 
-    public function __construct(ForumPostService $service)
+    public function __construct(ForumPostService $service, UserService $userService)
     {
         $this->service = $service;
+        $this->userService = $userService;
     }
 
     //function to load the forum homepage. (view of all forum posts)
@@ -136,6 +139,10 @@ class ForumController extends Controller
             return response('success', 200);
         }
         return response('error', 404);
+    }
+
+    public function getUserFromId(Request $request) {
+        return $this->userService->getNameByID($request[0]);
     }
 
     public function addDislike(Request $request)

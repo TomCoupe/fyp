@@ -27,7 +27,7 @@ Route::get('/game', 'GameController@index')->name('game');
 Route::get('/forum', 'ForumController@index')->name('forum');
 Route::get('/forum/post/{id}', 'ForumController@loadPost');
 Route::get('/leaderboards', 'LeaderboardController@index');
-
+Route::post('/userID', 'ForumController@getUserFromId');
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/profile', 'UserController@profile');
     Route::get('/forum/create', 'ForumController@create');
