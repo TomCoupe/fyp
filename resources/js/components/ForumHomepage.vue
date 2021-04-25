@@ -60,6 +60,7 @@ export default {
   name: "ForumHomepage.vue",
   props: ["user", "posts", "likes", "dislikes"],
   methods: {
+    
     checkLikedPosts(id) {
       for (let index = 0; index < this.likes.length; index++) {
         if (this.likes[index].forum_post_id == id) {
@@ -68,6 +69,7 @@ export default {
       }
       return false;
     },
+
     getNumOfLikes(postId){
       let temp = 0;
       for(let i = 0; i < this.likes.length; i++) {
