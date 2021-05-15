@@ -41,6 +41,7 @@ export default class TileDetector {
         return this.getByIndex(this.toIndex(posX), this.toIndex(posY));
     }
 
+    
     searchByRange(x1, x2, y1, y2) {
         const matches = [];
         this.toIndexRange(x1, x2).forEach(indexX => {

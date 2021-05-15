@@ -14,6 +14,7 @@ export default class Keyboard {
         this.keyMap.set(code, callback);
     }
 
+    //sets key status's to a map or future refernce in code
     handleEvent(event) {    
         const {code} = event;
 
@@ -35,6 +36,7 @@ export default class Keyboard {
         this.keyMap.get(code)(keyState);
     }
 
+    //listen to window input and handles event.
     listenTo(window) {
         ['keydown', 'keyup'].forEach(eventName => {
             window.addEventListener(eventName, event => {

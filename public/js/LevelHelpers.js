@@ -1,3 +1,5 @@
+
+//checks if enemy and player are in same index in matrix
 export function checkCollision(character, enemy, screen) {
     if (Math.round(enemy.pos.x/16) === Math.round(character.pos.x/16) && 
     Math.round(enemy.pos.y/16) === Math.round(character.pos.y/16)) {
@@ -9,6 +11,7 @@ export function checkCollision(character, enemy, screen) {
     }
 }
 
+//check collision of win block
 export function checkWinBlock(xPos, yPos, character) {
     if (Math.floor(character.pos.x) == xPos && Math.floor(character.pos.y) == yPos) {
         return true;
@@ -16,6 +19,7 @@ export function checkWinBlock(xPos, yPos, character) {
     return false;
 }   
 
+//draws UI components in the corner of the screen
 export function updateUI(context, screen, player, time) {
     //time
     context.font = '8px Comic Sans MS';
@@ -33,6 +37,7 @@ export function updateUI(context, screen, player, time) {
     context.fillText(player.points + ' points', screen.size.x - 252, screen.size.y - 190);
 }
 
+//posts game data to backend one game completion. 
 export function gameEnd(character, mins, seconds) {
 
     let gameData = {
@@ -60,6 +65,7 @@ export function gameEnd(character, mins, seconds) {
     })
 }
 
+//game completion screen
 export function lastPageRestart(context, character, time, dead = false) {
     //top rect
     context.beginPath();

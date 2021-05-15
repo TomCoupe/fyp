@@ -37,6 +37,7 @@ export default class SpriteSheet {
         this.tiles.set(name, buffers)
     }
 
+    //defines tile types by name. 
     defineTile(name, x, y) {
         this.define(name, x * this.width, y * this.height, this.width, this.height);
     }
@@ -46,6 +47,7 @@ export default class SpriteSheet {
         context.drawImage(buffer, x, y);
     }
 
+    //draws the tile type to the canvas.
     drawTile(name, context, x, y) {
         this.draw(name, context, x * this.width, y * this.height);
     }

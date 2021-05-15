@@ -3,6 +3,7 @@ export default class Timer {
         let accumulatedTime = 0;
         let lastTime = 0;
 
+        //ensures the update loops speed is running at deltaTime speed
         this.updateProxy = (time) => {
             accumulatedTime += (time - lastTime) / 1000;
 
